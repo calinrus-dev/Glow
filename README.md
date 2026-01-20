@@ -162,3 +162,16 @@ Glow es un proyecto con disciplina de ingeniería y visión a largo plazo. Aunqu
 - `DEPENDENCY_RULES.md` — Reglas de dependencias y anti-circularidad
 - `CONTRIBUTING.md` — Guía extendida de contribución
 - `CONTRIBUTING_TECH.md` — Estándares de código y revisiones
+
+## 🚀 Releases automáticos
+
+Cada vez que se crea un tag con formato `vX.Y.Z` en GitHub, se genera automáticamente un release con changelog generado desde los commits. Utiliza:
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+El release aparecerá en la pestaña [Releases](https://github.com/<TU_USUARIO>/<TU_REPO>/releases) del repositorio.
+
+![Release](https://img.shields.io/github/v/release/<TU_USUARIO>/<TU_REPO>?label=release)
