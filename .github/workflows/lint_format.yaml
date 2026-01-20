@@ -1,0 +1,25 @@
+name: Lint & Format
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  lint-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: 'stable'
+      - name: Instalar Melos
+        run: flutter pub global activate melos
+      - name: Bootstrap Melos
+        run: melos bootstrap
+      - name: Verificar formato
+        run: melos exec -- dart format --set-exit-if-changed .
+      - name: Analizar código
+        run: melos exec -- flutter analyze
