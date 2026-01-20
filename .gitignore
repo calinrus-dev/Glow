@@ -1,0 +1,46 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ related
+.idea/
+*.iml
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Android
+**/android/local.properties
+**/android/key.properties
+
+# iOS
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Runner.xcworkspace/
+
+# Web
+**/web/.dart_tool/
+
+# Others
+*.log
+*.tmp
+
+# Coverage
+coverage/
+
+# Melos
+melos_managed/

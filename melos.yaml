@@ -1,0 +1,4 @@
+﻿name: glow_workspace
+packages:
+  - apps/*
+  - packages/*
