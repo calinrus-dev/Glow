@@ -1,46 +1,90 @@
-# Flutter/Dart/Pub related
+
+# --- FLUTTER/DART ---
 .dart_tool/
+.dart_server/
 .packages
 .pub/
 build/
+pubspec.lock
 .flutter-plugins
 .flutter-plugins-dependencies
+.flutter-versions
 .melos_tool/
 
-# Visual Studio Code
+# --- IDEs & EDITORS ---
 .vscode/
-
-# IntelliJ related
 .idea/
 *.iml
+.metadata
 
-# MacOS
+# --- OS FILES ---
 .DS_Store
-
-# Windows
 Thumbs.db
+ehthumbs.db
+Icon?
 
-# Android
-**/android/local.properties
+# --- ANDROID ---
+**/android/.gradle/
+**/android/captures/
 **/android/key.properties
+**/android/local.properties
+**/android/.idea/
+**/android/.settings/
+**/android/.externalNativeBuild/
+**/android/.cxx/
+**/android/build/
+**/android/app/build/
 
-# iOS
+# --- IOS ---
 **/ios/Flutter/Flutter.podspec
 **/ios/Flutter/Generated.xcconfig
 **/ios/Flutter/ephemeral/
 **/ios/Pods/
 **/ios/.symlinks/
 **/ios/Runner.xcworkspace/
+**/ios/build/
 
-# Web
+# --- MACOS ---
+**/macos/Flutter/ephemeral/
+**/macos/Pods/
+**/macos/.symlinks/
+**/macos/Runner.xcworkspace/
+**/macos/build/
+
+# --- WINDOWS ---
+**/windows/build/
+
+# --- WEB ---
 **/web/.dart_tool/
+**/web/build/
 
-# Others
+# --- LINUX ---
+**/linux/build/
+
+# --- TESTS & COVERAGE ---
+coverage/
+**/test/**.log
+
+# --- LOGS & TEMP ---
 *.log
 *.tmp
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
 
-# Coverage
-coverage/
-
-# Melos
+# --- MELOS ---
 melos_managed/
+
+# --- SCRIPTS OUTPUT ---
+scripts/generated/
+
+# --- SENSITIVE DATA & SECRETS ---
+.env
+**/.env
+**/secrets.*
+**/private.*
+**/config/*.json
+**/config/*.yml
+**/config/*.yaml
