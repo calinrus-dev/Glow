@@ -1,0 +1,16 @@
+repos:
+  - repo: https://github.com/dart-lang/tools
+    rev: main
+    hooks:
+      - id: dart-format
+        name: Dart Format
+        entry: dart format .
+        language: system
+      - id: flutter-analyze
+        name: Flutter Analyze
+        entry: flutter analyze
+        language: system
+      - id: flutter-test
+        name: Flutter Test
+        entry: flutter test
+        language: system

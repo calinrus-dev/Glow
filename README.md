@@ -122,6 +122,17 @@ glow/
 - **Commits:**  
   Mensajes claros, convencionales y atómicos
 
+## Automatización local (pre-commit hooks)
+
+Para asegurar la calidad antes de cada commit, instala los hooks locales:
+
+```sh
+pip install pre-commit
+pre-commit install
+```
+
+Esto ejecutará automáticamente formato, análisis y tests en cada commit.
+
 ## Roadmap resumido
 
 - **Fase 1:** MVP funcional (auth, plano global, entornos, canales, feed, chat, Smart Blocks básicos, offline-first)
