@@ -101,6 +101,22 @@ glow/
    flutter run
    ```
 
+## ⚡️ Setup rápido
+
+Prepara tu entorno de desarrollo con un solo comando:
+
+### Linux / macOS
+```sh
+./scripts/setup.sh
+```
+
+### Windows (PowerShell)
+```powershell
+./scripts/setup.ps1
+```
+
+Esto instalará Melos, dependencias y hooks de pre-commit automáticamente.
+
 ## Scripts disponibles
 
 - `melos bootstrap` — Instala dependencias y enlaza packages locales
@@ -175,3 +191,19 @@ git push origin v1.0.0
 El release aparecerá en la pestaña [Releases](https://github.com/<TU_USUARIO>/<TU_REPO>/releases) del repositorio.
 
 ![Release](https://img.shields.io/github/v/release/<TU_USUARIO>/<TU_REPO>?label=release)
+
+## 🔑 Variables de entorno
+
+Copia `.env.example` a `.env` y completa los valores según tu entorno:
+
+```sh
+cp .env.example .env
+```
+
+Variables principales:
+- `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`: credenciales de Supabase
+- `ISAR_DB_PATH`: ruta de la base de datos local (opcional)
+- `API_BASE_URL`, `API_KEY`: configuración de APIs
+- `ENV`: entorno actual (`dev`, `prod`, etc.)
+
+No subas nunca tu archivo `.env` al repositorio.
