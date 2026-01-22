@@ -1,21 +1,64 @@
-MIT License
+# Glow Proprietary License
 
-Copyright (c) 2026 Glow Team
+Copyright © 2026 Glow. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Terms and Conditions
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This software and associated documentation files (the "Software") are proprietary and confidential.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### Restrictions
+
+You may NOT:
+
+1. **Copy, modify, or distribute** the Software or any portion thereof
+2. **Create derivative works** based on the Software
+3. **Reverse engineer, decompile, or disassemble** the Software
+4. **Use the Software** for any commercial purpose without explicit written permission
+5. **Remove or alter** any proprietary notices or labels on the Software
+6. **Publish, share, or make available** the Software to any third party
+7. **Create forks or mirrors** of the Software repository
+
+### Permitted Use
+
+You may:
+
+1. **View the source code** for educational and evaluation purposes only
+2. **Run the Software** locally for personal testing and development
+3. **Submit contributions** according to the terms in CONTRIBUTING.md
+
+All contributions submitted to this project become the property of Glow and are subject to this license.
+
+### Commercial Use
+
+Any commercial use, including but not limited to:
+- Hosting the Software as a service
+- Integrating the Software into commercial products
+- Using the Software in production environments
+
+Requires explicit written permission and a separate commercial license agreement.
+
+### Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### Enforcement
+
+Violations of this license may result in:
+- Immediate termination of access
+- Legal action for damages
+- Criminal prosecution where applicable
+
+### Contact
+
+For licensing inquiries or permissions:
+- Email: legal@glow.dev
+- Subject: "Licensing Inquiry"
+
+---
+
+**This is a proprietary software license.**  
+**Glow is not open source software.**
+
+Last updated: January 23, 2026

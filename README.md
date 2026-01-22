@@ -1,157 +1,214 @@
-# Glow - A Social Operating System
+# Glow
 
-> A next-generation social platform built with Flutter and Clean Architecture
+**Plataforma social para crear y habitar espacios digitales con identidad.**
 
-## 🌟 Overview
+Glow transforma intereses en lugares. No simples feeds o chats, sino **Entornos** con atmósfera, estructura y personalidad propias donde las comunidades viven, no solo interactúan.
 
-Glow is a revolutionary social operating system that reimagines how people connect, communicate, and collaborate in digital spaces. Built on principles of modularity, scalability, and clean architecture.
+---
 
-## 🏗️ Architecture
+## ¿Qué es Glow?
 
-This project follows **Clean Architecture** with strict separation of concerns:
+Glow es una plataforma diseñada para que cualquier interés —desde MotoGP hasta cine independiente, desde fotografía hasta desarrollo de software— pueda convertirse en un **espacio social real**, con identidad visual, cultura propia y experiencia inmersiva.
 
+No es una red social tradicional. Es una plataforma para **habitar comunidades**, no solo para consumir contenido.
+
+---
+
+## Conceptos fundamentales
+
+### Entornos (Spaces)
+Un **Entorno** es una comunidad dentro de Glow. Cada uno representa un interés, tema o actividad, con:
+- Identidad visual única
+- Estética configurable
+- Estructura interna definida
+- Normas y cultura propias
+
+Ejemplos: MotoGP, Cine independiente, Desarrollo de software.
+
+### Canales
+Los **Canales** organizan la actividad dentro de un Entorno:
+- Feed visual
+- Chat
+- Galería
+- Wiki
+- Espacios experimentales
+
+Cada canal tiene propósito claro, reglas y permisos específicos.
+
+### Lienzos
+En Glow no existen los "posts" tradicionales. El contenido se crea a través de **Lienzos**: espacios en blanco donde los usuarios construyen libremente, combinando texto, imágenes y elementos visuales sin formato rígido.
+
+Los Lienzos permiten que el contenido:
+- Se adapte al tono de cada comunidad
+- Evolucione con el tiempo
+- Refleje la creatividad sin limitaciones artificiales
+
+### Identidad contextual
+Los usuarios tienen una **identidad global** y **identidades adaptables** según el Entorno, permitiendo participar en distintos intereses sin mezclar contextos.
+
+---
+
+## Experiencia y estética
+
+Glow apuesta por una experiencia:
+- **Inmersiva y atmosférica**
+- **Estética oscura con efectos glow/neón**
+- **Animaciones suaves y transiciones cuidadas**
+- **Sensación de profundidad y lugar**
+
+La estética no es decoración: define el carácter del producto y refuerza la identidad de cada Entorno.
+
+Entrar en un Entorno debe sentirse como **entrar en otro espacio**, no como abrir una app más.
+
+---
+
+## Stack tecnológico
+
+```yaml
+Framework: Flutter 3.19+
+State: Riverpod + Freezed
+Backend: Supabase (PostgreSQL, Auth, Realtime)
+HTTP: Dio
+Navigation: GoRouter
+Monorepo: Melos
+Code generation: Mason, build_runner
 ```
-├── packages/          # Reusable packages
-│   ├── glow_core/           # Core utilities and contracts
-│   ├── glow_domain/         # Business entities and rules
-│   ├── glow_data/           # Data layer (repositories, data sources)
-│   ├── glow_ui/             # Design system and UI components
-│   ├── glow_blocks_engine/  # Block system core logic
-│   ├── glow_blocks_flutter/ # Block UI rendering
-│   ├── glow_api/            # API client
-│   ├── glow_auth/           # Authentication
-│   ├── glow_realtime/       # Real-time communication
-│   └── glow_observability/  # Logging and monitoring
-│
-└── apps/             # Applications
-    └── glow_app/          # Main Flutter app
-```
 
-## 🚀 Quick Start
+**Arquitectura:** Clean Architecture con separación estricta de capas.
 
-### Prerequisites
+**Paquetes:**
+- `glow_core` - Contratos base, logger, utilidades
+- `glow_domain` - Entidades, casos de uso, políticas
+- `glow_data` - Repositorios, data sources
+- `glow_api` - Cliente HTTP
+- `glow_auth` - Gestión de sesiones y autenticación
+- `glow_realtime` - Conexiones realtime
+- `glow_blocks_engine` - Motor de bloques visuales
+- `glow_blocks_flutter` - Widgets de bloques
+- `glow_observability` - Logging y monitoreo
+- `glow_ui` - Sistema de diseño
 
-- Flutter SDK >=3.3.0
-- Dart SDK >=3.3.0
-- Melos: `dart pub global activate melos`
-- Mason: `dart pub global activate mason_cli`
+---
 
-### Setup
+## Desarrollo
+
+### Requisitos
+- Flutter 3.19+
+- Dart 3.3+
+- Melos CLI: `dart pub global activate melos`
+- Mason CLI: `dart pub global activate mason_cli`
+
+### Setup inicial
 
 ```bash
-# 1. Clone the repository
-git clone <repository-url>
+# Clonar repositorio
+git clone https://github.com/calinrus-dev/Glow.git
 cd glow
 
-# 2. Bootstrap the monorepo
+# Bootstrap de paquetes
 melos bootstrap
 
-# 3. Run the app (development)
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con credenciales de Supabase
+```
+
+### Comandos principales
+
+```bash
+# Analizar código
+melos run analyze
+
+# Ejecutar tests
+melos run test
+
+# Formatear código
+melos run format
+
+# Code generation (Riverpod, Freezed)
 cd apps/glow_app
-flutter run --flavor dev -t lib/main_dev.dart
+dart run build_runner build --delete-conflicting-outputs
+
+# Ejecutar app
+cd apps/glow_app
+flutter run
 ```
 
-### Available Commands
+### Estructura del proyecto
 
-```bash
-# Analysis and formatting
-melos analyze              # Run static analysis
-melos format              # Format all code
-melos format:check        # Check formatting
-
-# Testing
-melos test                # Run all tests
-melos test:unit           # Run unit tests only
-melos test:integration    # Run integration tests
-melos coverage            # Generate coverage report
-
-# Build runner
-melos build:runner        # Run code generation
-melos build:runner:watch  # Watch for changes
-
-# Clean
-melos clean               # Clean all packages
-melos clean:deep          # Deep clean
-
-# Architecture verification
-melos verify:arch         # Verify architecture rules
-melos verify:deps         # Verify dependency rules
+```
+glow/
+├── apps/
+│   └── glow_app/          # Aplicación principal
+│       ├── lib/
+│       │   ├── bootstrap/ # Inicialización
+│       │   ├── config/    # Configuración
+│       │   ├── di/        # Dependency injection
+│       │   ├── features/  # Features por dominio
+│       │   ├── router/    # Navegación
+│       │   └── shared/    # Código compartido
+│       └── assets/        # Recursos visuales
+├── packages/              # Paquetes del monorepo
+├── bricks/                # Templates Mason
+├── docs/                  # Documentación adicional
+└── melos.yaml            # Configuración monorepo
 ```
 
-## 📦 Mason Bricks
+---
 
-Generate boilerplate code using Mason:
+## Filosofía del proyecto
 
-```bash
-# Generate a new feature
-mason make feature --name my_feature
+Glow se desarrolla con principios claros:
 
-# Generate a new package
-mason make package --name my_package
+- **Experiencia antes que métricas artificiales**
+- **Estructura antes que caos**
+- **Estética con propósito**
+- **Crecimiento sostenible**
 
-# Generate a usecase
-mason make usecase --name MyUsecase
+No buscamos competir por atención. Creamos lugares donde quedarse.
 
-# Generate an entity
-mason make entity --name MyEntity
+---
 
-# Generate a repository
-mason make repository --name MyRepository
-```
+## Estado del proyecto
 
-## 🏛️ Architecture Rules
+Glow está en **desarrollo activo**. El enfoque actual:
 
-1. **Domain Layer** has no dependencies
-2. **Data Layer** depends only on Domain
-3. **UI packages** never import business logic packages
-4. **Features** follow Clean Architecture (data/domain/presentation)
-5. **No circular dependencies** allowed
+- ✅ Base técnica sólida con Clean Architecture
+- ✅ Monorepo configurado con Melos + Mason
+- ✅ Sistema de diseño base
+- 🔄 Implementación de Entornos y Canales
+- 🔄 Motor de Lienzos
+- 🔄 Sistema de identidad contextual
 
-See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed rules.
+---
 
-## 📚 Documentation
+## Contribuciones
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Dependency Rules](docs/DEPENDENCY_RULES.md)
-- [Contributing](docs/CONTRIBUTING.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Supabase Schema](docs/SUPABASE_SCHEMA.md)
-- [Offline First](docs/OFFLINE_FIRST.md)
+Glow **no es open source**, pero sí es un proyecto colaborativo.
 
-## 🧪 Testing Strategy
+Aceptamos contribuciones de personas interesadas en desarrollo, diseño, experiencia de usuario y construcción de producto.
 
-- **Unit Tests**: Test business logic in isolation
-- **Widget Tests**: Test UI components
-- **Integration Tests**: Test user flows end-to-end
-- **Golden Tests**: Visual regression testing for UI components
+Las contribuciones significativas pueden traducirse en participación futura bajo acuerdos definidos cuando el proyecto madure.
 
-## 🛠️ Tech Stack
+Ver [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
 
-- **Flutter** - UI framework
-- **Riverpod** - State management
-- **Go Router** - Navigation
-- **Isar** - Local database
-- **Supabase** - Backend (Auth, Database, Storage, Realtime)
-- **Freezed** - Immutable models
-- **Injectable** - Dependency injection
+---
 
-## 📱 Supported Platforms
+## Licencia
 
-- ✅ iOS
-- ✅ Android
-- ✅ Web
-- 🚧 macOS (in progress)
-- 🚧 Windows (in progress)
-- 🚧 Linux (in progress)
+Código propietario. Ver [LICENSE](LICENSE) para términos completos.
 
-## 🤝 Contributing
+**Glow es un producto en desarrollo con fines comerciales.**  
+No se permite redistribución ni forks no autorizados.
 
-Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+---
 
-## 📄 License
+## Objetivo
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Crear una plataforma donde cualquier interés pueda convertirse en un espacio social con identidad, donde las personas no solo interactúan, sino **habitan**.
 
-## 🙏 Acknowledgments
+Glow quiere redefinir cómo se construyen y viven las comunidades digitales.
 
-Built with ❤️ by the Glow team
+---
+
+**Construyendo el futuro de las comunidades digitales.**
