@@ -1,0 +1,9 @@
+name: entity
+description: Generate a new domain entity
+version: 0.1.0
+
+vars:
+  - name: entity_name
+    description: Entity name (PascalCase, e.g., User)
+    type: string
+    prompt: What is the entity name?

@@ -1,24 +1,10 @@
 # glow_auth
 
-Módulo de autenticación para Glow (login, registro, sesión).
+Authentication and session management for Glow.
 
-## Características
-- Login, registro, recuperación
-- Integración con Supabase Auth
-- Seguro y desacoplado
+## Features
 
-## Uso
-```dart
-import 'package:glow_auth/glow_auth.dart';
-```
+- **Session**: Session management and token refresh
+- **Security**: Password hashing, token validation
 
-## Arquitectura
-No depende de UI. Solo lógica de autenticación.
-
-## Tests
-```sh
-dart test packages/glow_auth
-```
-
----
-[Ver documentación principal](../../README.md)
+Pure Dart package (no Flutter dependencies).

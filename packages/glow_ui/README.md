@@ -1,24 +1,14 @@
 # glow_ui
 
-Componentes visuales y widgets reutilizables para Glow.
+UI component library for Glow Social Operating System.
 
-## Características
-- Widgets, temas y estilos
-- Basado en Flutter
-- Integración con Riverpod
+## Features
 
-## Uso
-```dart
-import 'package:glow_ui/glow_ui.dart';
-```
+- **Theme**: Design system tokens and theme configuration
+- **Atoms**: Basic UI primitives (buttons, inputs, icons)
+- **Molecules**: Composite components (cards, list items)
+- **Organisms**: Complex UI sections (navigation, headers)
+- **Layouts**: Page layouts and scaffolds
+- **Shaders**: Custom shaders for visual effects
 
-## Arquitectura
-Solo depende de Flutter y paquetes de UI.
-
-## Tests
-```sh
-dart test packages/glow_ui
-```
-
----
-[Ver documentación principal](../../README.md)
+Flutter package with reusable UI components.

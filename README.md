@@ -1,209 +1,157 @@
-# Glow — Sistema Operativo Social para Comunidades Soberanas
+# Glow - A Social Operating System
 
-## Qué es Glow
+> A next-generation social platform built with Flutter and Clean Architecture
 
-Glow es un sistema operativo social diseñado para que comunidades creen, gestionen y gobiernen sus propios entornos digitales. No es una red social tradicional: Glow permite construir infraestructuras sociales autosuficientes, donde cada comunidad (Entorno) define su identidad, canales, reglas y lógica interna. El objetivo es dotar a las comunidades de herramientas para la autonomía digital, no competir por atención superficial.
+## 🌟 Overview
 
-Glow se fundamenta en la modularidad, la gobernanza automatizada y la soberanía de datos. Cada Entorno es una mini-aplicación configurable, con canales internos (feed, chat, wiki, galería), roles, permisos, reputación local y mecanismos de gobernanza propios. El contenido se estructura en Smart Blocks: bloques interactivos y enlazables que permiten lógica, interacción y composición avanzada.
+Glow is a revolutionary social operating system that reimagines how people connect, communicate, and collaborate in digital spaces. Built on principles of modularity, scalability, and clean architecture.
 
-## Principios del sistema
+## 🏗️ Architecture
 
-- **Soberanía comunitaria:** Cada Entorno es autónomo, con identidad visual, reglas y gobierno propios.
-- **Infraestructura, no red social:** Glow es la base para construir comunidades, no un feed global de posts.
-- **Modularidad real:** Todo el contenido y la lógica se compone mediante Smart Blocks.
-- **Offline-first:** Funciona sin conexión, con cache local, sincronización silenciosa y cola de acciones.
-- **Identidad contextual:** Un usuario tiene un perfil global y máscaras independientes por Entorno.
-- **Disciplina arquitectónica:** Clean Architecture estricta, reglas anti-circularidad, separación de concerns.
-
-## Conceptos clave
-
-- **Plano Global:** Espacio de descubrimiento y navegación entre Entornos.
-- **Entornos:** Comunidades soberanas, cada una con su propia configuración, canales y gobierno.
-- **Canales:** Subespacios dentro de un Entorno (feed, chat, wiki, galería, etc.).
-- **Smart Blocks:** Unidades modulares de contenido y lógica, enlazables y con interacción avanzada.
-
-## Arquitectura
-
-- **Monorepo gestionado con Melos**
-- **Clean Architecture estricta:** Presentation → Domain → Data
-- **Separación por packages:**  
-  - `glow_core` — Tipos base, utilidades, contratos
-  - `glow_domain` — Entidades, lógica de negocio, políticas
-  - `glow_ui` — Componentes visuales, temas, layouts
-  - `glow_blocks_engine` — Motor de Smart Blocks
-  - `glow_blocks_flutter` — Widgets de Smart Blocks para Flutter
-  - `glow_api` — Integración con backend y servicios externos
-  - `glow_auth` — Autenticación y gestión de sesión
-  - `glow_realtime` — Comunicación en tiempo real
-  - `glow_data` — Persistencia local y remota
-- **App final:** `apps/glow_app`
-- **Backend:** Supabase (auth, datos, realtime)
-- **Cache local:** Isar
-- **Estado:** Riverpod
-- **Reglas anti-circularidad:** Enforced con `verify_arch`
-
-## Stack tecnológico
-
-- Flutter (UI multiplataforma)
-- Dart (lógica y dominio)
-- Supabase (backend, auth, realtime)
-- Isar (cache local, offline-first)
-- Riverpod (gestión de estado)
-- Melos (gestión de monorepo)
-- GitHub Actions (CI/CD)
-
-## Estructura del monorepo
+This project follows **Clean Architecture** with strict separation of concerns:
 
 ```
-glow/
-├── apps/
-│   └── glow_app/           # App principal Flutter
-├── packages/
-│   ├── glow_core/
-│   ├── glow_domain/
-│   ├── glow_ui/
-│   ├── glow_blocks_engine/
-│   ├── glow_blocks_flutter/
-│   ├── glow_api/
-│   ├── glow_auth/
-│   ├── glow_realtime/
-│   └── glow_data/
-├── scripts/                # Utilidades y automatización
-├── docs/                   # Documentación técnica y de producto
-├── .github/workflows/      # CI/CD
-├── melos.yaml              # Configuración de monorepo
-└── pubspec.yaml            # Configuración raíz
+├── packages/          # Reusable packages
+│   ├── glow_core/           # Core utilities and contracts
+│   ├── glow_domain/         # Business entities and rules
+│   ├── glow_data/           # Data layer (repositories, data sources)
+│   ├── glow_ui/             # Design system and UI components
+│   ├── glow_blocks_engine/  # Block system core logic
+│   ├── glow_blocks_flutter/ # Block UI rendering
+│   ├── glow_api/            # API client
+│   ├── glow_auth/           # Authentication
+│   ├── glow_realtime/       # Real-time communication
+│   └── glow_observability/  # Logging and monitoring
+│
+└── apps/             # Applications
+    └── glow_app/          # Main Flutter app
 ```
 
-## Cómo arrancar el proyecto
+## 🚀 Quick Start
 
-1. **Clona el repositorio**
-   ```sh
-   git clone https://github.com/calinrus-dev/glow.git
-   cd glow
-   ```
+### Prerequisites
 
-2. **Instala Flutter y Melos**
-   - Flutter: https://docs.flutter.dev/get-started/install
-   - Melos:  
-     ```sh
-     flutter pub global activate melos
-     ```
+- Flutter SDK >=3.3.0
+- Dart SDK >=3.3.0
+- Melos: `dart pub global activate melos`
+- Mason: `dart pub global activate mason_cli`
 
-3. **Bootstrap del monorepo**
-   ```sh
-   melos bootstrap
-   ```
+### Setup
 
-4. **Arranca la app**
-   ```sh
-   cd apps/glow_app
-   flutter run
-   ```
+```bash
+# 1. Clone the repository
+git clone <repository-url>
+cd glow
 
-## ⚡️ Setup rápido
+# 2. Bootstrap the monorepo
+melos bootstrap
 
-Prepara tu entorno de desarrollo con un solo comando:
-
-### Linux / macOS
-```sh
-./scripts/setup.sh
+# 3. Run the app (development)
+cd apps/glow_app
+flutter run --flavor dev -t lib/main_dev.dart
 ```
 
-### Windows (PowerShell)
-```powershell
-./scripts/setup.ps1
+### Available Commands
+
+```bash
+# Analysis and formatting
+melos analyze              # Run static analysis
+melos format              # Format all code
+melos format:check        # Check formatting
+
+# Testing
+melos test                # Run all tests
+melos test:unit           # Run unit tests only
+melos test:integration    # Run integration tests
+melos coverage            # Generate coverage report
+
+# Build runner
+melos build:runner        # Run code generation
+melos build:runner:watch  # Watch for changes
+
+# Clean
+melos clean               # Clean all packages
+melos clean:deep          # Deep clean
+
+# Architecture verification
+melos verify:arch         # Verify architecture rules
+melos verify:deps         # Verify dependency rules
 ```
 
-Esto instalará Melos, dependencias y hooks de pre-commit automáticamente.
+## 📦 Mason Bricks
 
-## Scripts disponibles
+Generate boilerplate code using Mason:
 
-- `melos bootstrap` — Instala dependencias y enlaza packages locales
-- `melos exec -- flutter analyze` — Análisis estático de todo el monorepo
-- `melos exec -- flutter test` — Ejecuta todos los tests
-- `melos exec -- flutter pub run build_runner build --delete-conflicting-outputs` — Genera código (freezed, json_serializable)
-- `scripts/verify_arch.sh` — Verifica reglas anti-circularidad
+```bash
+# Generate a new feature
+mason make feature --name my_feature
 
-## Disciplina del proyecto
+# Generate a new package
+mason make package --name my_package
 
-- **Formato:**  
-  `melos exec -- dart format .`
-- **Análisis:**  
-  `melos exec -- flutter analyze`
-- **Tests:**  
-  `melos exec -- flutter test`
-- **Verificación de arquitectura:**  
-  `scripts/verify_arch.sh`
-- **Commits:**  
-  Mensajes claros, convencionales y atómicos
+# Generate a usecase
+mason make usecase --name MyUsecase
 
-## Automatización local (pre-commit hooks)
+# Generate an entity
+mason make entity --name MyEntity
 
-Para asegurar la calidad antes de cada commit, instala los hooks locales:
-
-```sh
-pip install pre-commit
-pre-commit install
+# Generate a repository
+mason make repository --name MyRepository
 ```
 
-Esto ejecutará automáticamente formato, análisis y tests en cada commit.
+## 🏛️ Architecture Rules
 
-## Roadmap resumido
+1. **Domain Layer** has no dependencies
+2. **Data Layer** depends only on Domain
+3. **UI packages** never import business logic packages
+4. **Features** follow Clean Architecture (data/domain/presentation)
+5. **No circular dependencies** allowed
 
-- **Fase 1:** MVP funcional (auth, plano global, entornos, canales, feed, chat, Smart Blocks básicos, offline-first)
-- **Fase 2:** Gobernanza, reputación, permisos avanzados, moderación, identidad dual
-- **Fase 3:** Extensibilidad de Smart Blocks, API pública, automatización de gobernanza, integración avanzada con Supabase
+See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed rules.
 
-## Estado actual del proyecto
+## 📚 Documentation
 
-- Arquitectura y estructura de monorepo establecidas
-- Paquetes core y app principal en desarrollo activo
-- CI/CD, análisis y tests automatizados
-- Documentación y guías iniciales disponibles
-- El proyecto evoluciona en fases, con enfoque en calidad y escalabilidad
+- [Architecture](docs/ARCHITECTURE.md)
+- [Dependency Rules](docs/DEPENDENCY_RULES.md)
+- [Contributing](docs/CONTRIBUTING.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Supabase Schema](docs/SUPABASE_SCHEMA.md)
+- [Offline First](docs/OFFLINE_FIRST.md)
 
-## Filosofía de contribución
+## 🧪 Testing Strategy
 
-Glow es un proyecto con disciplina de ingeniería y visión a largo plazo. Aunque la contribución externa puede estar limitada en fases iniciales, se fomenta la revisión profesional, el feedback técnico y la colaboración responsable. Lee `CONTRIBUTING.md` y respeta el `CODE_OF_CONDUCT.md` antes de proponer cambios.
+- **Unit Tests**: Test business logic in isolation
+- **Widget Tests**: Test UI components
+- **Integration Tests**: Test user flows end-to-end
+- **Golden Tests**: Visual regression testing for UI components
 
----
+## 🛠️ Tech Stack
 
-### Sugerencia de documentos adicionales en `/docs`:
+- **Flutter** - UI framework
+- **Riverpod** - State management
+- **Go Router** - Navigation
+- **Isar** - Local database
+- **Supabase** - Backend (Auth, Database, Storage, Realtime)
+- **Freezed** - Immutable models
+- **Injectable** - Dependency injection
 
-- `ARCHITECTURE.md` — Detalle de la arquitectura y reglas internas
-- `OFFLINE_FIRST.md` — Estrategias y patrones offline
-- `SUPABASE_SCHEMA.md` — Esquema y reglas del backend
-- `ROADMAP.md` — Detalle de fases y objetivos
-- `DEPENDENCY_RULES.md` — Reglas de dependencias y anti-circularidad
-- `CONTRIBUTING.md` — Guía extendida de contribución
-- `CONTRIBUTING_TECH.md` — Estándares de código y revisiones
+## 📱 Supported Platforms
 
-## 🚀 Releases automáticos
+- ✅ iOS
+- ✅ Android
+- ✅ Web
+- 🚧 macOS (in progress)
+- 🚧 Windows (in progress)
+- 🚧 Linux (in progress)
 
-Cada vez que se crea un tag con formato `vX.Y.Z` en GitHub, se genera automáticamente un release con changelog generado desde los commits. Utiliza:
+## 🤝 Contributing
 
-```sh
-git tag v1.0.0
-git push origin v1.0.0
-```
+Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-El release aparecerá en la pestaña [Releases](https://github.com/<TU_USUARIO>/<TU_REPO>/releases) del repositorio.
+## 📄 License
 
-![Release](https://img.shields.io/github/v/release/<TU_USUARIO>/<TU_REPO>?label=release)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔑 Variables de entorno
+## 🙏 Acknowledgments
 
-Copia `.env.example` a `.env` y completa los valores según tu entorno:
-
-```sh
-cp .env.example .env
-```
-
-Variables principales:
-- `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`: credenciales de Supabase
-- `ISAR_DB_PATH`: ruta de la base de datos local (opcional)
-- `API_BASE_URL`, `API_KEY`: configuración de APIs
-- `ENV`: entorno actual (`dev`, `prod`, etc.)
-
-No subas nunca tu archivo `.env` al repositorio.
+Built with ❤️ by the Glow team

@@ -1,0 +1,9 @@
+name: repository
+description: Generate a new repository contract and implementation
+version: 0.1.0
+
+vars:
+  - name: repository_name
+    description: Repository name (PascalCase, e.g., User)
+    type: string
+    prompt: What is the repository name (without Repository suffix)?

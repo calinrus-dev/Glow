@@ -1,90 +1,136 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
 
-# --- FLUTTER/DART ---
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
 .dart_tool/
-.dart_server/
-.packages
-.pub/
-build/
-pubspec.lock
 .flutter-plugins
 .flutter-plugins-dependencies
-.flutter-versions
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Coverage
+coverage/
+*.lcov
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Supabase credentials
+supabase/.env
+supabase/config.toml
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+
+# API Keys and secrets
+**/secrets/
+**/credentials/
+*.key
+*.pem
+*.p12
+*.keystore
+!debug.keystore
+android/key.properties
+
+# Generated code
+**/*.g.dart
+**/*.freezed.dart
+**/*.config.dart
+**/*.gr.dart
+
+# Melos
 .melos_tool/
+melos_*.iml
+pubspec_overrides.yaml
 
-# --- IDEs & EDITORS ---
-.vscode/
-.idea/
-*.iml
-.metadata
+# Generated files
+**/*.g.dart
+**/*.freezed.dart
+**/*.gr.dart
+**/*.config.dart
+**/generated/
+**/l10n/arb/
 
-# --- OS FILES ---
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Icon?
+# Environment files
+.env
+.env.*
+!.env.example
 
-# --- ANDROID ---
+# iOS
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+
+# Android
 **/android/.gradle/
 **/android/captures/
-**/android/key.properties
 **/android/local.properties
-**/android/.idea/
-**/android/.settings/
-**/android/.externalNativeBuild/
-**/android/.cxx/
-**/android/build/
-**/android/app/build/
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+**/*.jks
 
-# --- IOS ---
-**/ios/Flutter/Flutter.podspec
-**/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/ephemeral/
-**/ios/Pods/
-**/ios/.symlinks/
-**/ios/Runner.xcworkspace/
-**/ios/build/
+# Web
+**/web/flutter_service_worker.js
 
-# --- MACOS ---
+# Windows
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/windows/flutter/generated_plugins.cmake
+
+# Linux
+**/linux/flutter/generated_plugin_registrant.cc
+**/linux/flutter/generated_plugin_registrant.h
+**/linux/flutter/generated_plugins.cmake
+
+# macOS
+**/macos/Flutter/GeneratedPluginRegistrant.swift
 **/macos/Flutter/ephemeral/
-**/macos/Pods/
-**/macos/.symlinks/
-**/macos/Runner.xcworkspace/
-**/macos/build/
+**/Pods/
 
-# --- WINDOWS ---
-**/windows/build/
-
-# --- WEB ---
-**/web/.dart_tool/
-**/web/build/
-
-# --- LINUX ---
-**/linux/build/
-
-# --- TESTS & COVERAGE ---
-coverage/
-**/test/**.log
-
-# --- LOGS & TEMP ---
-*.log
-*.tmp
-*.swp
-*.swo
-*.bak
-*.tmp
-*.temp
-
-# --- MELOS ---
-melos_managed/
-
-# --- SCRIPTS OUTPUT ---
-scripts/generated/
-
-# --- SENSITIVE DATA & SECRETS ---
-.env
-**/.env
-**/secrets.*
-**/private.*
-**/config/*.json
-**/config/*.yml
-**/config/*.yaml
+# Exceptions to above rules
+!**/ios/.gitkeep
+!**/android/.gitkeep

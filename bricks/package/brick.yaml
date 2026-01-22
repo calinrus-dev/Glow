@@ -1,0 +1,18 @@
+name: package
+description: Generate a new Dart package with proper structure
+version: 0.1.0
+
+vars:
+  - name: package_name
+    description: Package name (snake_case)
+    type: string
+    prompt: What is the package name?
+  - name: description
+    description: Package description
+    type: string
+    prompt: What does this package do?
+  - name: is_flutter
+    description: Is this a Flutter package?
+    type: boolean
+    default: false
+    prompt: Is this a Flutter package (needs Flutter SDK)?

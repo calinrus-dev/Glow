@@ -1,24 +1,10 @@
 # glow_api
 
-Cliente y abstracciones para APIs remotas (ej: Supabase) en Glow.
+API client and DTOs for communication with backend services.
 
-## Características
-- Abstracción de servicios remotos
-- Integración con Supabase
-- Métodos asincrónicos y seguros
+## Features
 
-## Uso
-```dart
-import 'package:glow_api/glow_api.dart';
-```
+- **Client**: HTTP client wrapper with auth interceptors
+- **DTOs**: Data transfer objects for API requests/responses
 
-## Arquitectura
-No depende de UI. Solo lógica de acceso a datos remotos.
-
-## Tests
-```sh
-dart test packages/glow_api
-```
-
----
-[Ver documentación principal](../../README.md)
+Pure Dart package (no Flutter dependencies).

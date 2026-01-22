@@ -1,0 +1,21 @@
+name: feature
+description: Generate a new feature with Clean Architecture structure
+version: 0.1.0
+
+vars:
+  - name: feature_name
+    description: Feature name (snake_case, e.g., user_profile)
+    type: string
+    prompt: What is the feature name?
+  - name: has_entities
+    description: Generate entity files?
+    type: boolean
+    default: true
+  - name: has_usecases
+    description: Generate usecase files?
+    type: boolean
+    default: true
+  - name: has_repository
+    description: Generate repository files?
+    type: boolean
+    default: true

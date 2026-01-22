@@ -1,7 +1,11 @@
+name: glow_workspace
+description: Glow - A Social Operating System
+publish_to: none
 
-name: glow
-description: Monorepo Glow
-publish_to: 'none'
-version: 0.1.0
 environment:
-	sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
+
+dev_dependencies:
+  melos: ^6.3.0
+  mason: ^0.1.0-dev.59
+  lints: ^5.0.0

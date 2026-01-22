@@ -1,24 +1,18 @@
 # glow_domain
 
-Capa de dominio: entidades, casos de uso y lógica de negocio para Glow.
+Domain layer with entities and business rules for Glow Social Operating System.
 
-## Características
-- Entidades y casos de uso puros
-- Sin dependencias de frameworks
-- 100% testable
+## Description
 
-## Uso
-```dart
-import 'package:glow_domain/glow_domain.dart';
-```
+This package contains:
+- **Entities**: All domain entities (User, World, Channel, Post, etc.)
+- **Policies**: Business rules and domain policies
 
-## Arquitectura
-Sigue Clean Architecture. No depende de datos ni presentación.
+**Dependencies**: Only depends on `glow_core` for base types.
 
-## Tests
-```sh
-dart test packages/glow_domain
-```
+## Architecture Rules
 
----
-[Ver documentación principal](../../README.md)
+- Pure Dart only (no Flutter imports)
+- No dependencies on data or presentation layers
+- Contains only business logic
+- Entities are immutable

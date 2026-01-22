@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Glow App (Dev)",
+      "request": "launch",
+      "type": "dart",
+      "program": "apps/glow_app/lib/main_dev.dart",
+      "args": ["--flavor", "dev"]
+    },
+    {
+      "name": "Glow App (Prod)",
+      "request": "launch",
+      "type": "dart",
+      "program": "apps/glow_app/lib/main_prod.dart",
+      "args": ["--flavor", "prod"]
+    },
+    {
+      "name": "Glow App (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "apps/glow_app/lib/main_dev.dart",
+      "args": ["--flavor", "dev"],
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Current File Tests",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}",
+      "cwd": "${fileDirname}"
+    }
+  ]
+}

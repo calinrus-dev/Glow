@@ -1,4 +1,20 @@
-﻿name: glow_blocks_flutter
+name: glow_blocks_flutter
+description: Flutter widgets for visual programming blocks in Glow
 version: 0.1.0
+publish_to: none
+
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  glow_core:
+    path: ../glow_core
+  glow_blocks_engine:
+    path: ../glow_blocks_engine
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

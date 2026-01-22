@@ -1,0 +1,13 @@
+name: usecase
+description: Generate a new usecase
+version: 0.1.0
+
+vars:
+  - name: usecase_name
+    description: Use case name (PascalCase, e.g., GetUser)
+    type: string
+    prompt: What is the use case name?
+  - name: has_params
+    description: Does this use case need parameters?
+    type: boolean
+    default: true

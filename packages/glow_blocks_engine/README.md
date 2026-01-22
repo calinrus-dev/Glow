@@ -1,24 +1,11 @@
 # glow_blocks_engine
 
-Motor de lógica para bloques y flujos interactivos en Glow.
+Visual programming blocks engine for Glow.
 
-## Características
-- Definición y ejecución de bloques
-- Motor desacoplado de UI
-- 100% testable
+## Features
 
-## Uso
-```dart
-import 'package:glow_blocks_engine/glow_blocks_engine.dart';
-```
+- **Domain**: Block models and contracts
+- **Parser**: Block composition and validation
+- **Codecs**: Serialization/deserialization
 
-## Arquitectura
-No depende de UI. Solo lógica de bloques.
-
-## Tests
-```sh
-dart test packages/glow_blocks_engine
-```
-
----
-[Ver documentación principal](../../README.md)
+Pure Dart package (no Flutter dependencies).

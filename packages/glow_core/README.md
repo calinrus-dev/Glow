@@ -1,25 +1,21 @@
 # glow_core
 
-Núcleo de lógica y utilidades compartidas para el ecosistema Glow.
+Core utilities and shared functionality for Glow Social Operating System.
 
-## Características
-- Modelos base y utilidades comunes
-- Sin dependencias de Flutter
-- 100% testable y desacoplado
+## Description
 
-## Uso
-Importa en tus paquetes o apps:
-```dart
-import 'package:glow_core/glow_core.dart';
-```
+This package contains:
+- **Contracts**: Interfaces for cross-cutting concerns (logging, crash reporting, etc.)
+- **Error Handling**: Failure types, exceptions, and error mapping
+- **Types**: Result, Paged, Unit, and other common types
+- **Use Cases**: Base use case pattern
+- **Utils**: Validators, debouncer, throttler, and utilities
 
-## Arquitectura
-Sigue Clean Architecture. No depende de UI ni frameworks externos.
+**Note:** This is a Dart-only package (no Flutter dependencies).
 
-## Tests
-```sh
-dart test packages/glow_core
-```
+## Architecture Rules
 
----
-[Ver documentación principal](../../README.md)
+- No dependencies on other packages
+- Pure Dart only (no Flutter imports)
+- Framework-agnostic
+- Foundation for all other packages

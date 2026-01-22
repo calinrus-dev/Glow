@@ -1,0 +1,15 @@
+bricks:
+  # Local bricks for code generation
+  feature:
+    path: bricks/feature
+  package:
+    path: bricks/package
+  usecase:
+    path: bricks/usecase
+  entity:
+    path: bricks/entity
+  repository:
+    path: bricks/repository
+    
+# Mason configuration
+mason: ^0.1.0-dev

@@ -1,24 +1,11 @@
 # glow_observability
 
-Observabilidad, logs y métricas para Glow.
+Logging, crash reporting, and performance monitoring for Glow.
 
-## Características
-- Logs estructurados
-- Integración con sistemas de métricas
-- Fácil de extender
+## Features
 
-## Uso
-```dart
-import 'package:glow_observability/glow_observability.dart';
-```
+- **Logging**: Structured logging implementation
+- **Crash**: Crash reporting integration
+- **Performance**: Performance monitoring and tracing
 
-## Arquitectura
-No depende de UI. Solo lógica de observabilidad.
-
-## Tests
-```sh
-dart test packages/glow_observability
-```
-
----
-[Ver documentación principal](../../README.md)
+Pure Dart package (no Flutter dependencies).

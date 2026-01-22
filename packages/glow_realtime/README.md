@@ -1,24 +1,11 @@
 # glow_realtime
 
-Módulo de comunicación en tiempo real para Glow.
+Real-time communication and presence tracking for Glow.
 
-## Características
-- Integración con Supabase Realtime
-- Streams y listeners
-- Seguro y desacoplado
+## Features
 
-## Uso
-```dart
-import 'package:glow_realtime/glow_realtime.dart';
-```
+- **Core**: WebSocket management
+- **Presence**: User presence tracking
+- **Streams**: Real-time event streams
 
-## Arquitectura
-No depende de UI. Solo lógica de tiempo real.
-
-## Tests
-```sh
-dart test packages/glow_realtime
-```
-
----
-[Ver documentación principal](../../README.md)
+Pure Dart package (no Flutter dependencies).

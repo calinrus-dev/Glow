@@ -1,20 +1,21 @@
-﻿name: glow_app
-description: La super app social
+name: glow_app
+description: Glow - Social Operating System
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
 
 dependencies:
   flutter:
     sdk: flutter
-
-  # ===== Dependencias locales (Monorepo) =====
+  flutter_localizations:
+    sdk: flutter
+  
+  # Glow packages
   glow_core:
     path: ../../packages/glow_core
-  glow_ui:
-    path: ../../packages/glow_ui
   glow_domain:
     path: ../../packages/glow_domain
   glow_data:
@@ -25,88 +26,93 @@ dependencies:
     path: ../../packages/glow_auth
   glow_realtime:
     path: ../../packages/glow_realtime
-  glow_observability:
-    path: ../../packages/glow_observability
-  glow_blocks_flutter:
-    path: ../../packages/glow_blocks_flutter
   glow_blocks_engine:
     path: ../../packages/glow_blocks_engine
-
-  # ===== Backend & API =====
-  supabase_flutter: ^2.5.0
-  http: ^1.2.0
-  dio: ^5.4.0
-
-  # ===== State Management =====
-  riverpod: ^2.5.0
-  flutter_riverpod: ^2.5.0
-  riverpod_generator: ^2.3.0
-
-  # ===== Routing & Navigation =====
-  go_router: ^14.0.0
-
-  # ===== Local Storage =====
+  glow_blocks_flutter:
+    path: ../../packages/glow_blocks_flutter
+  glow_observability:
+    path: ../../packages/glow_observability
+  glow_ui:
+    path: ../../packages/glow_ui
+  
+  # State management
+  flutter_bloc: ^8.1.6
+  bloc_concurrency: ^0.2.5
+  
+  # DI
+  get_it: ^7.7.0
+  injectable: ^2.4.4
+  
+  # Navigation
+  go_router: ^14.3.0
+  
+  # Storage
+  shared_preferences: ^2.3.3
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  shared_preferences: ^2.2.0
-
-  # ===== Serialization =====
-  json_serializable: ^6.7.0
+  
+  # Network
+  dio: ^5.7.0
+  connectivity_plus: ^6.1.1
+  
+  # Utilities
+  freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  freezed_annotation: ^2.4.0
-
-  # ===== UI & Styling =====
-  google_fonts: ^6.1.0
-  flutter_animate: ^4.2.0
+  intl: ^0.20.2
+  equatable: ^2.0.7
+  rxdart: ^0.28.0
+  
+  # UI
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.4.1
   shimmer: ^3.0.0
-  cached_network_image: ^3.3.1
-
-  # ===== Utilities =====
-  intl: ^0.20.0
-  logger: ^2.1.0
-  uuid: ^4.0.0
-  equatable: ^2.0.5
-
-  # ===== WebSocket & Real-time =====
-  web_socket_channel: ^2.4.0
-
-  # ===== Image Handling =====
-  image_picker: ^1.1.0
-  image_cropper: ^5.0.0
-
-  # ===== Connectivity =====
-  connectivity_plus: ^6.0.0
-
-  # ===== Localization =====
-
-  dev_dependencies:
+  
+  # Permissions
+  permission_handler: ^11.3.1
+  
+  # Media
+  image_picker: ^1.1.2
+  
+  # Analytics
+  firebase_core: ^3.8.1
+  firebase_analytics: ^11.3.5
+  
+dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
-  build_runner: ^2.4.0
-  riverpod_generator: ^2.3.0
-  json_serializable: ^6.7.0
-  freezed: ^2.4.0
-
-  # ===== Localization =====
-  flutter_localizations:
+  
+  # Linting
+  flutter_lints: ^5.0.0
+  
+  # Code generation
+  build_runner: ^2.4.13
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+  injectable_generator: ^2.6.2
+  
+  # Testing
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
+  integration_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
   
-  # Assets
   assets:
-    - assets/images/
     - assets/icons/
-    - assets/l10n/
+    - assets/images/
     - assets/shaders/
-
-  # Fonts
+  
   fonts:
-    - family: CustomFont
+    - family: InterDisplay
       fonts:
-        - asset: assets/fonts/custom_font.ttf
-          weight: 400
-        - asset: assets/fonts/custom_font_bold.ttf
+        - asset: assets/fonts/InterDisplay-Regular.ttf
+        - asset: assets/fonts/InterDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/InterDisplay-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/InterDisplay-Bold.ttf
           weight: 700
+  
+  generate: true

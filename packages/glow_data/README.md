@@ -1,24 +1,21 @@
 # glow_data
 
-Capa de datos: acceso, caché y sincronización para Glow.
+Data layer with repositories, datasources, and models for Glow.
 
-## Características
-- Integración con Isar y Supabase
-- Sincronización offline/online
-- Repositorios desacoplados
+## Description
 
-## Uso
-```dart
-import 'package:glow_data/glow_data.dart';
-```
+This package contains:
+- **Remote Datasources**: API clients for Supabase
+- **Local Datasources**: Isar database clients
+- **Sync**: Offline-first synchronization logic
+- **Repositories**: Implementation of domain repository contracts
+- **Models**: DTOs and data models
 
-## Arquitectura
-No depende de UI. Solo lógica de datos.
+**Dependencies**: Depends on `glow_core` and `glow_domain`.
 
-## Tests
-```sh
-dart test packages/glow_data
-```
+## Architecture Rules
 
----
-[Ver documentación principal](../../README.md)
+- Pure Dart only (no Flutter imports)
+- Implements repository contracts from domain
+- Handles data mapping between DTOs and entities
+- Manages offline-first sync

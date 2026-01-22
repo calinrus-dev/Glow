@@ -4,6 +4,59 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 5
-    commit-message:
-      prefix: "chore(deps)"
+    open-pull-requests-limit: 10
+    
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_core"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_domain"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_data"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_ui"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_blocks_engine"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_blocks_flutter"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_api"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_auth"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_realtime"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/packages/glow_observability"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "pub"
+    directory: "/apps/glow_app"
+    schedule:
+      interval: "weekly"
