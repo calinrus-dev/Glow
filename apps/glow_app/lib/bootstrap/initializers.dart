@@ -1,4 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../config/app_config.dart';
 import '../di/service_locator.dart';
@@ -8,19 +8,16 @@ import '../di/service_locator.dart';
 abstract final class Initializers {
   /// Initializes all required services.
   static Future<void> initialize(AppConfig config) async {
-    await _initializeHive();
+    await _initializeSupabase();
     await configureDependencies(config);
-    await _initializeDatabase();
   }
 
-  /// Initializes Hive storage.
-  static Future<void> _initializeHive() async {
-    await Hive.initFlutter();
-    // TODO: Register adapters
-  }
-
-  /// Initializes local database.
-  static Future<void> _initializeDatabase() async {
-    // TODO: Initialize SQLite/Drift database
+  /// Initializes Supabase.
+  static Future<void> _initializeSupabase() async {
+    // TODO: Get these from environment variables
+    await Supabase.initialize(
+      url: 'YOUR_SUPABASE_URL',
+      anonKey: 'YOUR_SUPABASE_ANON_KEY',
+    );
   }
 }

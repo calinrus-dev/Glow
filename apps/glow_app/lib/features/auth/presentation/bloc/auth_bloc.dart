@@ -1,38 +1,30 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'auth_bloc.freezed.dart';
-part 'auth_event.dart';
+part 'auth_bloc.g.dart';
 part 'auth_state.dart';
+part 'auth_state.freezed.dart';
 
-/// Authentication BLoC.
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(const AuthState.initial()) {
-    on<AuthEvent>((event, emit) async {
-      await event.map(
-        loginRequested: (e) => _onLoginRequested(e, emit),
-        logoutRequested: (e) => _onLogoutRequested(e, emit),
-      );
-    });
+@riverpod
+class AuthNotifier extends _$AuthNotifier {
+  @override
+  AuthState build() => const AuthState.initial();
+
+  Future<void> login(String email, String password) async {
+    state = const AuthState.loading();
+    
+    try {
+      // TODO: Implement login logic with Supabase
+      await Future<void>.delayed(const Duration(seconds: 1));
+      
+      state = const AuthState.authenticated();
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
   }
 
-  Future<void> _onLoginRequested(
-    _LoginRequested event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(const AuthState.loading());
-    
-    // TODO: Implement login logic
-    await Future<void>.delayed(const Duration(seconds: 1));
-    
-    emit(const AuthState.authenticated());
-  }
-
-  Future<void> _onLogoutRequested(
-    _LogoutRequested event,
-    Emitter<AuthState> emit,
-  ) async {
+  Future<void> logout() async {
     // TODO: Implement logout logic
-    emit(const AuthState.unauthenticated());
+    state = const AuthState.unauthenticated();
   }
 }

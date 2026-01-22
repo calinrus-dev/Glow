@@ -36,8 +36,8 @@ dependencies:
     path: ../../packages/glow_ui
   
   # State management
-  flutter_bloc: ^8.1.6
-  bloc_concurrency: ^0.2.5
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
   
   # DI
   get_it: ^7.7.0
@@ -48,16 +48,19 @@ dependencies:
   
   # Storage
   shared_preferences: ^2.3.3
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  
+  # Backend
+  supabase_flutter: ^2.9.1
+  
+  # Code generation
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
   
   # Network
   dio: ^5.7.0
   connectivity_plus: ^6.1.1
   
   # Utilities
-  freezed_annotation: ^2.4.4
-  json_annotation: ^4.9.0
   intl: ^0.20.2
   equatable: ^2.0.7
   rxdart: ^0.28.0
@@ -86,12 +89,11 @@ dev_dependencies:
   
   # Code generation
   build_runner: ^2.4.13
-  freezed: ^2.5.7
+  freezed: ^2.4.7
   json_serializable: ^6.8.0
-  injectable_generator: ^2.6.2
+  riverpod_generator: ^2.6.2
   
   # Testing
-  bloc_test: ^9.1.7
   mocktail: ^1.0.4
   integration_test:
     sdk: flutter
