@@ -9,7 +9,6 @@ import 'package:glow_observability/glow_observability.dart';
 
 import '../app.dart';
 import '../config/app_config.dart';
-import '../di/service_locator.dart';
 import 'error_handlers.dart';
 import 'initializers.dart';
 
@@ -54,13 +53,9 @@ class AppBootstrap {
 
   /// Runs the application.
   void run() {
-    final config = getIt<AppConfig>();
-
     runApp(
-      ProviderScope(
-        child: GlowApp(
-          config: config,
-        ),
+      const ProviderScope(
+        child: GlowApp(),
       ),
     );
   }
