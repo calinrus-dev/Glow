@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Glow is currently in **active development**. No public releases yet.
 
 Core features under development:
-- Entornos (Spaces) system
-- Canales (Channels) implementation
-- Lienzos (Canvas) content engine
+- Spaces system
+- Channels implementation
+- Canvases content engine
 - Contextual identity system

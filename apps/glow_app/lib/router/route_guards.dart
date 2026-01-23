@@ -23,7 +23,7 @@ class RouteGuards {
         return null;
       },
       unauthenticated: () {
-        if (currentPath == AppRoutes.home) {
+        if (currentPath != AppRoutes.auth) {
           return AppRoutes.auth;
         }
         return null;

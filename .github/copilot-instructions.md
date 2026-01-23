@@ -3,7 +3,7 @@
 ## Project Context
 **Glow** is a social platform for creating immersive digital spaces with identity. NOT a traditional social network.
 
-**Core Concept**: Users create and join "Entornos" (Spaces) - immersive digital environments with their own visual identity, channels, and content. Think Discord meets Figma meets Social VR, but 2D and mobile-first.
+**Core Concept**: Users create and join Spaces - immersive digital environments with their own visual identity, channels, and content. Think Discord meets Figma meets Social VR, but 2D and mobile-first.
 
 **Current Stage**: MVP development - Core UI and routing complete, mock data in place, ready for backend integration.
 
@@ -12,16 +12,16 @@
 ## Terminology (STRICT - ALWAYS ENFORCE)
 
 ### Primary Concepts
-- **Entornos** (Spaces/Environments) - Main communities within Glow. Each has unique visual identity (gradients, icons, themes)
-- **Canales** (Channels) - Functional areas within Entornos (like Discord channels)
+- **Spaces** - Main communities within Glow. Each has unique visual identity (gradients, icons, themes)
+- **Channels** - Functional areas within Spaces (like Discord channels)
 - **Lienzos** (Canvases) - Content creation spaces where users create Entries (NOT "posts")
 - **Entries** - Content pieces created in Lienzos (blocks-based, like Notion)
 
 ### NEVER Use These Terms
 ❌ "posts" → Use "Entries"
-❌ "groups" → Use "Entornos"
-❌ "servers" → Use "Entornos"
-❌ "communities" → Use "Entornos"
+❌ "groups" → Use "Spaces"
+❌ "servers" → Use "Spaces"
+❌ "communities" → Use "Spaces"
 ❌ "messages" in Lienzos → Use "Entries"
 
 ---

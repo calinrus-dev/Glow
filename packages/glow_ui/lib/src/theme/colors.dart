@@ -6,15 +6,24 @@ class GlowColors {
 
   // Background colors
   static const Color backgroundDark = Color(0xFF0A0A0F);
+  static const Color backgroundDeep = Color(0xFF06060B);
   static const Color backgroundElevated = Color(0xFF12121A);
   static const Color backgroundCard = Color(0xFF1A1A26);
   static const Color backgroundHover = Color(0xFF222233);
+  static const Color backgroundGlass = Color(0xCC141420);
+  static const Color backgroundOverlay = Color(0xCC0A0A0F);
 
   // Primary glow colors - Purple/Blue spectrum
   static const Color primaryGlow = Color(0xFF7C3AED);
   static const Color primaryGlowLight = Color(0xFF9F7AEA);
   static const Color primaryGlowDark = Color(0xFF5B21B6);
   static const Color primaryGlowSubtle = Color(0x337C3AED);
+
+  // Accent system
+  static const Color accentPrimary = Color(0xFF7C3AED);
+  static const Color accentSecondary = Color(0xFF06B6D4);
+  static const Color accentHover = Color(0xFF8B5CF6);
+  static const Color accentShadow = Color(0x2A7C3AED);
 
   // Secondary glow colors - Pink/Purple spectrum
   static const Color secondaryGlow = Color(0xFFEC4899);
@@ -49,6 +58,8 @@ class GlowColors {
   static const Color border = Color(0xFF2D2D3D);
   static const Color borderLight = Color(0xFF3D3D4D);
   static const Color borderGlow = Color(0x557C3AED);
+  static const Color borderAccentStart = Color(0x667C3AED);
+  static const Color borderAccentEnd = Color(0x6606B6D4);
 
   // Divider
   static const Color divider = Color(0xFF1F1F2E);
@@ -56,4 +67,10 @@ class GlowColors {
   // Shadow/Overlay
   static const Color shadow = Color(0x80000000);
   static const Color overlay = Color(0xCC0A0A0F);
+
+  // Gradient helpers
+  static const Color gradientPrimaryStart = Color(0xFF6D28D9);
+  static const Color gradientPrimaryEnd = Color(0xFF06B6D4);
+  static const Color gradientAmbientStart = Color(0xFF141424);
+  static const Color gradientAmbientEnd = Color(0xFF0A0A0F);
 }

@@ -26,7 +26,7 @@ Anyone who:
 ## Types of Accepted Contributions
 
 ### 1. **Code**
-   - Feature implementation (Entornos, Canales, Lienzos)
+   - Feature implementation (Spaces, Channels, Canvases)
    - Architecture improvements
    - Performance optimization
    - Tests (unit, integration, widget)
@@ -34,7 +34,7 @@ Anyone who:
 ### 2. **Design**
    - Design system
    - User experience
-   - Visual identity for Entornos
+   - Visual identity for Spaces
    - Iconography and visual resources
 
 ### 3. **Product**
@@ -154,11 +154,11 @@ lib/features/{feature}/
 - Document public methods and complex classes
 
 ### Important Terminology
-- **Entornos** (Spaces) - Communities within Glow
-- **Canales** (Channels) - Functional areas within Entornos
-- **Lienzos** (Canvases) - Content creation spaces
+- **Spaces** - Communities within Glow
+- **Channels** - Functional areas within Spaces
+- **Canvases** - Content creation spaces
 
-**Never use:** "posts", "groups", "servers", "communities" (use Entornos instead)
+**Never use:** "posts", "groups", "servers", "communities" (use Spaces instead)
 
 ---
 

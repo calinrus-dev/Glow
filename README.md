@@ -2,7 +2,7 @@
 
 **Social platform for creating and inhabiting digital spaces with identity.**
 
-Glow transforms interests into **immersive places**. Not simple feeds or chats, but **Spaces** with atmosphere, structure, and personality where communities live, not just interact.
+Glow transforms interests into **immersive places**. Not simple feeds or chats, but **Spaces** with atmosphere, structure, and personality where people live, not just interact.
 
 ---
 
@@ -56,6 +56,15 @@ An Entry is a blank space where you can combine:
 **Entries adapt** to each community's tone and evolve over time. They reflect creativity without artificial limitations.
 
 Think of Entries as **expressive content units**, not constrained posts.
+
+---
+
+## Terminology (Strict)
+
+- **Spaces** - The main communities within Glow
+- **Channels** - Functional areas within a Space
+- **Canvases** - Creation surfaces where Entries are built
+- **Entries** - Content units created inside Canvases
 
 ---
 

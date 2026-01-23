@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../features/auth/presentation/pages/auth_page.dart';
+import '../features/auth/presentation/pages/login_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
 import '../features/spaces/presentation/pages/environment_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
@@ -30,7 +30,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         path: AppRoutes.auth,
         name: AppRoutes.authName,
-        builder: (context, state) => const AuthPage(),
+        builder: (context, state) => const LoginPage(),
       ),
       GoRoute(
         path: AppRoutes.home,

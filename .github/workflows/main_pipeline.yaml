@@ -1,3 +1,4 @@
+---
 name: Main CI/CD Pipeline
 
 on:

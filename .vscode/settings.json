@@ -41,5 +41,29 @@
   "dart.debugExternalPackageLibraries": false,
   "dart.debugSdkLibraries": false,
   "dart.showTodos": false,
-  "melos.enabled": true
+  "melos.enabled": true,
+  "cSpell.words": [
+    "aclara",
+    "aumenta",
+    "buildlog",
+    "codesign",
+    "exploitability",
+    "genhtml",
+    "ints",
+    "LTWH",
+    "luminosidad",
+    "Moto",
+    "Opacidad",
+    "Pulso",
+    "pubspec",
+    "podspec",
+    "pulsante",
+    "Podfile",
+    "Riverpod",
+    "subosito",
+    "Supabase",
+    "supabase",
+    "Symbolication",
+    "unawaited"
+  ]
 }

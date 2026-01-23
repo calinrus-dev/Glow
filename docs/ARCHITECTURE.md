@@ -52,8 +52,8 @@ Use abstractions (interfaces/abstract classes) to decouple layers.
 **Purpose:** Contains business logic, entities, and contracts.
 
 **Responsibilities:**
-- Define core entities (User, Entorno, Canal, Lienzo)
-- Business use cases (CreateEntorno, JoinCanal, PublishLienzo)
+- Define core entities (User, Space, Channel, Canvas)
+- Business use cases (CreateSpace, JoinChannel, PublishCanvas)
 - Repository interfaces (abstract contracts)
 - Business rules and policies
 - Domain-specific exceptions and failures
@@ -64,20 +64,20 @@ Use abstractions (interfaces/abstract classes) to decouple layers.
 ```
 glow_domain/
 ├── entities/
-│   ├── entorno.dart
-│   ├── canal.dart
-│   ├── lienzo.dart
+│   ├── space.dart
+│   ├── channel.dart
+│   ├── canvas.dart
 │   └── user.dart
 ├── use_cases/
-│   ├── entornos/
-│   │   ├── create_entorno_use_case.dart
-│   │   ├── get_entornos_use_case.dart
-│   │   └── join_entorno_use_case.dart
-│   └── canales/
+│   ├── spaces/
+│   │   ├── create_space_use_case.dart
+│   │   ├── get_spaces_use_case.dart
+│   │   └── join_space_use_case.dart
+│   └── channels/
 │       └── ...
 ├── repositories/
-│   ├── entorno_repository.dart  # Interface
-│   ├── canal_repository.dart
+│   ├── space_repository.dart  # Interface
+│   ├── channel_repository.dart
 │   └── user_repository.dart
 └── failures/
     └── domain_failure.dart
@@ -86,31 +86,31 @@ glow_domain/
 **Example:**
 ```dart
 // Entity
-class Entorno {
+class Space {
   final String id;
   final String name;
   final String description;
-  final EntornoTheme theme;
+  final SpaceTheme theme;
   
-  Entorno({required this.id, required this.name, ...});
+  Space({required this.id, required this.name, ...});
 }
 
 // Use Case
-class CreateEntornoUseCase {
-  final EntornoRepository _repository;
+class CreateSpaceUseCase {
+  final SpaceRepository _repository;
   
-  CreateEntornoUseCase(this._repository);
+  CreateSpaceUseCase(this._repository);
   
-  Future<Either<Failure, Entorno>> execute(CreateEntornoParams params) async {
+  Future<Either<Failure, Space>> execute(CreateSpaceParams params) async {
     // Business logic here
-    return _repository.createEntorno(params);
+    return _repository.createSpace(params);
   }
 }
 
 // Repository Interface
-abstract class EntornoRepository {
-  Future<Either<Failure, Entorno>> createEntorno(CreateEntornoParams params);
-  Future<Either<Failure, List<Entorno>>> getEntornos();
+abstract class SpaceRepository {
+  Future<Either<Failure, Space>> createSpace(CreateSpaceParams params);
+  Future<Either<Failure, List<Space>>> getSpaces();
 }
 ```
 
@@ -134,32 +134,32 @@ abstract class EntornoRepository {
 ```
 glow_data/
 ├── repositories/
-│   ├── entorno_repository_impl.dart  # Implements EntornoRepository
-│   └── canal_repository_impl.dart
+│   ├── space_repository_impl.dart  # Implements SpaceRepository
+│   └── channel_repository_impl.dart
 ├── data_sources/
 │   ├── remote/
-│   │   ├── entorno_remote_data_source.dart
-│   │   └── canal_remote_data_source.dart
+│   │   ├── space_remote_data_source.dart
+│   │   └── channel_remote_data_source.dart
 │   └── local/
 │       └── preferences_data_source.dart
 ├── models/
-│   ├── entorno_dto.dart  # Data Transfer Object
-│   └── canal_dto.dart
+│   ├── space_dto.dart  # Data Transfer Object
+│   └── channel_dto.dart
 └── mappers/
-    └── entorno_mapper.dart  # DTO ↔ Entity conversion
+  └── space_mapper.dart  # DTO ↔ Entity conversion
 ```
 
 **Example:**
 ```dart
 // Repository Implementation
-class EntornoRepositoryImpl implements EntornoRepository {
-  final EntornoRemoteDataSource _remoteDataSource;
-  final EntornoMapper _mapper;
+class SpaceRepositoryImpl implements SpaceRepository {
+  final SpaceRemoteDataSource _remoteDataSource;
+  final SpaceMapper _mapper;
   
   @override
-  Future<Either<Failure, Entorno>> createEntorno(CreateEntornoParams params) async {
+  Future<Either<Failure, Space>> createSpace(CreateSpaceParams params) async {
     try {
-      final dto = await _remoteDataSource.createEntorno(params);
+      final dto = await _remoteDataSource.createSpace(params);
       final entity = _mapper.toEntity(dto);
       return Right(entity);
     } catch (e) {
@@ -169,25 +169,25 @@ class EntornoRepositoryImpl implements EntornoRepository {
 }
 
 // Data Source
-class EntornoRemoteDataSource {
+class SpaceRemoteDataSource {
   final Dio _dio;
   
-  Future<EntornoDto> createEntorno(CreateEntornoParams params) async {
-    final response = await _dio.post('/entornos', data: params.toJson());
-    return EntornoDto.fromJson(response.data);
+  Future<SpaceDto> createSpace(CreateSpaceParams params) async {
+    final response = await _dio.post('/spaces', data: params.toJson());
+    return SpaceDto.fromJson(response.data);
   }
 }
 
 // DTO (Data Transfer Object)
 @freezed
-class EntornoDto with _$EntornoDto {
-  factory EntornoDto({
+class SpaceDto with _$SpaceDto {
+  factory SpaceDto({
     required String id,
     required String name,
     // ... matches API response structure
-  }) = _EntornoDto;
+  }) = _SpaceDto;
   
-  factory EntornoDto.fromJson(Map<String, dynamic> json) => _$EntornoDtoFromJson(json);
+  factory SpaceDto.fromJson(Map<String, dynamic> json) => _$SpaceDtoFromJson(json);
 }
 ```
 
@@ -208,53 +208,53 @@ class EntornoDto with _$EntornoDto {
 
 **Structure:**
 ```
-features/entornos/
+features/spaces/
 └── presentation/
     ├── providers/
-    │   └── entornos_provider.dart  # Riverpod StateNotifier
+  │   └── spaces_provider.dart  # Riverpod StateNotifier
     ├── screens/
-    │   ├── entornos_list_screen.dart
-    │   └── entorno_detail_screen.dart
+  │   ├── spaces_list_screen.dart
+  │   └── space_detail_screen.dart
     └── widgets/
-        ├── entorno_card.dart
-        └── entorno_header.dart
+    ├── space_card.dart
+    └── space_header.dart
 ```
 
 **Example:**
 ```dart
 // Riverpod Provider
 @riverpod
-class EntornosNotifier extends _$EntornosNotifier {
+class SpacesNotifier extends _$SpacesNotifier {
   @override
-  FutureOr<List<Entorno>> build() async {
-    final useCase = ref.read(getEntornosUseCaseProvider);
+  FutureOr<List<Space>> build() async {
+    final useCase = ref.read(getSpacesUseCaseProvider);
     final result = await useCase.execute();
     
     return result.fold(
       (failure) => throw failure,
-      (entornos) => entornos,
+      (spaces) => spaces,
     );
   }
   
-  Future<void> createEntorno(CreateEntornoParams params) async {
-    final useCase = ref.read(createEntornoUseCaseProvider);
+  Future<void> createSpace(CreateSpaceParams params) async {
+    final useCase = ref.read(createSpaceUseCaseProvider);
     final result = await useCase.execute(params);
     
     result.fold(
       (failure) => /* Handle error */,
-      (entorno) => ref.invalidateSelf(),
+      (space) => ref.invalidateSelf(),
     );
   }
 }
 
 // Widget
-class EntornosListScreen extends ConsumerWidget {
+class SpacesListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entornosAsync = ref.watch(entornosNotifierProvider);
+    final spacesAsync = ref.watch(spacesNotifierProvider);
     
-    return entornosAsync.when(
-      data: (entornos) => ListView.builder(...),
+    return spacesAsync.when(
+      data: (spaces) => ListView.builder(...),
       loading: () => CircularProgressIndicator(),
       error: (error, _) => ErrorWidget(error),
     );
@@ -326,7 +326,7 @@ class EntornosListScreen extends ConsumerWidget {
 
 #### `glow_blocks_flutter`
 - Block rendering widgets
-- Lienzo canvas UI
+- Canvas UI
 - Block editing interactions
 - Visual block builders
 
@@ -418,9 +418,9 @@ class AuthFailure extends Failure { ... }
 ### **Usage with Either**
 
 ```dart
-Future<Either<Failure, Entorno>> getEntorno(String id) async {
+Future<Either<Failure, Space>> getSpace(String id) async {
   try {
-    final dto = await _remoteDataSource.getEntorno(id);
+    final dto = await _remoteDataSource.getSpace(id);
     return Right(_mapper.toEntity(dto));
   } on DioException catch (e) {
     return Left(NetworkFailure(e.message));
@@ -440,17 +440,17 @@ Future<Either<Failure, Entorno>> getEntorno(String id) async {
 - Verify business logic
 
 ```dart
-test('CreateEntornoUseCase returns success', () async {
+test('CreateSpaceUseCase returns success', () async {
   // Arrange
-  when(() => mockRepository.createEntorno(any()))
-      .thenAnswer((_) async => Right(mockEntorno));
+  when(() => mockRepository.createSpace(any()))
+      .thenAnswer((_) async => Right(mockSpace));
   
   // Act
   final result = await useCase.execute(params);
   
   // Assert
   expect(result.isRight(), true);
-  verify(() => mockRepository.createEntorno(params)).called(1);
+  verify(() => mockRepository.createSpace(params)).called(1);
 });
 ```
 
@@ -460,17 +460,17 @@ test('CreateEntornoUseCase returns success', () async {
 - Verify widget tree
 
 ```dart
-testWidgets('EntornoCard displays entorno name', (tester) async {
+testWidgets('SpaceCard displays space name', (tester) async {
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
-        entornosProvider.overrideWith(() => mockEntornos),
+        spacesProvider.overrideWith(() => mockSpaces),
       ],
-      child: EntornoCard(entorno: testEntorno),
+      child: SpaceCard(space: testSpace),
     ),
   );
   
-  expect(find.text(testEntorno.name), findsOneWidget);
+  expect(find.text(testSpace.name), findsOneWidget);
 });
 ```
 
@@ -488,24 +488,24 @@ testWidgets('EntornoCard displays entorno name', (tester) async {
 ```dart
 // Use Case Provider
 @riverpod
-CreateEntornoUseCase createEntornoUseCase(CreateEntornoUseCaseRef ref) {
-  final repository = ref.watch(entornoRepositoryProvider);
-  return CreateEntornoUseCase(repository);
+CreateSpaceUseCase createSpaceUseCase(CreateSpaceUseCaseRef ref) {
+  final repository = ref.watch(spaceRepositoryProvider);
+  return CreateSpaceUseCase(repository);
 }
 
 // Repository Provider
 @riverpod
-EntornoRepository entornoRepository(EntornoRepositoryProvider ref) {
-  final remoteDataSource = ref.watch(entornoRemoteDataSourceProvider);
-  final mapper = ref.watch(entornoMapperProvider);
-  return EntornoRepositoryImpl(remoteDataSource, mapper);
+SpaceRepository spaceRepository(SpaceRepositoryProvider ref) {
+  final remoteDataSource = ref.watch(spaceRemoteDataSourceProvider);
+  final mapper = ref.watch(spaceMapperProvider);
+  return SpaceRepositoryImpl(remoteDataSource, mapper);
 }
 
 // Data Source Provider
 @riverpod
-EntornoRemoteDataSource entornoRemoteDataSource(EntornoRemoteDataSourceRef ref) {
+SpaceRemoteDataSource spaceRemoteDataSource(SpaceRemoteDataSourceRef ref) {
   final dio = ref.watch(dioProvider);
-  return EntornoRemoteDataSource(dio);
+  return SpaceRemoteDataSource(dio);
 }
 ```
 
@@ -523,10 +523,10 @@ final router = GoRouter(
       builder: (context, state) => HomeScreen(),
       routes: [
         GoRoute(
-          path: 'entornos/:id',
+          path: 'spaces/:id',
           builder: (context, state) {
             final id = state.pathParameters['id']!;
-            return EntornoDetailScreen(id: id);
+            return SpaceDetailScreen(id: id);
           },
         ),
       ],
@@ -543,24 +543,24 @@ final router = GoRouter(
 
 ```dart
 @riverpod
-class EntornoDetail extends _$EntornoDetail {
+class SpaceDetail extends _$SpaceDetail {
   @override
-  Future<Entorno> build(String id) async {
-    final useCase = ref.read(getEntornoUseCaseProvider);
+  Future<Space> build(String id) async {
+    final useCase = ref.read(getSpaceUseCaseProvider);
     final result = await useCase.execute(id);
     
     return result.fold(
       (failure) => throw failure,
-      (entorno) => entorno,
+      (space) => space,
     );
   }
 }
 
 // In widget
-final entornoAsync = ref.watch(entornoDetailProvider(id));
+final spaceAsync = ref.watch(spaceDetailProvider(id));
 
-entornoAsync.when(
-  data: (entorno) => EntornoView(entorno),
+spaceAsync.when(
+  data: (space) => SpaceView(space),
   loading: () => LoadingIndicator(),
   error: (error, stack) => ErrorView(error),
 );
