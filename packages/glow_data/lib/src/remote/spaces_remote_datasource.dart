@@ -1,29 +1,29 @@
 import 'supabase_client.dart';
 
-/// Remote datasource for worlds
-class WorldsRemoteDatasource {
+/// Remote datasource for spaces
+class SpacesRemoteDatasource {
   const WorldsRemoteDatasource({
     required this.client,
   });
 
   final SupabaseClient client;
 
-  /// Get all worlds
-  Future<List<Map<String, dynamic>>> getWorlds() async {
-    return client.from('worlds');
+  /// Get all spaces
+  Future<List<Map<String, dynamic>>> getSpaces() async {
+    return client.from('spaces');
   }
 
-  /// Get world by ID
-  Future<Map<String, dynamic>?> getWorldById(String id) async {
-    final results = await client.from('worlds');
+  /// Get space by ID
+  Future<Map<String, dynamic>?> getSpaceById(String id) async {
+    final results = await client.from('spaces');
     return results.firstWhere(
       (w) => w['id'] == id,
       orElse: () => <String, dynamic>{},
     );
   }
 
-  /// Create world
-  Future<Map<String, dynamic>> createWorld({
+  /// Create space
+  Future<Map<String, dynamic>> createSpace({
     required String name,
     required String slug,
     String? description,

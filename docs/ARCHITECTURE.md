@@ -4,6 +4,12 @@
 
 Glow follows **Clean Architecture** principles with strict layer separation, ensuring maintainability, testability, and scalability.
 
+This architecture supports Glow's complex content structure:
+- **Global** - Top-level feed and social layer
+- **Spaces** - Immersive communities with unique identity
+- **Channels** - Composite areas (chats + entries) within Spaces
+- **Entries** - Block-based content across all contexts
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                      Presentation                        │

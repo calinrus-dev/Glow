@@ -99,7 +99,7 @@ class _GlowStrokePainter extends CustomPainter {
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
     final rrect = RRect.fromRectAndRadius(rect, Radius.circular(radius));
 
-    // Pulso que aclara el color (aumenta luminosidad)
+    // Pulse that brightens the color (increases lightness)
     final hslColor = HSLColor.fromColor(color);
     final brightenedColor = hslColor
         .withLightness(
@@ -107,7 +107,7 @@ class _GlowStrokePainter extends CustomPainter {
         )
         .toColor();
 
-    // Opacidad pulsante
+    // Pulsing opacity
     final pulsingOpacity = opacity + (pulseValue * 0.2);
 
     final paint = Paint()

@@ -53,7 +53,7 @@ class SplashPage extends StatelessWidget {
             ),
             const SizedBox(height: GlowSpacing.md),
             Text(
-              'Cargando...',
+              'Loading...',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: GlowColors.textSecondary,
                   ),

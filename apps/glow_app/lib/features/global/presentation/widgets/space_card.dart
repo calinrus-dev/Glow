@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glow_ui/glow_ui.dart';
-import '../../data/mock_spaces.dart';
+import '../models/mock_space.dart';
 
 /// Card widget to display a Space
 class SpaceCard extends StatefulWidget {

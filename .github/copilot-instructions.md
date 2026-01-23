@@ -9,20 +9,78 @@
 
 ---
 
+## Content Architecture (CRITICAL - READ FIRST)
+
+### Global Level
+**Global** is the top-level feed and social layer of Glow:
+- **Global Feed** - Entry feed with multiple views:
+  - For You (personalized)
+  - Popular (trending content)
+  - Recent (chronological)
+  - Featured (curated highlights)
+- **Entry Sources**:
+  - User entries (individual creators)
+  - Space entries (staff from Spaces can publish to Global)
+- **Global Chats**:
+  - DMs (direct messages between users)
+  - Groups (private group chats)
+- **Global Profile** - User's main identity across Glow
+
+### Spaces (Communities)
+**Spaces** are immersive communities, each with unique identity:
+- **Channels** (immersive areas within Space):
+  - Text chats
+  - Voice chats
+  - Entries (content collections)
+  - Channels are COMPOSITES of chats + entries
+- **Space Chats**:
+  - DMs within Space
+  - Private groups within Space
+- **Space Identity** - User has different profile per Space
+
+### Channels (Within Spaces)
+**Channels** are immersive, composite areas containing:
+- **Text Chat** - Real-time messaging
+- **Voice Chat** - Audio communication
+- **Entries** - Content blocks (Notion-like)
+- **Masks** - Per-channel identity (nicknames, avatars, custom identity)
+
+### Entries (Content Blocks)
+**Entries** exist in multiple contexts:
+- **Global entries** - Appear in Global feed
+- **Channel entries** - Belong to specific channels
+- **User entries** - Created by individual users
+- **Space entries** - Created by Space staff, can be promoted to Global
+- **Format** - Block-based content (like Notion)
+
+### Identity System (Multi-Layered)
+1. **Global Profile** - Main identity across platform
+2. **Space Identity** - Different profile per Space (custom name, avatar, bio)
+3. **Channel Mask** - Per-channel customization (nickname, temporary identity)
+
+---
+
 ## Terminology (STRICT - ALWAYS ENFORCE)
 
 ### Primary Concepts
-- **Spaces** - Main communities within Glow. Each has unique visual identity (gradients, icons, themes)
-- **Channels** - Functional areas within Spaces (like Discord channels)
-- **Lienzos** (Canvases) - Content creation spaces where users create Entries (NOT "posts")
-- **Entries** - Content pieces created in Lienzos (blocks-based, like Notion)
+- **Global** - Top-level feed and social layer
+- **Spaces** - Immersive communities with unique visual identity
+- **Channels** - Composite immersive areas (chats + entries) within Spaces
+- **Entries** - Block-based content pieces (NOT "posts")
+- **Masks** - Per-channel identity customization (nicknames, etc.)
+
+### Content Types
+- **Entry** - Block-based content (like Notion pages)
+- **Chat Message** - Real-time text message
+- **Voice Message** - Audio communication
 
 ### NEVER Use These Terms
 ❌ "posts" → Use "Entries"
-❌ "groups" → Use "Spaces"
+❌ "groups" (for spaces) → Use "Spaces"
 ❌ "servers" → Use "Spaces"
 ❌ "communities" → Use "Spaces"
-❌ "messages" in Lienzos → Use "Entries"
+❌ "messages" (for entries) → Use "Entries"
+❌ "channels" (for DMs) → Use "DMs" or "Group Chats"
 
 ---
 

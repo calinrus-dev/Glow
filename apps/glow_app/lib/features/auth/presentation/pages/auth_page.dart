@@ -39,7 +39,7 @@ class AuthPage extends StatelessWidget {
                   ),
                   const SizedBox(height: GlowSpacing.xl),
                   Text(
-                    'Bienvenido a Glow',
+                    'Welcome to Glow',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: GlowColors.textPrimary,
@@ -48,7 +48,7 @@ class AuthPage extends StatelessWidget {
                   ),
                   const SizedBox(height: GlowSpacing.md),
                   Text(
-                    'Crea espacios inmersivos con identidad',
+                    'Create immersive Spaces with identity',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: GlowColors.textSecondary,
@@ -59,7 +59,7 @@ class AuthPage extends StatelessWidget {
                     onPressed: () {},
                     child: const Padding(
                       padding: EdgeInsets.all(GlowSpacing.sm),
-                      child: Text('Iniciar sesión'),
+                      child: Text('Sign in'),
                     ),
                   ),
                   const SizedBox(height: GlowSpacing.md),
@@ -67,12 +67,12 @@ class AuthPage extends StatelessWidget {
                     onPressed: () {},
                     child: const Padding(
                       padding: EdgeInsets.all(GlowSpacing.sm),
-                      child: Text('Crear cuenta'),
+                      child: Text('Create account'),
                     ),
                   ),
                   const SizedBox(height: GlowSpacing.xxl),
                   Text(
-                    'Autenticación disponible próximamente',
+                    'Authentication coming soon',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: GlowColors.textTertiary,

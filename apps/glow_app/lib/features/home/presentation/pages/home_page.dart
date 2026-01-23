@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glow_ui/glow_ui.dart';
 import 'package:go_router/go_router.dart';
-import '../../data/mock_spaces.dart';
-import '../widgets/space_card.dart';
+import '../../../global/presentation/models/mock_space.dart';
+import '../../../global/presentation/widgets/space_card.dart';
 
 /// Main home page of the application.
 class HomePage extends StatefulWidget {
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                 final space = MockSpace.mockSpaces[index];
                 return SpaceCard(
                   space: space,
-                  onTap: () => context.push('/environment/${space.name}'),
+                  onTap: () => context.push('/space/${space.name}'),
                 );
               },
               childCount: MockSpace.mockSpaces.length,
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                 final space = MockSpace.mockSpaces[index];
                 return SpaceCard(
                   space: space,
-                  onTap: () => context.push('/environment/${space.name}'),
+                  onTap: () => context.push('/space/${space.name}'),
                 );
               },
               childCount: MockSpace.mockSpaces.length,
@@ -225,7 +225,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: GlowSpacing.md),
           Text(
-            'Esta sección estará disponible pronto',
+            'This section will be available soon',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: GlowColors.textSecondary,
                 ),

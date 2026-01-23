@@ -1,31 +1,21 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'comment_entity.freezed.dart';
+part 'comment_entity.g.dart';
+
 /// Comment entity
-class CommentEntity {
-  const CommentEntity({
-    required this.id,
-    required this.postId,
-    required this.authorId,
-    required this.content,
-    this.replyToId,
-    required this.createdAt,
-    this.updatedAt,
-  });
+@freezed
+class CommentEntity with _$CommentEntity {
+  const factory CommentEntity({
+    required String id,
+    required String entryId,
+    required String authorId,
+    required String content,
+    String? replyToId,
+    required DateTime createdAt,
+    DateTime? updatedAt,
+  }) = _CommentEntity;
 
-  final String id;
-  final String postId;
-  final String authorId;
-  final String content;
-  final String? replyToId;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CommentEntity && runtimeType == other.runtimeType && id == other.id;
-
-  @override
-  int get hashCode => id.hashCode;
-
-  @override
-  String toString() => 'CommentEntity(id: $id, postId: $postId)';
+  factory CommentEntity.fromJson(Map<String, dynamic> json) =>
+      _$CommentEntityFromJson(json);
 }

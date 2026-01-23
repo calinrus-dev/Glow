@@ -158,7 +158,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
         ),
         const SizedBox(height: GlowSpacing.xs),
         Text(
-          'Tu espacio. Tu estilo. Tu identidad.',
+          'Your Space. Your style. Your identity.',
           style: textTheme.bodySmall?.copyWith(
             color: GlowColors.textSecondary,
           ),
@@ -174,7 +174,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                 child: Column(
                   children: [
                     GlowSocialButton(
-                      label: 'Continuar con Google',
+                      label: 'Continue with Google',
                       icon: SizedBox(
                         height: 20,
                         width: 20,
@@ -187,7 +187,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                     ),
                     const SizedBox(height: GlowSpacing.sm),
                     GlowSocialButton(
-                      label: 'Continuar con Apple',
+                      label: 'Continue with Apple',
                       icon: SizedBox(
                         height: 20,
                         width: 20,
@@ -204,7 +204,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                     ),
                     const SizedBox(height: GlowSpacing.sm),
                     GlowSocialButton(
-                      label: 'Continuar con Facebook',
+                      label: 'Continue with Facebook',
                       icon: SizedBox(
                         height: 20,
                         width: 20,
@@ -223,7 +223,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                     const GlowDivider(),
                     const SizedBox(height: GlowSpacing.md),
                     GlowInput(
-                      labelText: 'Usuario o correo',
+                      labelText: 'Username or email',
                       hintText: 'nombre@glow.app',
                       prefixIcon: const Icon(Icons.person_outline_rounded),
                       dense: true,
@@ -231,7 +231,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                     ),
                     const SizedBox(height: GlowSpacing.md),
                     GlowInput(
-                      labelText: 'Contraseña',
+                      labelText: 'Password',
                       hintText: '••••••••',
                       obscureText: _obscurePassword,
                       prefixIcon: const Icon(Icons.lock_outline_rounded),
@@ -265,7 +265,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                               activeColor: GlowColors.primaryGlow,
                             ),
                             Text(
-                              'Recordarme',
+                              'Remember me',
                               style: textTheme.bodySmall
                                   ?.copyWith(color: GlowColors.textSecondary),
                             ),
@@ -274,7 +274,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                         TextButton(
                           onPressed: () {},
                           child: Text(
-                            'Olvidé la contraseña',
+                            'Forgot password',
                             style: textTheme.bodySmall
                                 ?.copyWith(color: GlowColors.primaryGlowLight),
                           ),
@@ -288,7 +288,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                           : () => ref
                               .read(authNotifierProvider.notifier)
                               .login('', ''),
-                      label: 'Iniciar sesión',
+                      label: 'Sign in',
                       isLoading: isLoading,
                     ),
                     if (authState.maybeWhen(
@@ -316,13 +316,13 @@ class _LoginViewState extends ConsumerState<_LoginView> {
           alignment: MainAxisAlignment.center,
           actions: [
             Text(
-              '¿No tienes cuenta?',
+              "Don't have an account?",
               style: textTheme.bodySmall
                   ?.copyWith(color: GlowColors.textSecondary),
             ),
             GlowButton(
               onPressed: () {},
-              label: 'Crear cuenta',
+              label: 'Create account',
               variant: GlowButtonVariant.ghost,
               padding: const EdgeInsets.symmetric(
                 horizontal: GlowSpacing.sm,

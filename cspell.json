@@ -1,0 +1,24 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "motogp",
+    "Supabase",
+    "Riverpod",
+    "Freezed",
+    "Melos",
+    "Lienzos",
+    "glow",
+    "glassmorphism",
+    "persistable"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "build",
+    ".dart_tool",
+    "*.g.dart",
+    "*.freezed.dart",
+    "*.mocks.dart",
+    "coverage"
+  ]
+}

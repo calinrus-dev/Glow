@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../features/auth/presentation/pages/login_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
-import '../features/spaces/presentation/pages/environment_page.dart';
+import '../features/spaces/presentation/pages/space_detail_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
 import '../shared/state/app_state_notifier.dart';
 import 'app_routes.dart';
@@ -38,11 +38,11 @@ GoRouter router(RouterRef ref) {
         builder: (context, state) => const HomePage(),
       ),
       GoRoute(
-        path: AppRoutes.environment,
-        name: AppRoutes.environmentName,
+        path: AppRoutes.space,
+        name: AppRoutes.spaceName,
         builder: (context, state) {
           final name = state.pathParameters['name'] ?? '';
-          return EnvironmentPage(spaceName: name);
+          return SpaceDetailPage(spaceName: name);
         },
       ),
     ],

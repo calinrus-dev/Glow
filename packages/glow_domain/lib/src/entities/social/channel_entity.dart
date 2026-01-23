@@ -1,3 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'channel_entity.freezed.dart';
+part 'channel_entity.g.dart';
+
 /// Channel type
 enum ChannelType {
   text,
@@ -6,38 +11,21 @@ enum ChannelType {
   announcement,
 }
 
-/// Channel entity
-class ChannelEntity {
-  const ChannelEntity({
-    required this.id,
-    required this.environmentId,
-    required this.name,
-    required this.slug,
-    this.description,
-    required this.type,
-    required this.position,
-    required this.createdAt,
-    this.updatedAt,
-  });
+/// Channel entity (functional area within a Space)
+@freezed
+class ChannelEntity with _$ChannelEntity {
+  const factory ChannelEntity({
+    required String id,
+    required String spaceId,
+    required String name,
+    required String slug,
+    String? description,
+    required ChannelType type,
+    required int position,
+    required DateTime createdAt,
+    DateTime? updatedAt,
+  }) = _ChannelEntity;
 
-  final String id;
-  final String environmentId;
-  final String name;
-  final String slug;
-  final String? description;
-  final ChannelType type;
-  final int position;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ChannelEntity && runtimeType == other.runtimeType && id == other.id;
-
-  @override
-  int get hashCode => id.hashCode;
-
-  @override
-  String toString() => 'ChannelEntity(id: $id, name: $name, type: $type)';
+  factory ChannelEntity.fromJson(Map<String, dynamic> json) =>
+      _$ChannelEntityFromJson(json);
 }

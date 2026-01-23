@@ -1,21 +1,21 @@
 import 'supabase_client.dart';
 
-/// Remote datasource for posts
-class PostsRemoteDatasource {
-  const PostsRemoteDatasource({
+/// Remote datasource for entries
+class EntriesRemoteDatasource {
+  const EntriesRemoteDatasource({
     required this.client,
   });
 
   final SupabaseClient client;
 
-  /// Get posts by channel
-  Future<List<Map<String, dynamic>>> getPostsByChannel(String channelId) async {
-    final results = await client.from('posts');
+  /// Get entries by channel
+  Future<List<Map<String, dynamic>>> getEntriesByChannel(String channelId) async {
+    final results = await client.from('entries');
     return results.where((p) => p['channel_id'] == channelId).toList();
   }
 
-  /// Create post
-  Future<Map<String, dynamic>> createPost({
+  /// Create entry
+  Future<Map<String, dynamic>> createEntry({
     required String channelId,
     required String content,
   }) async {
@@ -28,8 +28,8 @@ class PostsRemoteDatasource {
     };
   }
 
-  /// Delete post
-  Future<void> deletePost(String postId) async {
+  /// Delete entry
+  Future<void> deleteEntry(String entryId) async {
     // TODO: Implement actual deletion
   }
 }

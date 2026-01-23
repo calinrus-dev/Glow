@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:glow_ui/glow_ui.dart';
 import 'package:go_router/go_router.dart';
-import '../../../home/data/mock_spaces.dart';
+import '../../../global/presentation/models/mock_space.dart';
 
-/// Environment page showing a Space's content
-class EnvironmentPage extends StatelessWidget {
-  const EnvironmentPage({
+/// Space detail page showing a Space's content
+class SpaceDetailPage extends StatelessWidget {
+  const SpaceDetailPage({
     required this.spaceName,
     super.key,
   });
