@@ -40,7 +40,7 @@ class _SpaceCardState extends State<SpaceCard> {
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.space.gradientColors.first.withOpacity(0.3),
+                      color: widget.space.gradientColors.first.withValues(alpha: 0.3),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),
@@ -82,8 +82,8 @@ class _SpaceCardState extends State<SpaceCard> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.black.withOpacity(0.3),
-              Colors.black.withOpacity(0.7),
+              Colors.black.withValues(alpha: 0.3),
+              Colors.black.withValues(alpha: 0.7),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -102,10 +102,10 @@ class _SpaceCardState extends State<SpaceCard> {
           Container(
             padding: const EdgeInsets.all(GlowSpacing.md),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(GlowSpacing.sm),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
               ),
             ),
             child: Icon(
@@ -126,7 +126,7 @@ class _SpaceCardState extends State<SpaceCard> {
           Text(
             widget.space.description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                 ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
