@@ -134,3 +134,6 @@ pubspec_overrides.yaml
 # Exceptions to above rules
 !**/ios/.gitkeep
 !**/android/.gitkeep
+
+# Context files (daily work logs)
+.github/context/
