@@ -23,10 +23,30 @@ Anyone who:
 
 ---
 
+## Content Architecture (CRITICAL - Use Correct Terminology)
+
+Glow has a specific content architecture. **ALWAYS use these terms**:
+
+### ✅ Correct Terms
+- **Global** - Top-level feed and social layer
+- **Spaces** - Immersive communities (NOT "servers", "groups", or "communities")
+- **Channels** - Composite areas (chats + entries) within Spaces
+- **Entries** - Block-based content (NOT "posts")
+- **Masks** - Per-channel identity customization
+
+### ❌ NEVER Use
+- "posts" → Use **Entries**
+- "groups" (for Spaces) → Use **Spaces**
+- "servers" → Use **Spaces**
+- "communities" (when referring to Spaces) → Use **Spaces**
+- "messages" (for entries) → Use **Entries**
+
+---
+
 ## Types of Accepted Contributions
 
 ### 1. **Code**
-   - Feature implementation (Spaces, Channels, Canvases)
+   - Feature implementation (Global feed, Spaces, Channels, Entries)
    - Architecture improvements
    - Performance optimization
    - Tests (unit, integration, widget)
