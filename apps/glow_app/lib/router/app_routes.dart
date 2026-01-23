@@ -11,4 +11,8 @@ abstract class AppRoutes {
   // Home
   static const String home = '/home';
   static const String homeName = 'home';
+
+  // Environment (Space detail)
+  static const String environment = '/environment/:name';
+  static const String environmentName = 'environment';
 }

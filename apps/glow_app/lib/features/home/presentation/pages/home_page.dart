@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glow_ui/glow_ui.dart';
+import 'package:go_router/go_router.dart';
+import '../../data/mock_spaces.dart';
+import '../widgets/space_card.dart';
 
 /// Main home page of the application.
 class HomePage extends StatefulWidget {
@@ -58,16 +61,134 @@ class _HomePageState extends State<HomePage> {
           color: GlowColors.textSecondary,
         ),
       ],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: GlowColors.primaryGlow,
-        child: const Icon(Icons.add_rounded),
-      ),
+      floatingActionButton: _currentIndex == 1
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              backgroundColor: GlowColors.primaryGlow,
+              icon: const Icon(Icons.add_rounded),
+              label: const Text('Create Space'),
+            )
+          : null,
       child: _buildContent(),
     );
   }
 
   Widget _buildContent() {
+    switch (_currentIndex) {
+      case 0:
+        return _buildHomeTab();
+      case 1:
+        return _buildSpacesTab();
+      default:
+        return _buildPlaceholderTab();
+    }
+  }
+
+  Widget _buildHomeTab() {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(GlowSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Welcome back',
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        color: GlowColors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: GlowSpacing.xs),
+                Text(
+                  'Explore your spaces and connect',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: GlowColors.textSecondary,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(GlowSpacing.lg),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 300,
+              childAspectRatio: 0.8,
+              crossAxisSpacing: GlowSpacing.md,
+              mainAxisSpacing: GlowSpacing.md,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final space = MockSpace.mockSpaces[index];
+                return SpaceCard(
+                  space: space,
+                  onTap: () => context.push('/environment/${space.name}'),
+                );
+              },
+              childCount: MockSpace.mockSpaces.length,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSpacesTab() {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(GlowSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'All Spaces',
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        color: GlowColors.textPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: GlowSpacing.xs),
+                Text(
+                  'Discover and join communities',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: GlowColors.textSecondary,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(GlowSpacing.lg),
+          sliver: SliverGrid(
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 350,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: GlowSpacing.md,
+              mainAxisSpacing: GlowSpacing.md,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final space = MockSpace.mockSpaces[index];
+                return SpaceCard(
+                  space: space,
+                  onTap: () => context.push('/environment/${space.name}'),
+                );
+              },
+              childCount: MockSpace.mockSpaces.length,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPlaceholderTab() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
