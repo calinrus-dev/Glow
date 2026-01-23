@@ -5,16 +5,21 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
+import '../shared/state/app_state_notifier.dart';
 import 'app_routes.dart';
+import 'route_guards.dart';
 
 part 'app_router.g.dart';
 
-/// Application router configuration.
-class AppRouter {
-  AppRouter();
+/// Provides the GoRouter instance.
+@riverpod
+GoRouter router(RouterRef ref) {
+  final guards = RouteGuards(ref);
 
-  late final GoRouter config = GoRouter(
+  return GoRouter(
     initialLocation: AppRoutes.splash,
+    redirect: (context, state) => guards.redirect(state),
+    refreshListenable: _AppStateListener(ref),
     routes: [
       GoRoute(
         path: AppRoutes.splash,
@@ -40,9 +45,14 @@ class AppRouter {
   );
 }
 
-/// Provides the GoRouter instance.
-@riverpod
-GoRouter router(RouterRef ref) {
-  final appRouter = AppRouter();
-  return appRouter.config;
+/// Listenable that notifies GoRouter when app state changes.
+class _AppStateListener extends ChangeNotifier {
+  _AppStateListener(this._ref) {
+    _ref.listen(
+      appStateNotifierProvider,
+      (_, __) => notifyListeners(),
+    );
+  }
+
+  final RouterRef _ref;
 }

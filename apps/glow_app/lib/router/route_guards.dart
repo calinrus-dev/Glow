@@ -1,17 +1,39 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-/// Route guards for handling navigation restrictions.
-/// 
-/// This class will be used for auth-based redirection and other
-/// navigation guards in the future.
-class RouteGuards {
-  const RouteGuards();
+import '../shared/state/app_state_notifier.dart';
+import 'app_routes.dart';
 
-  /// Redirects unauthenticated users.
-  /// 
-  /// Placeholder for future implementation.
-  String? authGuard(GoRouterState state) {
-    // TODO: Implement auth guard logic
-    return null;
+/// Route guards for handling navigation restrictions.
+class RouteGuards {
+  const RouteGuards(this.ref);
+
+  final Ref ref;
+
+  /// Main redirect logic based on app state.
+  String? redirect(GoRouterState state) {
+    final appState = ref.read(appStateNotifierProvider);
+    final currentPath = state.uri.path;
+
+    return appState.when(
+      initializing: () {
+        if (currentPath != AppRoutes.splash) {
+          return AppRoutes.splash;
+        }
+        return null;
+      },
+      unauthenticated: () {
+        if (currentPath == AppRoutes.home) {
+          return AppRoutes.auth;
+        }
+        return null;
+      },
+      authenticated: () {
+        if (currentPath == AppRoutes.auth || currentPath == AppRoutes.splash) {
+          return AppRoutes.home;
+        }
+        return null;
+      },
+    );
   }
 }
