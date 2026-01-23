@@ -2,63 +2,85 @@
 
 **Social platform for creating and inhabiting digital spaces with identity.**
 
-Glow transforms interests into places. Not simple feeds or chats, but **Entornos** (Spaces) with atmosphere, structure, and personality where communities live, not just interact.
+Glow transforms interests into **immersive places**. Not simple feeds or chats, but **Spaces** with atmosphere, structure, and personality where communities live, not just interact.
 
 ---
 
 ## What is Glow?
 
-Glow is a platform designed so any interest—from MotoGP to independent cinema, from photography to software development—can become a **real social space** with visual identity, its own culture, and immersive experience.
+Glow enables any interest—from MotoGP to independent cinema, from photography to software development—to become a **living digital space** with its own visual identity, culture, and immersive experience.
 
 It's not a traditional social network. It's a platform to **inhabit communities**, not just consume content.
+
+Glow redefines social interaction by centering it around **places**, not profiles. Each Space is a world with its own rules, aesthetics, and ways of being.
 
 ---
 
 ## Core Concepts
 
-### Entornos (Spaces)
-An **Entorno** is a community within Glow. Each represents an interest, topic, or activity, with:
-- Unique visual identity
-- Configurable aesthetics
-- Defined internal structure
-- Own norms and culture
+### Spaces
+A **Space** is a community within Glow. Each represents an interest, topic, or activity with:
+- Unique visual identity and theming
+- Configurable aesthetics (colors, layouts, atmosphere)
+- Internal structure defined by Channels
+- Own norms, culture, and moderation
 
-Examples: MotoGP, Independent cinema, Software development.
+**Examples:** MotoGP Racing Space, Indie Cinema Space, Open Source Development Space.
 
-### Canales (Channels)
-**Canales** organize activity within an Entorno:
-- Visual feed
-- Chat
-- Gallery
-- Wiki
-- Experimental spaces
+Spaces are not groups. They're **digital environments** designed for immersion.
 
-Each channel has clear purpose, specific rules and permissions.
+---
 
-### Lienzos (Canvases)
-In Glow, traditional "posts" don't exist. Content is created through **Lienzos**: blank spaces where users build freely, combining text, images, and visual elements without rigid format.
+### Channels
+**Channels** organize activity within a Space. Each Channel serves a specific purpose:
 
-Lienzos allow content to:
-- Adapt to each community's tone
-- Evolve over time
-- Reflect creativity without artificial limitations
+- **Feed** - Visual timeline of Entries
+- **Chat** - Real-time conversations
+- **Gallery** - Curated visual content
+- **Wiki** - Collaborative knowledge base
+- **Custom** - Experimental or specialized channels
+
+Each Channel has clear purpose, permissions, and behavior. Channels give Spaces structure and depth.
+
+---
+
+### Entries
+In Glow, traditional "posts" don't exist. Content is created through **Entries**: freeform canvases where users build without rigid templates.
+
+An Entry is a blank space where you can combine:
+- Rich text with formatting
+- Images and media
+- Embeds (videos, links, code)
+- Visual elements and layouts
+
+**Entries adapt** to each community's tone and evolve over time. They reflect creativity without artificial limitations.
+
+Think of Entries as **expressive content units**, not constrained posts.
+
+---
 
 ### Contextual Identity
-Users have a **global identity** and **adaptable identities** per Entorno, allowing participation in different interests without mixing contexts.
+Users have:
+- **Global identity** - Your core profile across Glow
+- **Space-specific identities** - Adaptable presence per Space
+
+This allows participation in diverse interests (e.g., professional dev communities and casual gaming Spaces) without context collapse.
+
+Your identity adapts to where you are, not the other way around.
 
 ---
 
 ## Experience & Aesthetics
 
-Glow commits to an experience that's:
-- **Immersive and atmospheric**
-- **Dark aesthetic with glow/neon effects**
-- **Smooth animations and polished transitions**
-- **Sense of depth and place**
+Glow is designed for **immersion**:
+- **Dark-first aesthetic** with glow/neon accents
+- **Atmospheric UI** - depth, shadows, ambient effects
+- **Smooth, intentional animations** - nothing feels abrupt
+- **Sense of place** - each Space feels distinct
 
-Aesthetics aren't decoration: they define the product's character and reinforce each Entorno's identity.
+Aesthetics aren't decoration. They're **foundational** to the experience. Visual identity reinforces each Space's character.
 
-Entering an Entorno should feel like **entering another space**, not just opening another app.
+Entering a Space should feel like **stepping into another world**, not just opening another tab.
 
 ---
 
@@ -83,8 +105,8 @@ Code generation: Mason, build_runner
 - `glow_api` - HTTP client
 - `glow_auth` - Session and authentication management
 - `glow_realtime` - Realtime connections
-- `glow_blocks_engine` - Visual blocks engine
-- `glow_blocks_flutter` - Block widgets
+- `glow_blocks_engine` - Entry content engine (core logic)
+- `glow_blocks_flutter` - Entry rendering widgets
 - `glow_observability` - Logging and monitoring
 - `glow_ui` - Design system
 
@@ -171,14 +193,18 @@ We don't compete for attention. We create places to stay.
 
 ## Project Status
 
-Glow is in **active development**. Current focus:
+Glow is in **active development**. Current progress:
 
-- ✅ Solid technical foundation with Clean Architecture
-- ✅ Monorepo configured with Melos + Mason
-- ✅ Base design system
-- 🔄 Entornos and Canales implementation
-- 🔄 Lienzos engine
-- 🔄 Contextual identity system
+- ✅ Technical foundation with Clean Architecture
+- ✅ Monorepo configured (Melos + Mason)
+- ✅ Core package structure (11 packages)
+- ✅ State management (Riverpod + Freezed)
+- ✅ Backend integration (Supabase)
+- 🔄 Spaces system implementation
+- 🔄 Channels and feeds
+- 🔄 Entry content engine
+- 🔄 Contextual identity
+- 🔄 Design system and theming
 
 ---
 
