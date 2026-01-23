@@ -6,8 +6,9 @@ export 'src/atoms/avatars.dart';
 export 'src/atoms/buttons.dart';
 export 'src/atoms/icons.dart';
 export 'src/atoms/inputs.dart';
-export 'src/layouts/responsive.dart';
 // Layouts
+export 'src/layouts/app_shell.dart';
+export 'src/layouts/responsive.dart';
 export 'src/layouts/scaffold.dart';
 // Molecules
 export 'src/molecules/cards.dart';

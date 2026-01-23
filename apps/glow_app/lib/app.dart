@@ -16,9 +16,9 @@ class GlowApp extends ConsumerWidget {
       title: 'Glow',
       debugShowCheckedModeBanner: false,
       
-      theme: GlowTheme.light(),
+      theme: GlowTheme.dark(),
       darkTheme: GlowTheme.dark(),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
