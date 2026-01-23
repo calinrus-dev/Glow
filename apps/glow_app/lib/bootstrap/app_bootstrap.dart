@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glow_core/glow_core.dart';
 import 'package:glow_observability/glow_observability.dart';
 
 import '../app.dart';
 import '../config/app_config.dart';
 import '../di/service_locator.dart';
-import '../router/app_router.dart';
 import 'error_handlers.dart';
 import 'initializers.dart';
 
@@ -55,12 +55,12 @@ class AppBootstrap {
   /// Runs the application.
   void run() {
     final config = getIt<AppConfig>();
-    final router = getIt<AppRouter>();
 
     runApp(
-      GlowApp(
-        config: config,
-        router: router,
+      ProviderScope(
+        child: GlowApp(
+          config: config,
+        ),
       ),
     );
   }

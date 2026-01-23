@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../features/auth/presentation/pages/login_page.dart';
+import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/home/presentation/pages/home_page.dart';
-import 'routes/auth_routes.dart';
-import 'routes/home_routes.dart';
+import '../features/splash/presentation/pages/splash_page.dart';
+import 'app_routes.dart';
 
-/// Application router.
+part 'app_router.g.dart';
+
+/// Application router configuration.
 class AppRouter {
   AppRouter();
 
   late final GoRouter config = GoRouter(
-    initialLocation: AuthRoutes.login,
+    initialLocation: AppRoutes.splash,
     routes: [
-      // Auth routes
       GoRoute(
-        path: AuthRoutes.login,
-        name: AuthRoutes.loginName,
-        builder: (context, state) => const LoginPage(),
+        path: AppRoutes.splash,
+        name: AppRoutes.splashName,
+        builder: (context, state) => const SplashPage(),
       ),
-      
-      // Home routes
       GoRoute(
-        path: HomeRoutes.home,
-        name: HomeRoutes.homeName,
+        path: AppRoutes.auth,
+        name: AppRoutes.authName,
+        builder: (context, state) => const AuthPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.home,
+        name: AppRoutes.homeName,
         builder: (context, state) => const HomePage(),
       ),
-      
-      // TODO: Add other feature routes
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(
@@ -35,4 +38,11 @@ class AppRouter {
       ),
     ),
   );
+}
+
+/// Provides the GoRouter instance.
+@riverpod
+GoRouter router(RouterRef ref) {
+  final appRouter = AppRouter();
+  return appRouter.config;
 }

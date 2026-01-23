@@ -3,7 +3,6 @@ import 'package:glow_core/glow_core.dart';
 import 'package:glow_observability/glow_observability.dart';
 
 import '../config/app_config.dart';
-import '../router/app_router.dart';
 
 final getIt = GetIt.instance;
 
@@ -13,11 +12,5 @@ Future<void> configureDependencies(AppConfig config) async {
   getIt
     ..registerSingleton<AppConfig>(config)
     // Core services
-    ..registerLazySingleton<Logger>(ConsoleLogger.new)
-    // Auth
-    // TODO: Register AuthRepository, AuthService, etc.
-    // Router
-    ..registerLazySingleton<AppRouter>(AppRouter.new);
-
-  // TODO: Register feature-specific dependencies
+    ..registerLazySingleton<Logger>(ConsoleLogger.new);
 }

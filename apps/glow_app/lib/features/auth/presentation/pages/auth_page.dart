@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-/// Main home page of the application.
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+/// Authentication page for login and signup.
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Home'),
+        child: Text('Auth'),
       ),
     );
   }
