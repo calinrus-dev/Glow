@@ -1,275 +1,286 @@
-# Contributing to Glow
+# Contributing Guide - Glow
 
-Gracias por tu interés en contribuir a Glow.
+## Before Contributing
 
-Glow **no es un proyecto open source**, pero sí es un proyecto colaborativo que acepta contribuciones de personas comprometidas con crear una plataforma excepcional.
+Glow is a **collaborative but not open source** project. This means:
 
----
+- **The code is not free** to redistribute, fork, or use commercially without authorization.
+- **We accept contributions** from people aligned with the project's vision.
+- **Significant contributions may translate into future participation** under clear agreements as the project matures.
 
-## Antes de contribuir
-
-### Entiende la visión
-
-Lee la documentación completa para comprender:
-- Los conceptos fundamentales (Entornos, Canales, Lienzos)
-- La filosofía del proyecto
-- Los principios de diseño y desarrollo
-
-Glow no es solo código. Es una plataforma con identidad y propósito claros.
-
-### Acepta los términos
-
-Al contribuir a Glow:
-- Aceptas que tu código pasa a ser propiedad del proyecto
-- Reconoces que Glow es software propietario
-- Entiendes que no se trata de un proyecto open source tradicional
-- Aceptas trabajar bajo los términos de la licencia propietaria
+This approach allows us to build Glow with quality, clear direction, and sustainability, while remaining open to serious and committed collaborators.
 
 ---
 
-## Tipos de contribuciones aceptadas
+## Who Can Contribute?
 
-### Código
+Anyone who:
 
-- **Features:** Implementación de funcionalidades según roadmap
-- **Bug fixes:** Corrección de errores existentes
-- **Refactoring:** Mejoras en arquitectura y código
-- **Tests:** Cobertura de tests unitarios e integración
-- **Performance:** Optimizaciones de rendimiento
-
-### Diseño y UX
-
-- **UI/UX:** Diseño de interfaces y experiencias
-- **Estética:** Propuestas visuales coherentes con la identidad
-- **Animaciones:** Transiciones y efectos visuales
-- **Iconografía:** Sistema de iconos y elementos visuales
-
-### Documentación
-
-- **Guías técnicas:** Documentación de arquitectura
-- **Tutoriales:** Guías de uso y desarrollo
-- **API docs:** Documentación de APIs internas
-- **Comentarios:** Mejora de comentarios en código
+- **Shares Glow's vision** as a platform to inhabit digital communities.
+- **Has experience** in development (Flutter, Dart, backend), product design, UX/UI, or related areas.
+- **Seeks to create real impact**, not just add commits.
+- **Understands this is a product with commercial purposes**, not an academic or personal project.
 
 ---
 
-## Proceso de contribución
+## Types of Accepted Contributions
 
-### 1. Comunicación previa
+### 1. **Code**
+   - Feature implementation (Entornos, Canales, Lienzos)
+   - Architecture improvements
+   - Performance optimization
+   - Tests (unit, integration, widget)
 
-**Antes de trabajar en algo, abre un issue para discutir:**
+### 2. **Design**
+   - Design system
+   - User experience
+   - Visual identity for Entornos
+   - Iconography and visual resources
 
-```markdown
-Título: [FEATURE/BUG/REFACTOR] Descripción breve
+### 3. **Product**
+   - Flow definition
+   - Functional specifications
+   - Feature documentation
+   - User research
 
-Descripción:
-- ¿Qué problema resuelve?
-- ¿Cómo lo resuelve?
-- ¿Hay alternativas consideradas?
-```
+### 4. **Infrastructure**
+   - CI/CD
+   - Monitoring and observability
+   - Backend and APIs
+   - Realtime systems
 
-Espera feedback antes de invertir tiempo en desarrollo.
+---
 
-### 2. Fork y desarrollo
+## Contribution Process
 
-```bash
-# Fork del repositorio (si tienes acceso)
-git clone https://github.com/calinrus-dev/Glow.git
-cd glow
+### 1. **Before Starting**
+   - **Contact first.** Don't submit PRs without prior agreement.
+   - Open an **issue or discussion** explaining what you want to do and why.
+   - Wait for confirmation before starting development.
 
-# Crear branch feature
-git checkout -b feature/nombre-descriptivo
+### 2. **During Development**
+   - Follow the defined architecture (Clean Architecture).
+   - Respect project code conventions.
+   - Keep tests up to date.
+   - Document significant changes.
 
-# Desarrollo
-# ...
+### 3. **When Submitting a PR**
+   - Describe **what** you changed and **why**.
+   - Ensure all tests pass.
+   - Verify code follows configured linters.
+   - Include screenshots if UI is affected.
 
-# Commit con conventional commits
-git commit -m "feat(entornos): agregar selector de identidad contextual"
-```
+### 4. **Review**
+   - The team will review your code.
+   - Expect feedback, iterations, or rejections.
+   - **Not all contributions will be accepted**, even if the code is correct.
 
-### 3. Pull Request
+---
 
-**Título:**
-```
-feat(scope): descripción breve
-```
+## What Makes This PR Valuable?
 
-**Descripción:**
-```markdown
-## ¿Qué hace este PR?
-Descripción clara del cambio.
+Good PRs include:
 
-## ¿Cómo se probó?
-- [ ] Tests unitarios
-- [ ] Tests de integración
-- [ ] Pruebas manuales
+- **Clear description** of the problem being solved
+- **Context** on why this change matters
+- **Examples** or screenshots if applicable
+- **Tests** covering the new functionality
+- **Documentation** if required
+
+Bad PRs are:
+
+- Features no one requested
+- Code without tests
+- Breaking changes without justification
+- Style changes without value
+- Quick fixes without understanding context
+
+---
+
+## How Was This Tested?
+
+Before submitting, verify:
+
+- All unit tests pass (`melos run test`)
+- No lint errors (`melos run analyze`)
+- Code compiles without warnings
+- If UI, test on multiple devices/platforms
+- If backend, test with real data
+
+---
 
 ## Checklist
-- [ ] Código sigue las convenciones del proyecto
-- [ ] Tests agregados/actualizados
-- [ ] Documentación actualizada
-- [ ] Sin warnings de análisis
-- [ ] Build exitoso
-```
+
+Before submitting a PR, confirm:
+
+- [ ] Code follows the project's style guide
+- [ ] Tests have been added/updated
+- [ ] Documentation has been updated if necessary
+- [ ] All tests pass locally
+- [ ] No lint errors
+- [ ] The PR has a clear and descriptive title
+- [ ] Related issues are referenced (if applicable)
 
 ---
 
-## Estándares de código
+## Code Standards
 
-### Dart/Flutter
+### Architecture
+- **Clean Architecture:** strict layer separation (domain, data, presentation)
+- **Dependency rule:** dependencies point inward
+- **Use cases:** one use case per business operation
+- **Repositories:** abstract data sources
 
-- **Análisis estático:** `melos run analyze` sin warnings
-- **Formato:** `melos run format` antes de commit
-- **Lints:** Seguir `analysis_options.yaml` del proyecto
-- **TODOs:** Evitar TODOs sin issue asociado
-
-### Arquitectura
-
-- **Clean Architecture:** Respetar separación de capas
-- **Dependency Rule:** Dependencias apuntan hacia adentro
-- **SOLID:** Aplicar principios SOLID
-- **DRY:** No repetir lógica
-
-### Convenciones
-
+### Naming Conventions
 ```dart
-// ✅ Bueno
-class EnvironmentRepository {
-  Future<Either<Failure, Environment>> getEnvironment(String id);
-}
+// Features
+lib/features/{feature}/
+  - data/
+  - domain/
+  - presentation/
 
-// ❌ Malo
-class EnvRepo {
-  getEnv(id) {}
-}
+// Files
+{name}_repository.dart
+{name}_use_case.dart
+{name}_provider.dart
+{name}_state.dart
 ```
 
-### Commits
+### Code Style
+- Use `Either<Failure, T>` for operations that may fail
+- Riverpod providers with code generation
+- Freezed for immutable models
+- Repository pattern for data access
+- Document public methods and complex classes
 
-Usar [Conventional Commits](https://www.conventionalcommits.org/):
+### Important Terminology
+- **Entornos** (Spaces) - Communities within Glow
+- **Canales** (Channels) - Functional areas within Entornos
+- **Lienzos** (Canvases) - Content creation spaces
 
-```
-feat(scope): agregar nueva funcionalidad
-fix(scope): corregir bug
-refactor(scope): refactorización
-docs(scope): actualizar documentación
-test(scope): agregar tests
-perf(scope): mejora de performance
-style(scope): cambios de estilo
-chore(scope): tareas de mantenimiento
-```
+**Never use:** "posts", "groups", "servers", "communities" (use Entornos instead)
 
 ---
 
 ## Testing
 
-### Requerido
+### Required Tests
+- **Unit:** business logic, use cases, repositories
+- **Widget:** UI components
+- **Integration:** complete flows (optional but recommended)
 
-- **Unit tests:** Para lógica de negocio
-- **Widget tests:** Para widgets reutilizables
-- **Integration tests:** Para flujos críticos
+### Test Structure
+```dart
+void main() {
+  group('UseCase', () {
+    late UseCase useCase;
+    late MockRepository mockRepository;
 
-### Ejecutar tests
+    setUp(() {
+      mockRepository = MockRepository();
+      useCase = UseCase(mockRepository);
+    });
 
-```bash
-# Todos los tests
-melos run test
-
-# Tests de un paquete
-cd packages/glow_domain
-flutter test
-
-# Tests con coverage
-flutter test --coverage
+    test('should return success when...', () async {
+      // Arrange
+      when(() => mockRepository.method()).thenAnswer((_) async => Right(data));
+      
+      // Act
+      final result = await useCase.execute();
+      
+      // Assert
+      expect(result.isRight(), true);
+    });
+  });
+}
 ```
 
 ---
 
 ## Code Review
 
-Todo código pasa por code review antes de merge:
+### What We Look For
+- Code follows Clean Architecture
+- Appropriate tests exist
+- Clear and maintainable code
+- Respects existing patterns
+- No breaking changes without justification
 
-- **Legibilidad:** ¿Es fácil de entender?
-- **Mantenibilidad:** ¿Es fácil de modificar?
-- **Performance:** ¿Hay optimizaciones obvias?
-- **Tests:** ¿Hay cobertura adecuada?
-- **Arquitectura:** ¿Sigue los principios del proyecto?
-
----
-
-## Comunicación
-
-### Canales
-
-- **Issues:** Bugs, features, discusiones técnicas
-- **Pull Requests:** Revisión de código
-- **Discussions:** Ideas, propuestas, arquitectura
-
-### Tono
-
-- Profesional y respetuoso
-- Constructivo, no destructivo
-- Enfocado en el código, no en personas
-- Abierto a feedback
+### Review Process
+1. Initial review within 48-72 hours
+2. Feedback and requested changes
+3. Iterations until acceptance
+4. Merge to main
 
 ---
 
-## Reconocimiento
+## Communication
 
-Las contribuciones significativas serán:
+### Channels
+- **Issues:** for bugs, specific requests, or technical discussions
+- **Discussions:** for ideas, general questions, or feedback
+- **PR comments:** for specific code review
 
-- **Reconocidas públicamente** en el proyecto
-- **Consideradas para participación futura** cuando el proyecto madure
-- **Parte de acuerdos formales** bajo términos definidos
-
-Glow se concibe como un proyecto serio con proyección real.
-
----
-
-## Rechazo de contribuciones
-
-Nos reservamos el derecho de rechazar contribuciones que:
-
-- No se alineen con la visión del proyecto
-- No cumplan los estándares de calidad
-- No sigan el proceso establecido
-- Introduzcan complejidad innecesaria
-- No estén suficientemente testeadas
+### Language
+- Code, commits, and technical documentation: **English**
+- User-facing content: **Spanish** (may change in the future)
 
 ---
 
-## Preguntas frecuentes
+## Recognition
 
-### ¿Puedo usar este código en mi propio proyecto?
+Significant contributions will be:
 
-No. Glow es software propietario. Ver [LICENSE](LICENSE).
+- Credited in the repository
+- Acknowledged in release notes
+- Considered for future participation in the project
 
-### ¿Puedo hacer un fork?
-
-Solo con permiso explícito. Los forks no autorizados violan la licencia.
-
-### ¿Recibiré compensación por contribuciones?
-
-Actualmente no hay compensación monetaria. Las contribuciones significativas pueden traducirse en participación futura cuando el proyecto madure.
-
-### ¿Cómo sé si mi contribución será aceptada?
-
-Abre un issue antes de trabajar. Discute la propuesta y espera feedback.
+**Participation is not automatic**, but substantial work will be recognized.
 
 ---
 
-## Principios finales
+## Contribution Rejection
 
-Glow se construye con:
+Not all contributions will be accepted, even if well-executed. We may reject if:
 
-- **Claridad antes que complejidad**
-- **Diseño consciente**
-- **Arquitectura mantenible**
-- **Experiencia coherente**
-- **Decisiones pensadas a largo plazo**
+- It doesn't align with the project's vision
+- It introduces unnecessary complexity
+- It solves a problem that doesn't exist
+- There's a better alternative already planned
+- It conflicts with the product roadmap
 
-Si compartes estos valores, tu contribución será bienvenida.
+**This is not personal.** It's part of maintaining a product with clear direction.
 
 ---
 
-**Gracias por ayudar a construir el futuro de las comunidades digitales.**
+## Frequently Asked Questions
+
+### Can I fork Glow?
+No. The code is proprietary. You can contribute, but not redistribute or fork.
+
+### Can I use Glow's code in my project?
+No, without explicit authorization.
+
+### How will my contributions be recognized?
+Significant contributions will be credited and may lead to participation agreements.
+
+### Who decides what gets merged?
+The core team, based on vision, quality, and project fit.
+
+### What if I disagree with a decision?
+You can express your opinion respectfully, but the final decision rests with the team.
+
+---
+
+## Final Principles
+
+- **Quality over quantity**
+- **Clear vision over consensus**
+- **Sustainable growth over hype**
+- **Real impact over metrics**
+
+If you share these principles, we'd love to work together.
+
+---
+
+**Thank you for your interest in contributing to Glow.**

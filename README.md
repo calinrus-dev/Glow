@@ -1,68 +1,68 @@
 # Glow
 
-**Plataforma social para crear y habitar espacios digitales con identidad.**
+**Social platform for creating and inhabiting digital spaces with identity.**
 
-Glow transforma intereses en lugares. No simples feeds o chats, sino **Entornos** con atmósfera, estructura y personalidad propias donde las comunidades viven, no solo interactúan.
-
----
-
-## ¿Qué es Glow?
-
-Glow es una plataforma diseñada para que cualquier interés —desde MotoGP hasta cine independiente, desde fotografía hasta desarrollo de software— pueda convertirse en un **espacio social real**, con identidad visual, cultura propia y experiencia inmersiva.
-
-No es una red social tradicional. Es una plataforma para **habitar comunidades**, no solo para consumir contenido.
+Glow transforms interests into places. Not simple feeds or chats, but **Entornos** (Spaces) with atmosphere, structure, and personality where communities live, not just interact.
 
 ---
 
-## Conceptos fundamentales
+## What is Glow?
+
+Glow is a platform designed so any interest—from MotoGP to independent cinema, from photography to software development—can become a **real social space** with visual identity, its own culture, and immersive experience.
+
+It's not a traditional social network. It's a platform to **inhabit communities**, not just consume content.
+
+---
+
+## Core Concepts
 
 ### Entornos (Spaces)
-Un **Entorno** es una comunidad dentro de Glow. Cada uno representa un interés, tema o actividad, con:
-- Identidad visual única
-- Estética configurable
-- Estructura interna definida
-- Normas y cultura propias
+An **Entorno** is a community within Glow. Each represents an interest, topic, or activity, with:
+- Unique visual identity
+- Configurable aesthetics
+- Defined internal structure
+- Own norms and culture
 
-Ejemplos: MotoGP, Cine independiente, Desarrollo de software.
+Examples: MotoGP, Independent cinema, Software development.
 
-### Canales
-Los **Canales** organizan la actividad dentro de un Entorno:
-- Feed visual
+### Canales (Channels)
+**Canales** organize activity within an Entorno:
+- Visual feed
 - Chat
-- Galería
+- Gallery
 - Wiki
-- Espacios experimentales
+- Experimental spaces
 
-Cada canal tiene propósito claro, reglas y permisos específicos.
+Each channel has clear purpose, specific rules and permissions.
 
-### Lienzos
-En Glow no existen los "posts" tradicionales. El contenido se crea a través de **Lienzos**: espacios en blanco donde los usuarios construyen libremente, combinando texto, imágenes y elementos visuales sin formato rígido.
+### Lienzos (Canvases)
+In Glow, traditional "posts" don't exist. Content is created through **Lienzos**: blank spaces where users build freely, combining text, images, and visual elements without rigid format.
 
-Los Lienzos permiten que el contenido:
-- Se adapte al tono de cada comunidad
-- Evolucione con el tiempo
-- Refleje la creatividad sin limitaciones artificiales
+Lienzos allow content to:
+- Adapt to each community's tone
+- Evolve over time
+- Reflect creativity without artificial limitations
 
-### Identidad contextual
-Los usuarios tienen una **identidad global** y **identidades adaptables** según el Entorno, permitiendo participar en distintos intereses sin mezclar contextos.
-
----
-
-## Experiencia y estética
-
-Glow apuesta por una experiencia:
-- **Inmersiva y atmosférica**
-- **Estética oscura con efectos glow/neón**
-- **Animaciones suaves y transiciones cuidadas**
-- **Sensación de profundidad y lugar**
-
-La estética no es decoración: define el carácter del producto y refuerza la identidad de cada Entorno.
-
-Entrar en un Entorno debe sentirse como **entrar en otro espacio**, no como abrir una app más.
+### Contextual Identity
+Users have a **global identity** and **adaptable identities** per Entorno, allowing participation in different interests without mixing contexts.
 
 ---
 
-## Stack tecnológico
+## Experience & Aesthetics
+
+Glow commits to an experience that's:
+- **Immersive and atmospheric**
+- **Dark aesthetic with glow/neon effects**
+- **Smooth animations and polished transitions**
+- **Sense of depth and place**
+
+Aesthetics aren't decoration: they define the product's character and reinforce each Entorno's identity.
+
+Entering an Entorno should feel like **entering another space**, not just opening another app.
+
+---
+
+## Tech Stack
 
 ```yaml
 Framework: Flutter 3.19+
@@ -74,141 +74,149 @@ Monorepo: Melos
 Code generation: Mason, build_runner
 ```
 
-**Arquitectura:** Clean Architecture con separación estricta de capas.
+**Architecture:** Clean Architecture with strict layer separation.
 
-**Paquetes:**
-- `glow_core` - Contratos base, logger, utilidades
-- `glow_domain` - Entidades, casos de uso, políticas
-- `glow_data` - Repositorios, data sources
-- `glow_api` - Cliente HTTP
-- `glow_auth` - Gestión de sesiones y autenticación
-- `glow_realtime` - Conexiones realtime
-- `glow_blocks_engine` - Motor de bloques visuales
-- `glow_blocks_flutter` - Widgets de bloques
-- `glow_observability` - Logging y monitoreo
-- `glow_ui` - Sistema de diseño
+**Packages:**
+- `glow_core` - Base contracts, logger, utilities
+- `glow_domain` - Entities, use cases, policies
+- `glow_data` - Repositories, data sources
+- `glow_api` - HTTP client
+- `glow_auth` - Session and authentication management
+- `glow_realtime` - Realtime connections
+- `glow_blocks_engine` - Visual blocks engine
+- `glow_blocks_flutter` - Block widgets
+- `glow_observability` - Logging and monitoring
+- `glow_ui` - Design system
 
 ---
 
-## Desarrollo
+## Development
 
-### Requisitos
+### Requirements
 - Flutter 3.19+
 - Dart 3.3+
 - Melos CLI: `dart pub global activate melos`
 - Mason CLI: `dart pub global activate mason_cli`
 
-### Setup inicial
+### Initial Setup
 
 ```bash
-# Clonar repositorio
+# Clone repository
 git clone https://github.com/calinrus-dev/Glow.git
 cd glow
 
-# Bootstrap de paquetes
+# Bootstrap packages
 melos bootstrap
 
-# Configurar variables de entorno
+# Configure environment variables
 cp .env.example .env
-# Editar .env con credenciales de Supabase
+# Edit .env with your Supabase credentials
 ```
 
-### Comandos principales
+### Main Commands
 
 ```bash
-# Analizar código
+# Analyze code
 melos run analyze
 
-# Ejecutar tests
+# Run tests
 melos run test
 
-# Formatear código
+# Format code
 melos run format
 
 # Code generation (Riverpod, Freezed)
 cd apps/glow_app
 dart run build_runner build --delete-conflicting-outputs
 
-# Ejecutar app
+# Run app
 cd apps/glow_app
 flutter run
 ```
 
-### Estructura del proyecto
+### Project Structure
 
 ```
 glow/
 ├── apps/
-│   └── glow_app/          # Aplicación principal
+│   └── glow_app/          # Main application
 │       ├── lib/
-│       │   ├── bootstrap/ # Inicialización
-│       │   ├── config/    # Configuración
+│       │   ├── bootstrap/ # Initialization
+│       │   ├── config/    # Configuration
 │       │   ├── di/        # Dependency injection
-│       │   ├── features/  # Features por dominio
-│       │   ├── router/    # Navegación
-│       │   └── shared/    # Código compartido
-│       └── assets/        # Recursos visuales
-├── packages/              # Paquetes del monorepo
-├── bricks/                # Templates Mason
-├── docs/                  # Documentación adicional
-└── melos.yaml            # Configuración monorepo
+│       │   ├── features/  # Domain features
+│       │   ├── router/    # Navigation
+│       │   └── shared/    # Shared code
+│       └── assets/        # Visual resources
+├── packages/              # Monorepo packages
+├── bricks/                # Mason templates
+├── docs/                  # Additional documentation
+└── melos.yaml            # Monorepo configuration
 ```
 
 ---
 
-## Filosofía del proyecto
+## Project Philosophy
 
-Glow se desarrolla con principios claros:
+Glow is developed with clear principles:
 
-- **Experiencia antes que métricas artificiales**
-- **Estructura antes que caos**
-- **Estética con propósito**
-- **Crecimiento sostenible**
+- **Experience over artificial metrics**
+- **Structure over chaos**
+- **Aesthetics with purpose**
+- **Sustainable growth**
 
-No buscamos competir por atención. Creamos lugares donde quedarse.
-
----
-
-## Estado del proyecto
-
-Glow está en **desarrollo activo**. El enfoque actual:
-
-- ✅ Base técnica sólida con Clean Architecture
-- ✅ Monorepo configurado con Melos + Mason
-- ✅ Sistema de diseño base
-- 🔄 Implementación de Entornos y Canales
-- 🔄 Motor de Lienzos
-- 🔄 Sistema de identidad contextual
+We don't compete for attention. We create places to stay.
 
 ---
 
-## Contribuciones
+## Project Status
 
-Glow **no es open source**, pero sí es un proyecto colaborativo.
+Glow is in **active development**. Current focus:
 
-Aceptamos contribuciones de personas interesadas en desarrollo, diseño, experiencia de usuario y construcción de producto.
-
-Las contribuciones significativas pueden traducirse en participación futura bajo acuerdos definidos cuando el proyecto madure.
-
-Ver [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
-
----
-
-## Licencia
-
-Código propietario. Ver [LICENSE](LICENSE) para términos completos.
-
-**Glow es un producto en desarrollo con fines comerciales.**  
-No se permite redistribución ni forks no autorizados.
+- ✅ Solid technical foundation with Clean Architecture
+- ✅ Monorepo configured with Melos + Mason
+- ✅ Base design system
+- 🔄 Entornos and Canales implementation
+- 🔄 Lienzos engine
+- 🔄 Contextual identity system
 
 ---
 
-## Objetivo
+## Community
 
-Crear una plataforma donde cualquier interés pueda convertirse en un espacio social con identidad, donde las personas no solo interactúan, sino **habitan**.
+Join our Discord server to discuss the project, share ideas, and connect with other contributors:
 
-Glow quiere redefinir cómo se construyen y viven las comunidades digitales.
+**[Join Glow Discord](https://discord.gg/Q6F7dw8AZj)**
 
 ---
 
-**Construyendo el futuro de las comunidades digitales.**
+## Contributing
+
+Glow is **not open source**, but it is a collaborative project.
+
+We accept contributions from people interested in development, design, user experience, and product building.
+
+Significant contributions may translate into future participation under defined agreements as the project matures.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+---
+
+## License
+
+Proprietary code. See [LICENSE](LICENSE) for full terms.
+
+**Glow is a product in development with commercial purposes.**  
+Redistribution and unauthorized forks are not permitted.
+
+---
+
+## Goal
+
+Create a platform where any interest can become a social space with identity, where people don't just interact, but **inhabit**.
+
+Glow aims to redefine how digital communities are built and lived.
+
+---
+
+**Building the future of digital communities.**
