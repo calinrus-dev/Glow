@@ -10,7 +10,10 @@
     "Lienzos",
     "glow",
     "glassmorphism",
-    "persistable"
+    "persistable",
+    "dtos",
+    "Debouncer",
+    "rxdart"
   ],
   "ignorePaths": [
     "node_modules",
