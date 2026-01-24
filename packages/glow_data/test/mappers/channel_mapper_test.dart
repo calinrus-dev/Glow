@@ -61,13 +61,13 @@ void main() {
 
         expect(baseDto.toEntity().type, ChannelType.text);
         expect(
-            baseDto.copyWith(type: 'voice').toEntity().type, ChannelType.voice);
+            baseDto.copyWith(type: 'voice').toEntity().type, ChannelType.voice,);
         expect(
-            baseDto.copyWith(type: 'video').toEntity().type, ChannelType.video);
+            baseDto.copyWith(type: 'video').toEntity().type, ChannelType.video,);
         expect(baseDto.copyWith(type: 'announcement').toEntity().type,
-            ChannelType.announcement);
+            ChannelType.announcement,);
         expect(baseDto.copyWith(type: 'unknown').toEntity().type,
-            ChannelType.text); // defaults
+            ChannelType.text,); // defaults
       });
 
       test('handles case-insensitive channel type', () {
@@ -125,9 +125,9 @@ void main() {
 
         expect(baseEntity.toDTO().type, 'text');
         expect(
-            baseEntity.copyWith(type: ChannelType.voice).toDTO().type, 'voice');
+            baseEntity.copyWith(type: ChannelType.voice).toDTO().type, 'voice',);
         expect(
-            baseEntity.copyWith(type: ChannelType.video).toDTO().type, 'video');
+            baseEntity.copyWith(type: ChannelType.video).toDTO().type, 'video',);
         expect(
           baseEntity.copyWith(type: ChannelType.announcement).toDTO().type,
           'announcement',

@@ -92,7 +92,7 @@ void main() {
         final chained = result
             .map((value) => value * 2)
             .flatMap(
-                (value) => Result<String, Failure>.success('Result: $value'))
+                (value) => Result<String, Failure>.success('Result: $value'),)
             .map((value) => value.toUpperCase());
 
         expect(chained.isSuccess, true);
@@ -106,7 +106,7 @@ void main() {
         final chained = result
             .map((value) => value * 2)
             .flatMap(
-                (value) => Result<String, Failure>.success('Result: $value'))
+                (value) => Result<String, Failure>.success('Result: $value'),)
             .map((value) => value.toUpperCase());
 
         expect(chained.isFailure, true);
