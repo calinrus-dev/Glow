@@ -9,7 +9,9 @@ class EntriesRemoteDatasource {
   final SupabaseClient client;
 
   /// Get entries by channel
-  Future<List<Map<String, dynamic>>> getEntriesByChannel(String channelId) async {
+  Future<List<Map<String, dynamic>>> getEntriesByChannel(
+    String channelId,
+  ) async {
     final results = await client.from('entries');
     return results.where((p) => p['channel_id'] == channelId).toList();
   }

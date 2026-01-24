@@ -82,11 +82,13 @@ class _GlowButtonState extends State<GlowButton> {
     );
     final padding = widget.padding ?? _ButtonMetrics.padding(widget.size);
 
-    final borderWidth = _isPressed ? 2.1 : 1.2;
+    final borderWidth = _isPressed ? 2.4 : (isActive ? 1.5 : 1.2);
     final strokeOpacity = widget.variant == GlowButtonVariant.primary
-      ? (_isPressed ? 0.85 : 0.6)
-      : (_isPressed ? 0.7 : 0.45);
-    final glowBlur = (_isPressed ? 28.0 : 22.0) * widget.glowBoost;
+      ? (_isPressed ? 0.95 : (isActive ? 0.7 : 0.6))
+      : (_isPressed ? 0.8 : (isActive ? 0.55 : 0.45));
+    final glowBlur = (_isPressed ? 36.0 : (isActive ? 28.0 : 24.0))
+        * widget.glowBoost;
+    final scale = _isPressed ? 0.98 : (isActive ? 1.01 : 1.0);
 
     return FocusableActionDetector(
       onShowHoverHighlight: _setHovered,
@@ -98,152 +100,169 @@ class _GlowButtonState extends State<GlowButton> {
         } : null,
         onTapUp: enabled ? (details) {
           _setPressed(false);
-          setState(() => _showHalo = false);
+          Future.delayed(const Duration(milliseconds: 180), () {
+            if (mounted) {
+              setState(() => _showHalo = false);
+            }
+          });
         } : null,
-        onTapCancel: enabled ? () => _setPressed(false) : null,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          curve: Curves.easeInOut,
-          decoration: BoxDecoration(
-            color: palette.background,
-            borderRadius: BorderRadius.circular(GlowSpacing.md),
-            boxShadow: [
-              ...GlowEffects.glowShadow(
-                color: palette.glow,
-                blur: glowBlur,
-              ),
-              if (enabled)
-                ...GlowEffects.softShadow(blur: 16, spread: -8),
-            ],
-          ),
-          child: GlowStroke(
-            radius: GlowSpacing.md,
-            strokeWidth: borderWidth,
-            color: palette.border,
-            opacity: strokeOpacity,
-            animate: widget.variant == GlowButtonVariant.primary && enabled,
-            child: ClipRRect(
+        onTapCancel: enabled ? () {
+          _setPressed(false);
+          Future.delayed(const Duration(milliseconds: 180), () {
+            if (mounted) {
+              setState(() => _showHalo = false);
+            }
+          });
+        } : null,
+        child: AnimatedScale(
+          duration: const Duration(milliseconds: 140),
+          curve: Curves.easeOutCubic,
+          scale: scale,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 260),
+            curve: Curves.easeOutCubic,
+            decoration: BoxDecoration(
+              color: palette.background,
               borderRadius: BorderRadius.circular(GlowSpacing.md),
-              child: Stack(
-                children: [
-                  if (widget.glass)
-                    Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                        child: const SizedBox.expand(),
+              boxShadow: [
+                ...GlowEffects.glowShadow(
+                  color: palette.glow,
+                  blur: glowBlur,
+                ),
+                if (enabled)
+                  ...GlowEffects.softShadow(blur: 16, spread: -8),
+              ],
+            ),
+            child: GlowStroke(
+              radius: GlowSpacing.md,
+              strokeWidth: borderWidth,
+              color: palette.border,
+              opacity: strokeOpacity,
+              animate: widget.variant == GlowButtonVariant.primary && enabled,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(GlowSpacing.md),
+                child: Stack(
+                  children: [
+                    if (widget.glass)
+                      Positioned.fill(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                          child: const SizedBox.expand(),
+                        ),
                       ),
-                    ),
-                  if (_haloOffset != null)
-                    Positioned(
-                      left: _haloOffset!.dx - 36,
-                      top: _haloOffset!.dy - 36,
-                      child: IgnorePointer(
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 160),
-                          width: _showHalo ? 72 : 0,
-                          height: _showHalo ? 72 : 0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: _showHalo
-                                ? GlowEffects.glowShadow(
-                                    color: GlowColors.primaryGlow,
-                                    blur: 30,
-                                  )
-                                : const [],
+                    if (_haloOffset != null)
+                      Positioned(
+                        left: _haloOffset!.dx - 36,
+                        top: _haloOffset!.dy - 36,
+                        child: IgnorePointer(
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 380),
+                            curve: Curves.easeOutExpo,
+                            width: _showHalo ? 72 : 0,
+                            height: _showHalo ? 72 : 0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: _showHalo
+                                  ? GlowEffects.glowShadow(
+                                      color: GlowColors.primaryGlow,
+                                      blur: 30,
+                                    )
+                                  : const [],
+                            ),
+                          ),
+                        ),
+                      ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: enabled ? widget.onPressed : null,
+                        borderRadius: BorderRadius.circular(GlowSpacing.md),
+                        splashFactory: NoSplash.splashFactory,
+                        highlightColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        child: Padding(
+                          padding: padding,
+                          child: Row(
+                            mainAxisSize: widget.expand
+                                ? MainAxisSize.max
+                                : MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (widget.leadingWidget != null ||
+                                  widget.leadingIcon != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    right: GlowSpacing.sm,
+                                  ),
+                                  child: widget.leadingWidget ??
+                                      Icon(
+                                        widget.leadingIcon,
+                                        size: _ButtonMetrics.iconSize(widget.size),
+                                        color: palette.foreground,
+                                      ),
+                                ),
+                              if (widget.isLoading)
+                                SizedBox(
+                                  height: _ButtonMetrics.loaderSize(widget.size),
+                                  width: _ButtonMetrics.loaderSize(widget.size),
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      palette.foreground,
+                                    ),
+                                  ),
+                                )
+                              else
+                                Flexible(
+                                  child: DefaultTextStyle(
+                                    style: Theme.of(context)
+                                            .textTheme
+                                            .labelLarge
+                                            ?.copyWith(
+                                              color: palette.foreground,
+                                              shadows: [
+                                                Shadow(
+                                                  color: GlowColors.primaryGlow
+                                                      .withValues(
+                                                    alpha:
+                                                        _isPressed ? 0.85 : 0.45,
+                                                  ),
+                                                  blurRadius:
+                                                      _isPressed ? 16 : 9,
+                                                ),
+                                              ],
+                                            ) ??
+                                        TextStyle(color: palette.foreground),
+                                    child: widget.child ??
+                                        Text(
+                                          widget.label ?? '',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          softWrap: false,
+                                        ),
+                                  ),
+                                ),
+                              if (widget.trailingWidget != null ||
+                                  widget.trailingIcon != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: GlowSpacing.sm,
+                                  ),
+                                  child: widget.trailingWidget ??
+                                      Icon(
+                                        widget.trailingIcon,
+                                        size: _ButtonMetrics.iconSize(widget.size),
+                                        color: palette.foreground,
+                                      ),
+                                ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: enabled ? widget.onPressed : null,
-                      borderRadius: BorderRadius.circular(GlowSpacing.md),
-                      splashFactory: NoSplash.splashFactory,
-                      highlightColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      child: Padding(
-                        padding: padding,
-                        child: Row(
-                          mainAxisSize: widget.expand
-                              ? MainAxisSize.max
-                              : MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (widget.leadingWidget != null ||
-                                widget.leadingIcon != null)
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  right: GlowSpacing.sm,
-                                ),
-                                child: widget.leadingWidget ??
-                                    Icon(
-                                      widget.leadingIcon,
-                                      size: _ButtonMetrics.iconSize(widget.size),
-                                      color: palette.foreground,
-                                    ),
-                              ),
-                            if (widget.isLoading)
-                              SizedBox(
-                                height: _ButtonMetrics.loaderSize(widget.size),
-                                width: _ButtonMetrics.loaderSize(widget.size),
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    palette.foreground,
-                                  ),
-                                ),
-                              )
-                            else
-                              Flexible(
-                                child: DefaultTextStyle(
-                                  style: Theme.of(context)
-                                          .textTheme
-                                          .labelLarge
-                                          ?.copyWith(
-                                            color: palette.foreground,
-                                            shadows: [
-                                              Shadow(
-                                                color: GlowColors.primaryGlow
-                                                    .withValues(
-                                                  alpha:
-                                                      _isPressed ? 0.75 : 0.4,
-                                                ),
-                                                blurRadius:
-                                                    _isPressed ? 12 : 8,
-                                              ),
-                                            ],
-                                          ) ??
-                                      TextStyle(color: palette.foreground),
-                                  child: widget.child ??
-                                      Text(
-                                        widget.label ?? '',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        softWrap: false,
-                                      ),
-                                ),
-                              ),
-                            if (widget.trailingWidget != null ||
-                                widget.trailingIcon != null)
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: GlowSpacing.sm,
-                                ),
-                                child: widget.trailingWidget ??
-                                    Icon(
-                                      widget.trailingIcon,
-                                      size: _ButtonMetrics.iconSize(widget.size),
-                                      color: palette.foreground,
-                                    ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -5,6 +5,7 @@ Real-time communication and presence tracking for Glow.
 ## Overview
 
 Powers Glow's real-time features across Global and Space contexts:
+
 - Global chats (DMs, groups)
 - Space chats (Space DMs, private groups)
 - Channel chats (text messages in channels)
@@ -15,18 +16,21 @@ Powers Glow's real-time features across Global and Space contexts:
 ## Features
 
 ### **WebSocket Management**
+
 - Connection pooling
 - Automatic reconnection
 - Heartbeat/ping-pong
 - Connection state management
 
 ### **Presence Tracking**
+
 - User online/offline status
 - Per-Space presence
 - Per-Channel presence
 - Activity timestamps
 
 ### **Event Streams**
+
 - Chat messages (Global, Space, Channel)
 - Entry updates
 - User presence changes
@@ -34,6 +38,7 @@ Powers Glow's real-time features across Global and Space contexts:
 - Channel activity
 
 ### **Sync**
+
 - Offline message queuing
 - Message delivery confirmation
 - Read receipts

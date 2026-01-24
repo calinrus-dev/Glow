@@ -2,7 +2,7 @@ import 'supabase_client.dart';
 
 /// Remote datasource for spaces
 class SpacesRemoteDatasource {
-  const WorldsRemoteDatasource({
+  const SpacesRemoteDatasource({
     required this.client,
   });
 

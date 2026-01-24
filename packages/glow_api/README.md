@@ -9,12 +9,15 @@ Provides HTTP client infrastructure and data transfer objects for Glow's backend
 ## Features
 
 ### **Client**
+
 - HTTP client wrapper with authentication interceptors
 - Automatic token refresh
 - Error handling and retry logic
 
 ### **DTOs**
+
 Data transfer objects for API requests/responses:
+
 - `SpaceDTO` - Space data from API
 - `EntryDTO` - Entry (NOT post) data from API
 - `ChannelDTO` - Channel data from API

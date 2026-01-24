@@ -11,13 +11,13 @@ dependencies:
     path: ../glow_core
   glow_domain:
     path: ../glow_domain
-  
+
   # Network
   dio: ^5.7.0
-  
+
   # Backend - Pure Dart (no Flutter dependencies)
   supabase: ^2.3.6
-  
+
   # Serialization
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0

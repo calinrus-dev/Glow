@@ -9,21 +9,25 @@ Foundational package providing shared primitives for all other packages.
 ### Contents
 
 #### **Error Handling**
+
 - `Failure` - Base failure type for domain errors
 - `Either<L, R>` - Functional error handling (replaces try/catch)
 - Exception types: `NetworkException`, `CacheException`, `ValidationException`
 
 #### **Common Types**
+
 - `Result<T>` - Unified result wrapper
 - `Paged<T>` - Paginated data wrapper
 - `Unit` - Void replacement for functional programming
 
 #### **Base Contracts**
+
 - `UseCase<Type, Params>` - Base use case pattern
 - `Logger` - Logging abstraction
 - `CrashReporter` - Crash reporting contract
 
 #### **Utilities**
+
 - Validators (email, username, etc.)
 - Debouncer & Throttler
 - Extensions (DateTime, String, etc.)

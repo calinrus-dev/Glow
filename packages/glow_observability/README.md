@@ -9,12 +9,14 @@ Provides observability infrastructure to monitor Glow's health, performance, and
 ## Features
 
 ### **Structured Logging**
+
 - Log levels (debug, info, warning, error, fatal)
 - Contextual metadata (user ID, Space ID, feature)
 - Log aggregation and search
 - Log filtering by level/context
 
 ### **Crash Reporting**
+
 - Automatic crash detection
 - Stack trace capture
 - User context at crash time
@@ -22,6 +24,7 @@ Provides observability infrastructure to monitor Glow's health, performance, and
 - Integration with Sentry/Firebase Crashlytics
 
 ### **Performance Monitoring**
+
 - App startup time
 - Route navigation timing
 - API request latency
@@ -29,6 +32,7 @@ Provides observability infrastructure to monitor Glow's health, performance, and
 - Custom performance traces
 
 ### **Analytics Events**
+
 - User actions tracking
 - Feature usage metrics
 - Entry creation analytics

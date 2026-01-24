@@ -9,7 +9,9 @@ class EntriesLocalDatasource {
   final IsarClient client;
 
   /// Get cached entries by channel
-  Future<List<Map<String, dynamic>>> getEntriesByChannel(String channelId) async {
+  Future<List<Map<String, dynamic>>> getEntriesByChannel(
+    String channelId,
+  ) async {
     final entries = await client.getCollection('entries');
     return entries.where((p) => p['channel_id'] == channelId).toList();
   }

@@ -7,17 +7,19 @@ Data layer with repositories, datasources, and models for Glow.
 This package implements the **data access layer** for Glow's content architecture:
 
 ### Data Sources
+
 - **Remote Datasources**: Supabase API clients for:
   - Spaces (communities)
   - Entries (block-based content, NOT posts)
   - Channels (composite immersive areas)
   - Chats (global DMs/groups, Space DMs/groups)
   - Identity (global profiles, Space identities, channel masks)
-  
 - **Local Datasources**: Isar database clients for offline-first storage
 
 ### Repositories
+
 Implementations of domain repository contracts:
+
 - `SpacesRepository` - Manage Spaces (was "worlds")
 - `EntriesRepository` - Manage Entries (was "posts")
 - `ChannelsRepository` - Manage composite Channels
@@ -25,6 +27,7 @@ Implementations of domain repository contracts:
 - `IdentityRepository` - Multi-layered identity system
 
 ### Sync & Offline
+
 - Offline-first synchronization
 - Conflict resolution
 - Sync queue management

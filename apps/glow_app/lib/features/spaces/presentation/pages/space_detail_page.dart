@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glow_ui/glow_ui.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../global/presentation/models/mock_space.dart';
 
 /// Space detail page showing a Space's content

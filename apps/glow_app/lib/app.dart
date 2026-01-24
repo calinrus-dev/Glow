@@ -16,11 +16,9 @@ class GlowApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Glow',
       debugShowCheckedModeBanner: false,
-      
       theme: GlowTheme.dark(),
       darkTheme: GlowTheme.dark(),
       themeMode: ThemeMode.dark,
-      
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -30,7 +28,6 @@ class GlowApp extends ConsumerWidget {
       supportedLocales: const [
         Locale('en'),
       ],
-      
       routerConfig: router,
     );
   }

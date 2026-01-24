@@ -13,18 +13,18 @@ class LoginPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GlowScaffold(
       safeArea: false,
-      resizeToAvoidBottomInset: true,
-      body: _LoginBackground(
-        child: SafeArea(
-          bottom: false,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: GlowSpacing.lg,
-              vertical: GlowSpacing.lg,
-            ),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          const Positioned.fill(
+            child: _LoginBackground(),
+          ),
+          SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: GlowSpacing.lg,
+                ),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 400),
                   child: const _LoginView(),
@@ -32,16 +32,14 @@ class LoginPage extends ConsumerWidget {
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
 
 class _LoginBackground extends StatelessWidget {
-  const _LoginBackground({required this.child});
-
-  final Widget child;
+  const _LoginBackground();
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -90,7 +88,6 @@ class _LoginBackground extends StatelessWidget {
               ),
             ),
           ),
-          child,
         ],
       );
 }
@@ -116,213 +113,166 @@ class _LoginViewState extends ConsumerState<_LoginView> {
     );
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            ShaderMask(
-              shaderCallback: (bounds) => GlowShader.createGlowGradient(
-                color: GlowColors.primaryGlow,
-                opacity: 0.45,
-              ).createShader(bounds),
-              blendMode: BlendMode.srcIn,
-              child: Text(
-                'Glow',
-                style: textTheme.displaySmall?.copyWith(
-                  color: GlowColors.textPrimary,
-                  fontWeight: FontWeight.w700,
-                  shadows: [
-                    Shadow(
-                      color: GlowColors.primaryGlow.withValues(alpha: 0.5),
-                      blurRadius: 18,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Text(
-              'Glow',
-              style: textTheme.displaySmall?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                shadows: [
-                  Shadow(
-                    color: GlowColors.primaryGlow.withValues(alpha: 0.35),
-                    blurRadius: 12,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        // Header
+        const SizedBox(height: GlowSpacing.xxl),
+        _GlowLogo(),
         const SizedBox(height: GlowSpacing.xs),
         Text(
           'Your Space. Your style. Your identity.',
           style: textTheme.bodySmall?.copyWith(
             color: GlowColors.textSecondary,
           ),
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: GlowSpacing.lg),
-        Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
-            child: GlowGlassContainer(
-              backgroundOpacity: 0.04,
-              blurSigma: 10,
-              child: Form(
-                child: Column(
-                  children: [
-                    GlowSocialButton(
-                      label: 'Continue with Google',
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: SvgPicture.asset(
-                          'assets/icons/google_logo.svg',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      onPressed: isLoading ? null : () {},
+        const SizedBox(height: GlowSpacing.xl),
+
+        // Form
+        GlowInput(
+          hintText: 'Username or email',
+          prefixIcon: const Icon(Icons.person_outline_rounded),
+          dense: true,
+          onChanged: (_) {},
+        ),
+        const SizedBox(height: GlowSpacing.md),
+        GlowInput(
+          hintText: 'Password',
+          obscureText: _obscurePassword,
+          prefixIcon: const Icon(Icons.lock_outline_rounded),
+          dense: true,
+          suffixIcon: IconButton(
+            onPressed: () => setState(
+              () => _obscurePassword = !_obscurePassword,
+            ),
+            icon: Icon(
+              _obscurePassword
+                  ? Icons.visibility_off_rounded
+                  : Icons.visibility_rounded,
+              size: 20,
+              color: GlowColors.textPrimary.withValues(alpha: 0.7),
+            ),
+          ),
+          onChanged: (_) {},
+        ),
+        const SizedBox(height: GlowSpacing.sm),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Checkbox(
+                    value: _rememberMe,
+                    onChanged: (value) => setState(
+                      () => _rememberMe = value ?? false,
                     ),
-                    const SizedBox(height: GlowSpacing.sm),
-                    GlowSocialButton(
-                      label: 'Continue with Apple',
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: SvgPicture.asset(
-                          'assets/icons/apple_logo.svg',
-                          fit: BoxFit.contain,
-                          colorFilter: const ColorFilter.mode(
-                            Colors.white,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ),
-                      onPressed: isLoading ? null : () {},
-                    ),
-                    const SizedBox(height: GlowSpacing.sm),
-                    GlowSocialButton(
-                      label: 'Continue with Facebook',
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: SvgPicture.asset(
-                          'assets/icons/facebook_logo.svg',
-                          fit: BoxFit.contain,
-                          colorFilter: const ColorFilter.mode(
-                            Color(0xFF1877F2),
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ),
-                      onPressed: isLoading ? null : () {},
-                    ),
-                    const SizedBox(height: GlowSpacing.md),
-                    const GlowDivider(),
-                    const SizedBox(height: GlowSpacing.md),
-                    GlowInput(
-                      labelText: 'Username or email',
-                      hintText: 'nombre@glow.app',
-                      prefixIcon: const Icon(Icons.person_outline_rounded),
-                      dense: true,
-                      onChanged: (_) {},
-                    ),
-                    const SizedBox(height: GlowSpacing.md),
-                    GlowInput(
-                      labelText: 'Password',
-                      hintText: '••••••••',
-                      obscureText: _obscurePassword,
-                      prefixIcon: const Icon(Icons.lock_outline_rounded),
-                      dense: true,
-                      suffixIcon: IconButton(
-                        onPressed: () => setState(
-                          () => _obscurePassword = !_obscurePassword,
-                        ),
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility_off_rounded
-                              : Icons.visibility_rounded,
-                        ),
-                      ),
-                      onChanged: (_) {},
-                    ),
-                    const SizedBox(height: GlowSpacing.xs),
-                    Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: GlowSpacing.xs,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Checkbox(
-                              value: _rememberMe,
-                              onChanged: (value) => setState(
-                                () => _rememberMe = value ?? false,
-                              ),
-                              activeColor: GlowColors.primaryGlow,
-                            ),
-                            Text(
-                              'Remember me',
-                              style: textTheme.bodySmall
-                                  ?.copyWith(color: GlowColors.textSecondary),
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Forgot password',
-                            style: textTheme.bodySmall
-                                ?.copyWith(color: GlowColors.primaryGlowLight),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: GlowSpacing.sm),
-                    GlowPrimaryButton(
-                      onPressed: isLoading
-                          ? null
-                          : () => ref
-                              .read(authNotifierProvider.notifier)
-                              .login('', ''),
-                      label: 'Sign in',
-                      isLoading: isLoading,
-                    ),
-                    if (authState.maybeWhen(
-                      error: (_) => true,
-                      orElse: () => false,
-                    )) ...[
-                      const SizedBox(height: GlowSpacing.sm),
-                      authState.maybeWhen(
-                        error: (message) => Text(
-                          message,
-                          style: textTheme.bodySmall
-                              ?.copyWith(color: GlowColors.error),
-                        ),
-                        orElse: () => const SizedBox.shrink(),
-                      ),
-                    ],
-                  ],
+                    activeColor: GlowColors.primaryGlow,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
+                const SizedBox(width: GlowSpacing.xs),
+                Text(
+                  'Remember me',
+                  style: textTheme.bodySmall?.copyWith(
+                    color: GlowColors.textSecondary,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(
+                'Forgot password?',
+                style: textTheme.bodySmall?.copyWith(
+                  color: GlowColors.primaryGlowLight,
+                  fontSize: 13,
                 ),
               ),
             ),
+          ],
+        ),
+        const SizedBox(height: GlowSpacing.lg),
+        GlowPrimaryButton(
+          onPressed: isLoading
+              ? null
+              : () => ref
+                  .read(authNotifierProvider.notifier)
+                  .login('', ''),
+          label: 'Sign in',
+          isLoading: isLoading,
+        ),
+        if (authState.maybeWhen(
+          error: (_) => true,
+          orElse: () => false,
+        )) ...[
+          const SizedBox(height: GlowSpacing.sm),
+          authState.maybeWhen(
+            error: (message) => Text(
+              message,
+              style: textTheme.bodySmall
+                  ?.copyWith(color: GlowColors.error),
+            ),
+            orElse: () => const SizedBox.shrink(),
           ),
+        ],
+        const SizedBox(height: GlowSpacing.lg),
+        Row(
+          children: [
+            const Expanded(child: GlowDivider()),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: GlowSpacing.md,
+              ),
+              child: Text(
+                'Or continue with',
+                style: textTheme.bodySmall?.copyWith(
+                  color: GlowColors.textTertiary,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+            const Expanded(child: GlowDivider()),
+          ],
         ),
         const SizedBox(height: GlowSpacing.md),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _SocialButton(
+              svgAsset: 'assets/icons/google_logo.svg',
+              onPressed: isLoading ? null : () {},
+            ),
+            const SizedBox(width: GlowSpacing.md),
+            _SocialButton(
+              svgAsset: 'assets/icons/apple_logo.svg',
+              onPressed: isLoading ? null : () {},
+            ),
+          ],
+        ),
+        const SizedBox(height: GlowSpacing.xl),
         GlowActionRow(
           alignment: MainAxisAlignment.center,
           actions: [
             Text(
               "Don't have an account?",
-              style: textTheme.bodySmall
-                  ?.copyWith(color: GlowColors.textSecondary),
+              style: textTheme.bodySmall?.copyWith(
+                color: GlowColors.textSecondary,
+                fontSize: 13,
+              ),
             ),
             GlowButton(
               onPressed: () {},
-              label: 'Create account',
+              label: 'Create one',
               variant: GlowButtonVariant.ghost,
               padding: const EdgeInsets.symmetric(
                 horizontal: GlowSpacing.sm,
@@ -331,7 +281,98 @@ class _LoginViewState extends ConsumerState<_LoginView> {
             ),
           ],
         ),
+        const SizedBox(height: GlowSpacing.lg),
       ],
+    );
+  }
+}
+
+/// Logo component with glow effect
+class _GlowLogo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        ShaderMask(
+          shaderCallback: (bounds) => GlowShader.createGlowGradient(
+            color: GlowColors.primaryGlow,
+            opacity: 0.45,
+          ).createShader(bounds),
+          blendMode: BlendMode.srcIn,
+          child: Text(
+            'Glow',
+            style: textTheme.displaySmall?.copyWith(
+              color: GlowColors.textPrimary,
+              fontWeight: FontWeight.w700,
+              shadows: [
+                Shadow(
+                  color: GlowColors.primaryGlow.withValues(alpha: 0.5),
+                  blurRadius: 18,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Text(
+          'Glow',
+          style: textTheme.displaySmall?.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            shadows: [
+              Shadow(
+                color: GlowColors.primaryGlow.withValues(alpha: 0.35),
+                blurRadius: 12,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Compact social login button
+class _SocialButton extends StatelessWidget {
+  const _SocialButton({
+    required this.svgAsset,
+    required this.onPressed,
+  });
+
+  final String svgAsset;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 52,
+      width: 64,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          backgroundColor: GlowColors.backgroundElevated.withValues(alpha: 0.3),
+          side: BorderSide(
+            color: GlowColors.border.withValues(alpha: 0.5),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          padding: EdgeInsets.zero,
+        ),
+        child: SvgPicture.asset(
+          svgAsset,
+          height: 22,
+          width: 22,
+          colorFilter: svgAsset.contains('apple')
+              ? const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                )
+              : null,
+        ),
+      ),
     );
   }
 }

@@ -47,12 +47,23 @@ class _GlowInputState extends State<GlowInput> {
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
+    _focusNode = FocusNode()..addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    setState(() {
+      if (!_focusNode.hasFocus) {
+        _showHalo = false;
+        _isPressed = false;
+      }
+    });
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _focusNode
+      ..removeListener(_onFocusChange)
+      ..dispose();
     super.dispose();
   }
 
@@ -78,16 +89,21 @@ class _GlowInputState extends State<GlowInput> {
         : const BoxConstraints(minWidth: 40, minHeight: 40);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
-      curve: Curves.easeInOut,
+      duration: const Duration(milliseconds: 240),
+      curve: Curves.easeOutCubic,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(GlowSpacing.md),
         boxShadow: isFocused
             ? GlowEffects.glowShadow(
                 color: GlowColors.primaryGlow,
-                blur: 18,
+                blur: _isPressed ? 32 : 20,
               )
-            : const [],
+            : (_showHalo
+                ? GlowEffects.glowShadow(
+                    color: GlowColors.primaryGlow,
+                    blur: 12,
+                  )
+                : const []),
       ),
       child: Listener(
         behavior: HitTestBehavior.translucent,
@@ -98,14 +114,30 @@ class _GlowInputState extends State<GlowInput> {
             _showHalo = true;
           });
         },
-        onPointerUp: (_) => setState(() {
-          _isPressed = false;
-          _showHalo = false;
-        }),
-        onPointerCancel: (_) => setState(() {
-          _isPressed = false;
-          _showHalo = false;
-        }),
+        onPointerUp: (_) {
+          if (mounted) {
+            setState(() {
+              _isPressed = false;
+            });
+            Future.delayed(const Duration(milliseconds: 250), () {
+              if (mounted && !_focusNode.hasFocus) {
+                setState(() => _showHalo = false);
+              }
+            });
+          }
+        },
+        onPointerCancel: (_) {
+          if (mounted) {
+            setState(() {
+              _isPressed = false;
+            });
+            Future.delayed(const Duration(milliseconds: 250), () {
+              if (mounted && !_focusNode.hasFocus) {
+                setState(() => _showHalo = false);
+              }
+            });
+          }
+        },
         child: GlowStroke(
           radius: GlowSpacing.md,
           strokeWidth: borderWidth,
@@ -119,7 +151,8 @@ class _GlowInputState extends State<GlowInput> {
                   top: _haloOffset!.dy - 30,
                   child: IgnorePointer(
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 160),
+                      duration: const Duration(milliseconds: 350),
+                      curve: Curves.easeOutExpo,
                       width: _showHalo ? 60 : 0,
                       height: _showHalo ? 60 : 0,
                       decoration: BoxDecoration(
@@ -155,6 +188,7 @@ class _GlowInputState extends State<GlowInput> {
                   prefixIconConstraints: iconConstraints,
                   suffixIconConstraints: iconConstraints,
                   contentPadding: contentPadding,
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(GlowSpacing.md),
                     borderSide: BorderSide(

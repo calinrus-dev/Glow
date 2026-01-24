@@ -1,6 +1,7 @@
 # Copilot Instructions for Glow
 
 ## Project Context
+
 **Glow** is a social platform for creating immersive digital spaces with identity. NOT a traditional social network.
 
 **Core Concept**: Users create and join Spaces - immersive digital environments with their own visual identity, channels, and content. Think Discord meets Figma meets Social VR, but 2D and mobile-first.
@@ -12,7 +13,9 @@
 ## Content Architecture (CRITICAL - READ FIRST)
 
 ### Global Level
+
 **Global** is the top-level feed and social layer of Glow:
+
 - **Global Feed** - Entry feed with multiple views:
   - For You (personalized)
   - Popular (trending content)
@@ -27,7 +30,9 @@
 - **Global Profile** - User's main identity across Glow
 
 ### Spaces (Communities)
+
 **Spaces** are immersive communities, each with unique identity:
+
 - **Channels** (immersive areas within Space):
   - Text chats
   - Voice chats
@@ -39,14 +44,18 @@
 - **Space Identity** - User has different profile per Space
 
 ### Channels (Within Spaces)
+
 **Channels** are immersive, composite areas containing:
+
 - **Text Chat** - Real-time messaging
 - **Voice Chat** - Audio communication
 - **Entries** - Content blocks (Notion-like)
 - **Masks** - Per-channel identity (nicknames, avatars, custom identity)
 
 ### Entries (Content Blocks)
+
 **Entries** exist in multiple contexts:
+
 - **Global entries** - Appear in Global feed
 - **Channel entries** - Belong to specific channels
 - **User entries** - Created by individual users
@@ -54,6 +63,7 @@
 - **Format** - Block-based content (like Notion)
 
 ### Identity System (Multi-Layered)
+
 1. **Global Profile** - Main identity across platform
 2. **Space Identity** - Different profile per Space (custom name, avatar, bio)
 3. **Channel Mask** - Per-channel customization (nickname, temporary identity)
@@ -63,6 +73,7 @@
 ## Terminology (STRICT - ALWAYS ENFORCE)
 
 ### Primary Concepts
+
 - **Global** - Top-level feed and social layer
 - **Spaces** - Immersive communities with unique visual identity
 - **Channels** - Composite immersive areas (chats + entries) within Spaces
@@ -70,11 +81,13 @@
 - **Masks** - Per-channel identity customization (nicknames, etc.)
 
 ### Content Types
+
 - **Entry** - Block-based content (like Notion pages)
 - **Chat Message** - Real-time text message
 - **Voice Message** - Audio communication
 
 ### NEVER Use These Terms
+
 ❌ "posts" → Use "Entries"
 ❌ "groups" (for spaces) → Use "Spaces"
 ❌ "servers" → Use "Spaces"
@@ -111,6 +124,7 @@
 ```
 
 ### Dependency Rule (CRITICAL)
+
 **Dependencies ONLY flow inward (downward in diagram)**
 
 ✅ Presentation → Domain → Data → External
@@ -119,6 +133,7 @@
 ❌ NEVER: Data ← External direct access from Presentation
 
 **Communication Pattern**: ALWAYS bottom-up, NEVER lateral
+
 - Presentation calls UseCases
 - UseCases call Repositories (interfaces)
 - Data implements Repositories
@@ -156,15 +171,18 @@ Atoms (Single-element, basic)
 ```
 
 ### Atoms (`packages/glow_ui/lib/src/atoms/`)
+
 Single-responsibility, indivisible UI elements.
 
 **Examples**:
+
 - `buttons.dart` - GlowButton, GlowIconButton, GlowTextButton
 - `inputs.dart` - GlowTextField, GlowPasswordField, GlowSearchField
 - `icons.dart` - GlowIcon with glow effects
 - `avatars.dart` - GlowAvatar (circle, square, with border)
 
 **Rules**:
+
 - ✅ No business logic
 - ✅ Accept callbacks only
 - ✅ Stateless OR simple animation state
@@ -172,14 +190,17 @@ Single-responsibility, indivisible UI elements.
 - ❌ NO providers/dependency injection
 
 ### Molecules (`packages/glow_ui/lib/src/molecules/`)
+
 Composed of multiple atoms, reusable patterns.
 
 **Examples**:
+
 - `cards.dart` - GlowCard, GlowHoverCard (like SpaceCard)
 - `list_items.dart` - GlowListTile, GlowChannelItem
 - `dialogs.dart` - GlowDialog, GlowBottomSheet
 
 **Rules**:
+
 - ✅ Combine atoms
 - ✅ Handle internal UI state (hover, expansion, etc.)
 - ✅ Accept data models via props
@@ -187,13 +208,16 @@ Composed of multiple atoms, reusable patterns.
 - ❌ NO navigation logic
 
 ### Organisms (`packages/glow_ui/lib/src/organisms/`)
+
 Complex components, may use providers, handle business logic.
 
 **Examples**:
+
 - `navigation.dart` - AppShell, BottomNav, NavigationRail
 - `app_bar.dart` - GlowAppBar, GlowSliverAppBar
 
 **Rules**:
+
 - ✅ Can use Riverpod providers
 - ✅ Can trigger navigation
 - ✅ Can fetch data
@@ -201,9 +225,11 @@ Complex components, may use providers, handle business logic.
 - ❌ Still respect single responsibility
 
 ### Layouts (`packages/glow_ui/lib/src/layouts/`)
+
 Page-level structure, responsive behavior.
 
 **Examples**:
+
 - `app_shell.dart` - Main app navigation shell
 - `responsive.dart` - Breakpoint helpers
 - `scaffold.dart` - Custom scaffold variants
@@ -213,6 +239,7 @@ Page-level structure, responsive behavior.
 ## State Management (Riverpod)
 
 ### Global App State
+
 **Location**: `apps/glow_app/lib/shared/state/`
 
 ```dart
@@ -229,7 +256,7 @@ class AppState with _$AppState {
 class AppStateNotifier extends _$AppStateNotifier {
   @override
   AppState build() => const AppState.initializing();
-  
+
   Future<void> initialize() async {
     // Check auth, load config
     state = const AppState.authenticated(); // Mock for now
@@ -240,6 +267,7 @@ class AppStateNotifier extends _$AppStateNotifier {
 ### Provider Patterns
 
 **Feature State** (per feature):
+
 ```dart
 @riverpod
 class SpacesController extends _$SpacesController {
@@ -251,6 +279,7 @@ class SpacesController extends _$SpacesController {
 ```
 
 **Use Cases** (business logic):
+
 ```dart
 @riverpod
 GetSpacesUseCase getSpacesUseCase(GetSpacesUseCaseRef ref) {
@@ -259,6 +288,7 @@ GetSpacesUseCase getSpacesUseCase(GetSpacesUseCaseRef ref) {
 ```
 
 **Repositories** (data access):
+
 ```dart
 @riverpod
 SpacesRepository spacesRepository(SpacesRepositoryRef ref) {
@@ -274,6 +304,7 @@ SpacesRepository spacesRepository(SpacesRepositoryRef ref) {
 ## Navigation (go_router)
 
 ### Route Structure
+
 **Location**: `apps/glow_app/lib/router/`
 
 ```dart
@@ -289,7 +320,7 @@ class AppRoutes {
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
   final appState = ref.watch(appStateNotifierProvider);
-  
+
   return GoRouter(
     refreshListenable: appState, // Re-evaluate on state change
     redirect: (context, state) {
@@ -304,7 +335,9 @@ GoRouter appRouter(AppRouterRef ref) {
 ```
 
 ### Navigation Guards
+
 Based on `AppState`:
+
 - `initializing` → Force to splash
 - `unauthenticated` → Force to auth
 - `authenticated` → Allow app routes
@@ -320,22 +353,22 @@ class GlowColors {
   // Background
   static const backgroundDark = Color(0xFF0A0A0F);
   static const backgroundElevated = Color(0xFF121218);
-  
+
   // Glow colors (main brand)
   static const primaryGlow = Color(0xFF7C3AED);   // Purple
   static const secondaryGlow = Color(0xFFEC4899); // Pink
   static const accentGlow = Color(0xFF06B6D4);    // Cyan
-  
+
   // Subtle variants (for shadows, borders)
   static const primaryGlowSubtle = Color(0x337C3AED);   // 20% opacity
   static const secondaryGlowSubtle = Color(0x33EC4899);
   static const accentGlowSubtle = Color(0x3306B6D4);
-  
+
   // Text
   static const textPrimary = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFFB3B3B3);
   static const textTertiary = Color(0xFF666666);
-  
+
   // Borders
   static const border = Color(0xFF2A2A2F);
   static const borderFocus = Color(0xFF7C3AED);
@@ -343,10 +376,12 @@ class GlowColors {
 ```
 
 ### Typography (`packages/glow_ui/lib/src/theme/typography.dart`)
+
 - Font Family: Inter (system fallback currently, InterDisplay planned)
 - Weights: 400 (regular), 500 (medium), 600 (semibold), 700 (bold)
 
 ### Spacing (`packages/glow_ui/lib/src/theme/spacing.dart`)
+
 ```dart
 class GlowSpacing {
   static const double xxs = 2.0;
@@ -371,7 +406,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final spacesAsync = ref.watch(spacesControllerProvider);
-    
+
     return spacesAsync.when(
       data: (spaces) => SpacesGrid(spaces: spaces),
       loading: () => LoadingSpinner(),
@@ -387,7 +422,7 @@ class SpacesController extends _$SpacesController {
   Future<List<Space>> build() async {
     final useCase = ref.watch(getSpacesUseCaseProvider);
     final result = await useCase.execute();
-    
+
     return result.fold(
       (failure) => throw failure,
       (spaces) => spaces,
@@ -398,7 +433,7 @@ class SpacesController extends _$SpacesController {
 // 3. USE CASE - Business logic
 class GetSpacesUseCase {
   final SpacesRepository repository;
-  
+
   Future<Either<Failure, List<Space>>> execute() async {
     return repository.getSpaces();
   }
@@ -413,7 +448,7 @@ abstract class SpacesRepository {
 class SpacesRepositoryImpl implements SpacesRepository {
   final SpacesRemoteDataSource remoteDS;
   final SpacesLocalDataSource localDS;
-  
+
   @override
   Future<Either<Failure, List<Space>>> getSpaces() async {
     try {
@@ -430,7 +465,7 @@ class SpacesRepositoryImpl implements SpacesRepository {
 // 6. DATA SOURCE (in data/)
 class SpacesRemoteDataSource {
   final ApiClient client;
-  
+
   Future<List<SpaceDTO>> fetchSpaces() async {
     final response = await client.get('/spaces');
     return (response.data as List)
@@ -447,11 +482,13 @@ class SpacesRemoteDataSource {
 ## Code Generation
 
 ### Tools Used
+
 - `freezed` - Immutable models
 - `json_serializable` - JSON serialization
 - `riverpod_generator` - Provider generation
 
 ### Manual Generation Required
+
 **IMPORTANT**: build_runner has conflicts. Generate code manually:
 
 ```bash
@@ -469,6 +506,7 @@ dart run build_runner build --delete-conflicting-outputs
 ## Current Implementation Status
 
 ### ✅ Completed
+
 - [x] Project structure (monorepo with Melos)
 - [x] Clean Architecture packages
 - [x] Routing with go_router + guards
@@ -483,11 +521,13 @@ dart run build_runner build --delete-conflicting-outputs
 - [x] Zero analyzer warnings
 
 ### 🚧 In Progress
+
 - [ ] Supabase integration
 - [ ] Real authentication
 - [ ] Channels list in EnvironmentPage
 
 ### 📋 Pending
+
 - [ ] Entry content blocks UI
 - [ ] Blocks engine integration
 - [ ] Real-time sync
@@ -501,6 +541,7 @@ dart run build_runner build --delete-conflicting-outputs
 ## Coding Standards
 
 ### File Naming
+
 ```dart
 // Features
 lib/features/{feature}/
@@ -529,6 +570,7 @@ lib/features/{feature}/
 ```
 
 ### Imports Order
+
 ```dart
 // 1. Dart SDK
 import 'dart:async';
@@ -550,6 +592,7 @@ import 'auth_local_ds.dart';
 ```
 
 ### Error Handling
+
 ```dart
 // ALWAYS use Either<Failure, T>
 Future<Either<Failure, User>> getUser(String id) async {
@@ -567,6 +610,7 @@ Future<Either<Failure, User>> getUser(String id) async {
 ```
 
 ### Riverpod Providers
+
 ```dart
 // Use code generation
 @riverpod
@@ -582,6 +626,7 @@ class FeatureController extends _$FeatureController {
 ```
 
 ### Freezed Models
+
 ```dart
 @freezed
 class User with _$User {
@@ -591,7 +636,7 @@ class User with _$User {
     String? avatar,
     @Default([]) List<String> spaces,
   }) = _User;
-  
+
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 ```
@@ -601,6 +646,7 @@ class User with _$User {
 ## DO (Best Practices)
 
 ### Architecture
+
 - ✅ Follow Clean Architecture strictly
 - ✅ Respect the Dependency Rule (dependencies flow inward)
 - ✅ Keep domain layer pure Dart (no Flutter deps)
@@ -608,6 +654,7 @@ class User with _$User {
 - ✅ Separate concerns (one class = one responsibility)
 
 ### Code Quality
+
 - ✅ Use `Either<Failure, T>` for all operations that can fail
 - ✅ Write tests for business logic (UseCases, Repositories)
 - ✅ Use `freezed` for immutable models
@@ -616,6 +663,7 @@ class User with _$User {
 - ✅ Add TODOs with issue references: `// TODO(#123): Implement offline sync`
 
 ### UI
+
 - ✅ Follow Atomic Design (atoms → molecules → organisms)
 - ✅ Keep widgets small and focused
 - ✅ Extract reusable components to `glow_ui` package
@@ -623,12 +671,14 @@ class User with _$User {
 - ✅ Prefer composition over inheritance
 
 ### Communication
+
 - ✅ Bottom-up communication only (Presentation → Domain → Data)
 - ✅ Use callbacks for upward events
 - ✅ Use providers for downward data
 - ❌ NEVER lateral communication between features
 
 ### Git
+
 - ✅ Use Conventional Commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
 - ✅ Keep commits atomic (one logical change)
 - ✅ Write descriptive commit messages
@@ -638,6 +688,7 @@ class User with _$User {
 ## DON'T (Anti-patterns)
 
 ### Architecture Violations
+
 - ❌ Mix presentation and business logic
 - ❌ Put Flutter imports in domain layer
 - ❌ Skip repository abstraction (direct API calls from UI)
@@ -646,6 +697,7 @@ class User with _$User {
 - ❌ Lateral communication between features
 
 ### Code Smells
+
 - ❌ Use magic numbers/strings (create constants)
 - ❌ Duplicate code (DRY principle)
 - ❌ Ignore errors (always handle failures)
@@ -653,11 +705,13 @@ class User with _$User {
 - ❌ Ignore analyzer warnings
 
 ### Testing
+
 - ❌ Skip tests for critical flows (auth, payments, data sync)
 - ❌ Test implementation details (test behavior, not internals)
 - ❌ Write brittle tests (use mocks properly)
 
 ### UI
+
 - ❌ Put business logic in widgets
 - ❌ Create deeply nested widget trees (extract methods/widgets)
 - ❌ Hardcode values (use theme, spacing constants)
@@ -668,6 +722,7 @@ class User with _$User {
 ## Mock Data (Current State)
 
 ### Spaces
+
 Located: `apps/glow_app/lib/features/home/data/mock_spaces.dart`
 
 ```dart
@@ -676,7 +731,7 @@ class MockSpace {
   final String description;
   final List<Color> gradientColors;
   final IconData icon;
-  
+
   static final List<MockSpace> mockSpaces = [
     MockSpace(
       name: 'MotoGP',
@@ -694,17 +749,20 @@ class MockSpace {
 ## Aesthetic Guidelines
 
 ### Visual Identity
+
 - **Mood**: Dark, atmospheric, immersive, mysterious yet welcoming
 - **Colors**: Deep blacks, subtle grays, vibrant glow accents
 - **Effects**: Subtle glow on interactive elements, smooth animations
 - **Typography**: Clean, modern, high contrast
 
 ### Animation Principles
+
 - Duration: 200-300ms for micro-interactions
 - Easing: `Curves.easeInOut` for most, `Curves.elasticOut` for emphasis
 - Hover states: Subtle scale (1.02x), glow increase, border color change
 
 ### Component Behavior
+
 - Cards: Hover → glow shadow, border color change
 - Buttons: Hover → subtle lift, glow increase
 - Inputs: Focus → border glow, label float
@@ -715,6 +773,7 @@ class MockSpace {
 ## Development Workflow
 
 ### Daily Routine
+
 1. Check `flutter analyze` before committing
 2. Run tests: `melos test`
 3. Format code: `melos format`
@@ -722,11 +781,13 @@ class MockSpace {
 5. Commit with conventional commit message
 
 ### Hot Reload
+
 - Press `r` for hot reload (preserves state)
 - Press `R` for hot restart (resets state)
 - Press `q` to quit
 
 ### Building
+
 ```bash
 # Android
 flutter build apk --release
@@ -745,6 +806,7 @@ flutter build windows --release
 ## Communication Pattern (CRITICAL)
 
 ### Function/Component Communication
+
 **Rule**: ALWAYS bottom-up, NEVER lateral
 
 ```
@@ -770,6 +832,7 @@ flutter build windows --release
 **Examples**:
 
 ✅ **Correct** - Bottom-up:
+
 ```dart
 // Child emits event via callback
 SpaceCard(
@@ -783,6 +846,7 @@ void onSpaceSelected(Space space) {
 ```
 
 ❌ **Wrong** - Lateral:
+
 ```dart
 // Component A directly calling Component B
 class SpaceCard extends StatelessWidget {
@@ -793,6 +857,7 @@ class SpaceCard extends StatelessWidget {
 ```
 
 ✅ **Correct** - Provider-based:
+
 ```dart
 // Child reads from provider
 final spaces = ref.watch(spacesControllerProvider);
@@ -804,9 +869,11 @@ ref.read(spacesControllerProvider.notifier).selectSpace(space);
 ---
 
 ## License
+
 **Proprietary**. Not open source. All rights reserved.
 
 ---
 
 ## Context History
+
 See `.github/context/` for daily context files documenting each session's work.

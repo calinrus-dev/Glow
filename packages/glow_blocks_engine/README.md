@@ -5,6 +5,7 @@ Block-based content engine for Glow **Entries** (NOT posts).
 ## Overview
 
 Powers Glow's **Entries** - block-based content that exists across multiple contexts:
+
 - Global feed entries
 - Channel entries (within Spaces)
 - User-created entries
@@ -15,16 +16,19 @@ Think Notion-like blocks, but for social content.
 ## Features
 
 ### **Domain Models**
+
 - Block types: Text, Image, Video, Embed, Code, Divider, etc.
 - Block attributes: Styling, alignment, metadata
 - Block composition and nesting
 
 ### **Parser**
+
 - Block validation
 - Composition rules
 - Nested block handling
 
 ### **Codecs**
+
 - JSON serialization/deserialization
 - Markdown conversion
 - HTML export

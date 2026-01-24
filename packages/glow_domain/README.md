@@ -7,6 +7,7 @@ Domain layer with entities and business rules for Glow Social Operating System.
 This package contains the **core business logic** for Glow's content architecture:
 
 ### Entities
+
 - **Global**: User profiles, global entries, global chats (DMs, groups)
 - **Spaces**: Immersive communities with unique identity
 - **Channels**: Composite areas (text chat + voice + entries) within Spaces
@@ -15,6 +16,7 @@ This package contains the **core business logic** for Glow's content architectur
 - **Chat**: Text messages, voice messages, DMs, group chats
 
 ### Business Rules
+
 - Content visibility policies
 - Identity and permission rules
 - Space and channel governance

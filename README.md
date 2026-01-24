@@ -19,6 +19,7 @@ Glow redefines social interaction by centering it around **places**, not profile
 ## Content Architecture
 
 ### Global Layer
+
 **Global** is the top-level social feed and entry point to Glow:
 
 - **Global Feed** - Entry feed with multiple views:
@@ -26,18 +27,16 @@ Glow redefines social interaction by centering it around **places**, not profile
   - **Popular** - Trending entries across all Spaces
   - **Recent** - Chronological timeline
   - **Featured** - Curated highlights
-  
 - **Entry Sources**:
   - User entries (individual creators)
   - Space entries (staff from Spaces can publish to Global)
-  
 - **Global Chats**:
   - **DMs** - Direct messages between users
   - **Groups** - Private group conversations
-  
 - **Global Profile** - Your main identity across Glow
 
 ### Spaces (Communities)
+
 A **Space** is an immersive community within Glow. Each represents an interest, topic, or activity with:
 
 - **Unique visual identity** - Custom gradients, colors, icons, atmosphere
@@ -52,9 +51,11 @@ A **Space** is an immersive community within Glow. Each represents an interest, 
 Spaces are not groups. They're **digital environments** designed for immersion.
 
 ### Channels (Within Spaces)
+
 **Channels** are composite immersive areas that combine multiple content types:
 
 Each Channel contains:
+
 - **Text Chat** - Real-time messaging
 - **Voice Chat** - Audio communication
 - **Entries** - Block-based content (Notion-like)
@@ -63,15 +64,18 @@ Each Channel contains:
 Channels are NOT simple chat rooms - they're **immersive composite spaces** that blend real-time communication with persistent content.
 
 ### Entries (Content Blocks)
+
 In Glow, traditional "posts" don't exist. Content is created through **Entries**: block-based canvases where users build without rigid templates.
 
 **Entry Contexts:**
+
 - **Global entries** - Appear in Global feed
 - **Channel entries** - Belong to specific channels within Spaces
 - **User entries** - Created by individual users
 - **Space entries** - Created by Space staff, can be promoted to Global
 
 An Entry is a blank space where you can combine:
+
 - Rich text with formatting
 - Images and media
 - Embeds (videos, links, code)
@@ -82,6 +86,7 @@ An Entry is a blank space where you can combine:
 Think of Entries as **expressive content units**, not constrained posts.
 
 ### Identity System (Multi-Layered)
+
 Users have three layers of identity:
 
 1. **Global Profile** - Your core identity across Glow (visible everywhere)
@@ -97,6 +102,7 @@ Your identity adapts to where you are, not the other way around.
 ## Terminology (Strict - ALWAYS Use)
 
 ### Primary Concepts
+
 - **Global** - Top-level feed and social layer
 - **Spaces** - Immersive communities with unique visual identity
 - **Channels** - Composite immersive areas (chats + entries) within Spaces
@@ -104,11 +110,13 @@ Your identity adapts to where you are, not the other way around.
 - **Masks** - Per-channel identity customization (nicknames, avatars)
 
 ### Content Types
+
 - **Entry** - Block-based content (like Notion pages)
 - **Chat Message** - Real-time text message
 - **Voice Message** - Audio communication
 
 ### NEVER Use These Terms
+
 ❌ "posts" → Use **Entries**
 ❌ "groups" (for spaces) → Use **Spaces**
 ❌ "servers" → Use **Spaces**
@@ -121,6 +129,7 @@ Your identity adapts to where you are, not the other way around.
 ## Experience & Aesthetics
 
 Glow is designed for **immersion**:
+
 - **Dark-first aesthetic** with glow/neon accents
 - **Atmospheric UI** - depth, shadows, ambient effects
 - **Smooth, intentional animations** - nothing feels abrupt
@@ -147,6 +156,7 @@ Code generation: Mason, build_runner
 **Architecture:** Clean Architecture with strict layer separation.
 
 **Packages:**
+
 - `glow_core` - Base contracts, logger, utilities
 - `glow_domain` - Entities, use cases, policies
 - `glow_data` - Repositories, data sources
@@ -163,6 +173,7 @@ Code generation: Mason, build_runner
 ## Development
 
 ### Requirements
+
 - Flutter 3.19+
 - Dart 3.3+
 - Melos CLI: `dart pub global activate melos`

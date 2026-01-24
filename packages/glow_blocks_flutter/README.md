@@ -5,6 +5,7 @@ Flutter widgets for rendering block-based **Entries** (NOT posts) in Glow.
 ## Overview
 
 Provides the UI layer for Glow's block-based content system. Works with `glow_blocks_engine` to render Entries across all contexts:
+
 - Global feed entries
 - Channel entries (within Spaces)
 - User-created entries
@@ -23,6 +24,7 @@ glow_blocks_flutter (UI rendering - Flutter)
 ## Features
 
 ### **Block Widgets**
+
 - `TextBlockWidget` - Formatted text with styling
 - `ImageBlockWidget` - Images with captions
 - `VideoBlockWidget` - Embedded video
@@ -31,12 +33,14 @@ glow_blocks_flutter (UI rendering - Flutter)
 - `DividerBlockWidget` - Visual separators
 
 ### **Composition**
+
 - `EntryRenderer` - Renders complete Entry from blocks
 - `BlockComposer` - Interactive block editor
 - Drag-and-drop block reordering
 - Block toolbar and actions
 
 ### **Theme**
+
 - Block styling system
 - Space-specific block themes
 - Dark/light mode support
