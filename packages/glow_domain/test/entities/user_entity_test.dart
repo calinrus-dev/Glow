@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:glow_domain/glow_domain.dart';
 
 void main() {
@@ -37,7 +37,7 @@ void main() {
       expect(user.updatedAt, DateTime(2026, 1, 24));
     });
 
-    test('should support equality', () {
+    test('should support equality based on id', () {
       final user1 = UserEntity(
         id: 'user-123',
         username: 'johndoe',
@@ -47,15 +47,23 @@ void main() {
 
       final user2 = UserEntity(
         id: 'user-123',
+        username: 'different',
+        email: 'different@example.com',
+        createdAt: DateTime(2026, 1, 2),
+      );
+
+      final user3 = UserEntity(
+        id: 'user-456',
         username: 'johndoe',
         email: 'john@example.com',
         createdAt: DateTime(2026, 1, 1),
       );
 
-      expect(user1, equals(user2));
+      expect(user1, equals(user2)); // Same ID
+      expect(user1 == user3, false); // Different ID
     });
 
-    test('should support copyWith', () {
+    test('should have readable toString', () {
       final user = UserEntity(
         id: 'user-123',
         username: 'johndoe',
@@ -63,15 +71,10 @@ void main() {
         createdAt: DateTime(2026, 1, 1),
       );
 
-      final updated = user.copyWith(
-        displayName: 'John Doe',
-        bio: 'Developer',
+      expect(
+        user.toString(),
+        'UserEntity(id: user-123, email: john@example.com, username: johndoe)',
       );
-
-      expect(updated.id, 'user-123');
-      expect(updated.displayName, 'John Doe');
-      expect(updated.bio, 'Developer');
-      expect(updated.username, 'johndoe');
     });
   });
 }

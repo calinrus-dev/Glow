@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:glow_core/glow_core.dart';
 
 void main() {
@@ -14,7 +14,7 @@ void main() {
 
       test('should create network failure with code and stack trace', () {
         final stackTrace = StackTrace.current;
-        const failure = NetworkFailure(
+        final failure = NetworkFailure(
           message: 'Connection timeout',
           code: 'NET_TIMEOUT',
           stackTrace: stackTrace,

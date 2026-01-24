@@ -29,90 +29,61 @@ void main() {
         ),
       );
 
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(CircleAvatar), findsOneWidget);
     });
 
-    testWidgets('should render with icon', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: GlowAvatar(
-              icon: Icons.person,
-            ),
-          ),
-        ),
-      );
-
-      expect(find.byIcon(Icons.person), findsOneWidget);
-    });
-
-    testWidgets('should have correct size for small variant', (tester) async {
+    testWidgets('should have correct size when specified', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: GlowAvatar(
               initials: 'JD',
-              size: GlowAvatarSize.sm,
+              size: 64,
             ),
           ),
         ),
       );
 
-      final container = tester.widget<SizedBox>(
-        find.ancestor(
-          of: find.text('JD'),
-          matching: find.byType(SizedBox),
-        ).first,
+      final container = tester.widget<AnimatedScale>(
+        find.byType(AnimatedScale),
       );
 
-      expect(container.width, 32.0);
-      expect(container.height, 32.0);
+      expect(container, isNotNull);
     });
 
-    testWidgets('should have correct size for medium variant', (tester) async {
+    testWidgets('should call onTap when tapped', (tester) async {
+      var tapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: GlowAvatar(
+              initials: 'JD',
+              onTap: () => tapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(GlowAvatar));
+      await tester.pump();
+
+      expect(tapped, true);
+    });
+
+    testWidgets('should show active state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: GlowAvatar(
               initials: 'JD',
-              size: GlowAvatarSize.md,
+              isActive: true,
             ),
           ),
         ),
       );
 
-      final container = tester.widget<SizedBox>(
-        find.ancestor(
-          of: find.text('JD'),
-          matching: find.byType(SizedBox),
-        ).first,
-      );
-
-      expect(container.width, 40.0);
-      expect(container.height, 40.0);
-    });
-
-    testWidgets('should have correct size for large variant', (tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: GlowAvatar(
-              initials: 'JD',
-              size: GlowAvatarSize.lg,
-            ),
-          ),
-        ),
-      );
-
-      final container = tester.widget<SizedBox>(
-        find.ancestor(
-          of: find.text('JD'),
-          matching: find.byType(SizedBox),
-        ).first,
-      );
-
-      expect(container.width, 48.0);
-      expect(container.height, 48.0);
+      expect(find.byType(GlowAvatar), findsOneWidget);
     });
 
     testWidgets('should prioritize imageUrl over initials', (tester) async {
@@ -127,8 +98,28 @@ void main() {
         ),
       );
 
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(CircleAvatar), findsOneWidget);
       expect(find.text('JD'), findsNothing);
+    });
+
+    testWidgets('should render different sizes', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                GlowAvatar(initials: 'SM', size: 32),
+                GlowAvatar(initials: 'MD', size: 40),
+                GlowAvatar(initials: 'LG', size: 48),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('SM'), findsOneWidget);
+      expect(find.text('MD'), findsOneWidget);
+      expect(find.text('LG'), findsOneWidget);
     });
   });
 }

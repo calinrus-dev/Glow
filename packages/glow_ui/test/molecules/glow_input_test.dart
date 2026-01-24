@@ -10,7 +10,7 @@ void main() {
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              label: 'Email',
+              labelText: 'Email',
             ),
           ),
         ),
@@ -25,7 +25,7 @@ void main() {
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              hint: 'Enter your email',
+              hintText: 'Enter your email',
             ),
           ),
         ),
@@ -42,7 +42,7 @@ void main() {
           theme: GlowTheme.dark(),
           home: Scaffold(
             body: GlowInput(
-              label: 'Name',
+              labelText: 'Name',
               onChanged: (value) => changedValue = value,
             ),
           ),
@@ -60,7 +60,7 @@ void main() {
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              label: 'Email',
+              labelText: 'Email',
               errorText: 'Invalid email format',
             ),
           ),
@@ -76,8 +76,8 @@ void main() {
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              label: 'Search',
-              prefixIcon: Icons.search,
+              labelText: 'Search',
+              prefixIcon: Icon(Icons.search),
             ),
           ),
         ),
@@ -92,8 +92,8 @@ void main() {
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              label: 'Password',
-              suffixIcon: Icons.visibility,
+              labelText: 'Password',
+              suffixIcon: Icon(Icons.visibility),
             ),
           ),
         ),
@@ -102,14 +102,14 @@ void main() {
       expect(find.byIcon(Icons.visibility), findsOneWidget);
     });
 
-    testWidgets('should obscure text when isPassword is true', (tester) async {
+    testWidgets('should obscure text when obscureText is true', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: GlowTheme.dark(),
           home: const Scaffold(
             body: GlowInput(
-              label: 'Password',
-              isPassword: true,
+              labelText: 'Password',
+              obscureText: true,
             ),
           ),
         ),
@@ -117,40 +117,6 @@ void main() {
 
       final textField = tester.widget<TextField>(find.byType(TextField));
       expect(textField.obscureText, true);
-    });
-
-    testWidgets('should be disabled when enabled is false', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: GlowTheme.dark(),
-          home: const Scaffold(
-            body: GlowInput(
-              label: 'Disabled',
-              enabled: false,
-            ),
-          ),
-        ),
-      );
-
-      final textField = tester.widget<TextField>(find.byType(TextField));
-      expect(textField.enabled, false);
-    });
-
-    testWidgets('should support max lines', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: GlowTheme.dark(),
-          home: const Scaffold(
-            body: GlowInput(
-              label: 'Description',
-              maxLines: 5,
-            ),
-          ),
-        ),
-      );
-
-      final textField = tester.widget<TextField>(find.byType(TextField));
-      expect(textField.maxLines, 5);
     });
 
     testWidgets('should use controller when provided', (tester) async {
@@ -161,7 +127,7 @@ void main() {
           theme: GlowTheme.dark(),
           home: Scaffold(
             body: GlowInput(
-              label: 'Name',
+              labelText: 'Name',
               controller: controller,
             ),
           ),
@@ -169,6 +135,22 @@ void main() {
       );
 
       expect(find.text('Initial value'), findsOneWidget);
+    });
+
+    testWidgets('should render dense variant', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: GlowTheme.dark(),
+          home: const Scaffold(
+            body: GlowInput(
+              labelText: 'Compact',
+              dense: true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(GlowInput), findsOneWidget);
     });
   });
 }

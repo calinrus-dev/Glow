@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:glow_core/glow_core.dart';
 
 void main() {
@@ -10,7 +10,6 @@ void main() {
       throttler.run(() => callCount++);
 
       expect(callCount, 1);
-      throttler.dispose();
     });
 
     test('should throttle subsequent calls within duration', () async {
@@ -27,8 +26,6 @@ void main() {
 
       throttler.run(() => callCount++);
       expect(callCount, 2);
-
-      throttler.dispose();
     });
 
     test('should allow execution after duration passes', () async {
@@ -42,23 +39,20 @@ void main() {
 
       throttler.run(() => callCount++);
       expect(callCount, 2);
-
-      throttler.dispose();
     });
 
-    test('should clear timer on dispose', () async {
+    test('should reset throttle state', () {
       final throttler = Throttler(duration: const Duration(milliseconds: 100));
       var callCount = 0;
 
       throttler.run(() => callCount++);
-      throttler.dispose();
+      expect(callCount, 1);
 
-      await Future<void>.delayed(const Duration(milliseconds: 150));
-
-      // Should not throw
+      // Reset allows immediate execution again
+      throttler.reset();
       throttler.run(() => callCount++);
       
-      expect(callCount, 2); // Both calls executed (no throttling after dispose)
+      expect(callCount, 2);
     });
   });
 }
