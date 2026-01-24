@@ -21,14 +21,14 @@ class GlowTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        hintText: hintText,
-        labelText: labelText,
-        border: const OutlineInputBorder(),
-      ),
-    );
+        controller: controller,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          hintText: hintText,
+          labelText: labelText,
+          border: const OutlineInputBorder(),
+        ),
+      );
 }

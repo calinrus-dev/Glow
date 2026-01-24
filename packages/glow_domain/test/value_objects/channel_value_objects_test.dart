@@ -35,7 +35,9 @@ void main() {
       expect(() => ChannelName('Test\$Channel'), throwsArgumentError);
     });
 
-    test('accepts valid characters (letters, numbers, spaces, hyphens, underscores)', () {
+    test(
+        'accepts valid characters (letters, numbers, spaces, hyphens, underscores)',
+        () {
       expect(() => ChannelName('Channel-123'), returnsNormally);
       expect(() => ChannelName('Channel_Name'), returnsNormally);
       expect(() => ChannelName('Channel 123'), returnsNormally);

@@ -18,7 +18,8 @@ class ChannelName extends Equatable {
       throw ArgumentError('Channel name cannot exceed 50 characters');
     }
     if (!RegExp(r'^[a-zA-Z0-9\s\-_]+$').hasMatch(value)) {
-      throw ArgumentError('Channel name can only contain letters, numbers, spaces, hyphens and underscores');
+      throw ArgumentError(
+          'Channel name can only contain letters, numbers, spaces, hyphens and underscores');
     }
     return ChannelName._(value.trim());
   }
@@ -58,7 +59,8 @@ class ChannelSlug extends Equatable {
       throw ArgumentError('Channel slug cannot exceed 50 characters');
     }
     if (!RegExp(r'^[a-z0-9\-]+$').hasMatch(value)) {
-      throw ArgumentError('Channel slug can only contain lowercase letters, numbers and hyphens');
+      throw ArgumentError(
+          'Channel slug can only contain lowercase letters, numbers and hyphens');
     }
     if (value.startsWith('-') || value.endsWith('-')) {
       throw ArgumentError('Channel slug cannot start or end with a hyphen');

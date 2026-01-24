@@ -9,7 +9,8 @@ class EventStream {
   }
 
   /// Filter events by type
-  Stream<RealtimeEvent> byType(String type) => events.where((event) => event.type == type);
+  Stream<RealtimeEvent> byType(String type) =>
+      events.where((event) => event.type == type);
 }
 
 /// Real-time event

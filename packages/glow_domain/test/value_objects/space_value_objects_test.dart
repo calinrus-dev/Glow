@@ -35,7 +35,9 @@ void main() {
       expect(() => SpaceName('Test\$Space'), throwsArgumentError);
     });
 
-    test('accepts valid characters (letters, numbers, spaces, hyphens, underscores)', () {
+    test(
+        'accepts valid characters (letters, numbers, spaces, hyphens, underscores)',
+        () {
       expect(() => SpaceName('Space-123'), returnsNormally);
       expect(() => SpaceName('Space_Name'), returnsNormally);
       expect(() => SpaceName('Space 123'), returnsNormally);
@@ -79,7 +81,8 @@ void main() {
       expect(SpaceSlug.fromName('MotoGP Racing').value, 'motogp-racing');
       expect(SpaceSlug.fromName('Indie Cinema').value, 'indie-cinema');
       expect(SpaceSlug.fromName('Gaming!!!').value, 'gaming');
-      expect(SpaceSlug.fromName('Test   Multiple   Spaces').value, 'test-multiple-spaces');
+      expect(SpaceSlug.fromName('Test   Multiple   Spaces').value,
+          'test-multiple-spaces');
     });
 
     test('rejects empty slug', () {

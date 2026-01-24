@@ -17,7 +17,8 @@ void main() {
       debouncer.dispose();
     });
 
-    test('should cancel previous callback when called multiple times', () async {
+    test('should cancel previous callback when called multiple times',
+        () async {
       final debouncer = Debouncer(duration: const Duration(milliseconds: 100));
       var callCount = 0;
 
@@ -39,7 +40,7 @@ void main() {
 
       debouncer.run(() => callCount++);
       await Future<void>.delayed(const Duration(milliseconds: 150));
-      
+
       debouncer.run(() => callCount++);
       await Future<void>.delayed(const Duration(milliseconds: 150));
 

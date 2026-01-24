@@ -24,6 +24,6 @@ class GlowPrimaryButton extends StatelessWidget {
         isLoading: isLoading,
         expand: expand,
         variant: GlowButtonVariant.primary,
-      glowBoost: 1.3,
+        glowBoost: 1.3,
       );
 }

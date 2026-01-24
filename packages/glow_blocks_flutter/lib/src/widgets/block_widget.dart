@@ -17,37 +17,37 @@ class BlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(theme.padding),
-        decoration: BoxDecoration(
-          color: theme.backgroundColor,
-          border: Border.all(color: theme.borderColor),
-          borderRadius: BorderRadius.circular(theme.borderRadius),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              block.type.name,
-              style: TextStyle(
-                color: theme.textColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            if (block.type.description != null) ...[
-              const SizedBox(height: 4),
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(theme.padding),
+          decoration: BoxDecoration(
+            color: theme.backgroundColor,
+            border: Border.all(color: theme.borderColor),
+            borderRadius: BorderRadius.circular(theme.borderRadius),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
               Text(
-                block.type.description!,
+                block.type.name,
                 style: TextStyle(
-                  color: theme.textColor.withValues(alpha: 0.7),
-                  fontSize: 12,
+                  color: theme.textColor,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              if (block.type.description != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  block.type.description!,
+                  style: TextStyle(
+                    color: theme.textColor.withValues(alpha: 0.7),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
-      ),
-    );
+      );
 }

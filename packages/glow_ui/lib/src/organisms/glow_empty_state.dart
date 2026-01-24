@@ -42,8 +42,8 @@ class GlowEmptyState extends StatelessWidget {
           ],
           Text(
             title,
-            style: textTheme.titleLarge
-                ?.copyWith(color: GlowColors.textPrimary),
+            style:
+                textTheme.titleLarge?.copyWith(color: GlowColors.textPrimary),
             textAlign: TextAlign.center,
           ),
           if (description != null) ...[

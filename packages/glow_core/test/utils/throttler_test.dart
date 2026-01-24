@@ -51,7 +51,7 @@ void main() {
       // Reset allows immediate execution again
       throttler.reset();
       throttler.run(() => callCount++);
-      
+
       expect(callCount, 2);
     });
   });

@@ -8,12 +8,13 @@ class GlowShader {
   static LinearGradient createGlowGradient({
     required Color color,
     double opacity = 0.6,
-  }) => LinearGradient(
-      colors: [
-        color.withValues(alpha: opacity),
-        color.withValues(alpha: 0),
-      ],
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-    );
+  }) =>
+      LinearGradient(
+        colors: [
+          color.withValues(alpha: opacity),
+          color.withValues(alpha: 0),
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
 }

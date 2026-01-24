@@ -1,4 +1,5 @@
 import 'channel.dart';
+
 class RealtimeClient {
   const RealtimeClient({
     required this.url,

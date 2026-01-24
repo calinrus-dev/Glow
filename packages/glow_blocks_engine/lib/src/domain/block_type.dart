@@ -16,7 +16,9 @@ class BlockType {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BlockType && runtimeType == other.runtimeType && name == other.name;
+      other is BlockType &&
+          runtimeType == other.runtimeType &&
+          name == other.name;
 
   @override
   int get hashCode => name.hashCode;

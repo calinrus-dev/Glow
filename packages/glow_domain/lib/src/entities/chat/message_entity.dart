@@ -28,11 +28,14 @@ class MessageEntity {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MessageEntity && runtimeType == other.runtimeType && id == other.id;
+      other is MessageEntity &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
 
   @override
   int get hashCode => id.hashCode;
 
   @override
-  String toString() => 'MessageEntity(id: $id, conversationId: $conversationId)';
+  String toString() =>
+      'MessageEntity(id: $id, conversationId: $conversationId)';
 }

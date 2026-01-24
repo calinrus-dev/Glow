@@ -32,15 +32,14 @@ class _SpaceCardState extends State<SpaceCard> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(GlowSpacing.md),
             border: Border.all(
-              color: _isHovered
-                  ? GlowColors.primaryGlow
-                  : GlowColors.border,
+              color: _isHovered ? GlowColors.primaryGlow : GlowColors.border,
               width: _isHovered ? 2 : 1,
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.space.gradientColors.first.withValues(alpha: 0.3),
+                      color: widget.space.gradientColors.first
+                          .withValues(alpha: 0.3),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),

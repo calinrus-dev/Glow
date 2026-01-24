@@ -19,7 +19,8 @@ class IsarClient {
   }
 
   /// Update in collection
-  Future<void> update(String collection, String id, Map<String, dynamic> data) async {
+  Future<void> update(
+      String collection, String id, Map<String, dynamic> data) async {
     // TODO: Implement actual update
   }
 

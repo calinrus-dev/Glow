@@ -14,16 +14,16 @@ class BlockPalette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
-      itemCount: blockTypes.length,
-      itemBuilder: (context, index) {
-        final blockType = blockTypes[index];
-        return ListTile(
-          title: Text(blockType.name),
-          subtitle: blockType.description != null
-              ? Text(blockType.description!)
-              : null,
-          onTap: () => onBlockTypeSelected?.call(blockType),
-        );
-      },
-    );
+        itemCount: blockTypes.length,
+        itemBuilder: (context, index) {
+          final blockType = blockTypes[index];
+          return ListTile(
+            title: Text(blockType.name),
+            subtitle: blockType.description != null
+                ? Text(blockType.description!)
+                : null,
+            onTap: () => onBlockTypeSelected?.call(blockType),
+          );
+        },
+      );
 }

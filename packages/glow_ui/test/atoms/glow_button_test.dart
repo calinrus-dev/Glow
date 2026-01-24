@@ -42,12 +42,12 @@ void main() {
     });
 
     testWidgets('should not call onPressed when disabled', (tester) async {
-      var tapped = false;
+      const tapped = false;
 
       await tester.pumpWidget(
         MaterialApp(
           theme: GlowTheme.dark(),
-          home: Scaffold(
+          home: const Scaffold(
             body: GlowButton(
               label: 'Click Me',
               onPressed: null,

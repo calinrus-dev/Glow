@@ -84,36 +84,42 @@ class _GlowButtonState extends State<GlowButton> {
 
     final borderWidth = _isPressed ? 2.4 : (isActive ? 1.5 : 1.2);
     final strokeOpacity = widget.variant == GlowButtonVariant.primary
-      ? (_isPressed ? 0.95 : (isActive ? 0.7 : 0.6))
-      : (_isPressed ? 0.8 : (isActive ? 0.55 : 0.45));
-    final glowBlur = (_isPressed ? 36.0 : (isActive ? 28.0 : 24.0))
-        * widget.glowBoost;
+        ? (_isPressed ? 0.95 : (isActive ? 0.7 : 0.6))
+        : (_isPressed ? 0.8 : (isActive ? 0.55 : 0.45));
+    final glowBlur =
+        (_isPressed ? 36.0 : (isActive ? 28.0 : 24.0)) * widget.glowBoost;
     final scale = _isPressed ? 0.98 : (isActive ? 1.01 : 1.0);
 
     return FocusableActionDetector(
       onShowHoverHighlight: _setHovered,
       onShowFocusHighlight: _setFocused,
       child: GestureDetector(
-        onTapDown: enabled ? (details) {
-          _setPressed(true);
-          _showHaloAt(details.localPosition);
-        } : null,
-        onTapUp: enabled ? (details) {
-          _setPressed(false);
-          Future.delayed(const Duration(milliseconds: 180), () {
-            if (mounted) {
-              setState(() => _showHalo = false);
-            }
-          });
-        } : null,
-        onTapCancel: enabled ? () {
-          _setPressed(false);
-          Future.delayed(const Duration(milliseconds: 180), () {
-            if (mounted) {
-              setState(() => _showHalo = false);
-            }
-          });
-        } : null,
+        onTapDown: enabled
+            ? (details) {
+                _setPressed(true);
+                _showHaloAt(details.localPosition);
+              }
+            : null,
+        onTapUp: enabled
+            ? (details) {
+                _setPressed(false);
+                Future.delayed(const Duration(milliseconds: 180), () {
+                  if (mounted) {
+                    setState(() => _showHalo = false);
+                  }
+                });
+              }
+            : null,
+        onTapCancel: enabled
+            ? () {
+                _setPressed(false);
+                Future.delayed(const Duration(milliseconds: 180), () {
+                  if (mounted) {
+                    setState(() => _showHalo = false);
+                  }
+                });
+              }
+            : null,
         child: AnimatedScale(
           duration: const Duration(milliseconds: 140),
           curve: Curves.easeOutCubic,
@@ -129,8 +135,7 @@ class _GlowButtonState extends State<GlowButton> {
                   color: palette.glow,
                   blur: glowBlur,
                 ),
-                if (enabled)
-                  ...GlowEffects.softShadow(blur: 16, spread: -8),
+                if (enabled) ...GlowEffects.softShadow(blur: 16, spread: -8),
               ],
             ),
             child: GlowStroke(
@@ -198,13 +203,15 @@ class _GlowButtonState extends State<GlowButton> {
                                   child: widget.leadingWidget ??
                                       Icon(
                                         widget.leadingIcon,
-                                        size: _ButtonMetrics.iconSize(widget.size),
+                                        size: _ButtonMetrics.iconSize(
+                                            widget.size),
                                         color: palette.foreground,
                                       ),
                                 ),
                               if (widget.isLoading)
                                 SizedBox(
-                                  height: _ButtonMetrics.loaderSize(widget.size),
+                                  height:
+                                      _ButtonMetrics.loaderSize(widget.size),
                                   width: _ButtonMetrics.loaderSize(widget.size),
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
@@ -220,19 +227,17 @@ class _GlowButtonState extends State<GlowButton> {
                                             .textTheme
                                             .labelLarge
                                             ?.copyWith(
-                                              color: palette.foreground,
-                                              shadows: [
-                                                Shadow(
-                                                  color: GlowColors.primaryGlow
-                                                      .withValues(
-                                                    alpha:
-                                                        _isPressed ? 0.85 : 0.45,
-                                                  ),
-                                                  blurRadius:
-                                                      _isPressed ? 16 : 9,
-                                                ),
-                                              ],
-                                            ) ??
+                                          color: palette.foreground,
+                                          shadows: [
+                                            Shadow(
+                                              color: GlowColors.primaryGlow
+                                                  .withValues(
+                                                alpha: _isPressed ? 0.85 : 0.45,
+                                              ),
+                                              blurRadius: _isPressed ? 16 : 9,
+                                            ),
+                                          ],
+                                        ) ??
                                         TextStyle(color: palette.foreground),
                                     child: widget.child ??
                                         Text(
@@ -252,7 +257,8 @@ class _GlowButtonState extends State<GlowButton> {
                                   child: widget.trailingWidget ??
                                       Icon(
                                         widget.trailingIcon,
-                                        size: _ButtonMetrics.iconSize(widget.size),
+                                        size: _ButtonMetrics.iconSize(
+                                            widget.size),
                                         color: palette.foreground,
                                       ),
                                 ),
@@ -284,7 +290,8 @@ class _ButtonPalette {
     required GlowButtonVariant variant,
     required bool enabled,
     required bool active,
-  }) => _ButtonPalette(
+  }) =>
+      _ButtonPalette(
         background: _resolveBackground(variant, enabled),
         border: _resolveBorder(variant, enabled),
         foreground: GlowColors.textPrimary,

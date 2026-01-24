@@ -15,14 +15,14 @@ class GlowResponsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200 && desktop != null) {
-          return desktop!;
-        } else if (constraints.maxWidth >= 768 && tablet != null) {
-          return tablet!;
-        } else {
-          return mobile;
-        }
-      },
-    );
+        builder: (context, constraints) {
+          if (constraints.maxWidth >= 1200 && desktop != null) {
+            return desktop!;
+          } else if (constraints.maxWidth >= 768 && tablet != null) {
+            return tablet!;
+          } else {
+            return mobile;
+          }
+        },
+      );
 }

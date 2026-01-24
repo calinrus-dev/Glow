@@ -12,11 +12,11 @@ class AuthNotifier extends _$AuthNotifier {
 
   Future<void> login(String email, String password) async {
     state = const AuthState.loading();
-    
+
     try {
       // TODO: Implement login logic with Supabase
       await Future<void>.delayed(const Duration(seconds: 1));
-      
+
       state = const AuthState.authenticated();
     } catch (e) {
       state = AuthState.error(e.toString());

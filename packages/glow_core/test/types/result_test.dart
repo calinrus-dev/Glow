@@ -88,10 +88,11 @@ void main() {
     group('Chaining', () {
       test('should chain multiple operations on success', () {
         const result = Result<int, Failure>.success(5);
-        
+
         final chained = result
             .map((value) => value * 2)
-            .flatMap((value) => Result<String, Failure>.success('Result: $value'))
+            .flatMap(
+                (value) => Result<String, Failure>.success('Result: $value'))
             .map((value) => value.toUpperCase());
 
         expect(chained.isSuccess, true);
@@ -101,10 +102,11 @@ void main() {
       test('should stop chaining on first failure', () {
         const failure = NetworkFailure(message: 'Network error');
         const result = Result<int, Failure>.failure(failure);
-        
+
         final chained = result
             .map((value) => value * 2)
-            .flatMap((value) => Result<String, Failure>.success('Result: $value'))
+            .flatMap(
+                (value) => Result<String, Failure>.success('Result: $value'))
             .map((value) => value.toUpperCase());
 
         expect(chained.isFailure, true);

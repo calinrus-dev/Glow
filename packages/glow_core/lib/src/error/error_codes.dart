@@ -31,5 +31,6 @@ class ErrorCodes {
 
   // Permission errors
   static const String permissionDenied = 'PERMISSION_DENIED';
-  static const String permissionInsufficientRole = 'PERMISSION_INSUFFICIENT_ROLE';
+  static const String permissionInsufficientRole =
+      'PERMISSION_INSUFFICIENT_ROLE';
 }

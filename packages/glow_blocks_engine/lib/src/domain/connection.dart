@@ -3,7 +3,8 @@ class Connection {
   const Connection({
     required this.id,
     required this.blockId,
-    required this.type, this.connectedTo,
+    required this.type,
+    this.connectedTo,
   });
 
   final String id;

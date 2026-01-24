@@ -4,7 +4,8 @@ import 'package:glow_observability/glow_observability.dart';
 
 /// Handles application errors.
 class ErrorHandler {
-  const ErrorHandler({Logger? logger}) : _logger = logger ?? const ConsoleLogger();
+  const ErrorHandler({Logger? logger})
+      : _logger = logger ?? const ConsoleLogger();
 
   final Logger _logger;
 

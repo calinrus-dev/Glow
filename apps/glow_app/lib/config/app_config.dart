@@ -22,7 +22,8 @@ class AppConfig {
   static Future<AppConfig> load() async {
     // TODO: Load from .env or flavor-specific configuration
     return const AppConfig(
-      environment: kDebugMode ? Environment.development : Environment.production,
+      environment:
+          kDebugMode ? Environment.development : Environment.production,
       apiBaseUrl: 'https://api.glow.dev',
       supabaseUrl: 'https://your-project.supabase.co',
       supabaseAnonKey: 'your-anon-key',

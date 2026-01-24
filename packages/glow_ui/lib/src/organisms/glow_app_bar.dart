@@ -37,8 +37,7 @@ class GlowAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: [
               if (leading != null) leading! else const SizedBox(width: 8),
-              if (!centerTitle)
-                const SizedBox(width: GlowSpacing.sm),
+              if (!centerTitle) const SizedBox(width: GlowSpacing.sm),
               Expanded(
                 child: Align(
                   alignment:

@@ -88,9 +88,8 @@ class _GlowNavItem extends StatelessWidget {
             GlowIcon(
               icon: item.icon,
               size: 20,
-              color: isActive
-                  ? GlowColors.primaryGlow
-                  : GlowColors.textTertiary,
+              color:
+                  isActive ? GlowColors.primaryGlow : GlowColors.textTertiary,
               glow: isActive,
             ),
             const SizedBox(height: GlowSpacing.xs),

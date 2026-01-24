@@ -205,9 +205,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
         GlowPrimaryButton(
           onPressed: isLoading
               ? null
-              : () => ref
-                  .read(authNotifierProvider.notifier)
-                  .login('', ''),
+              : () => ref.read(authNotifierProvider.notifier).login('', ''),
           label: 'Sign in',
           isLoading: isLoading,
         ),
@@ -219,8 +217,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
           authState.maybeWhen(
             error: (message) => Text(
               message,
-              style: textTheme.bodySmall
-                  ?.copyWith(color: GlowColors.error),
+              style: textTheme.bodySmall?.copyWith(color: GlowColors.error),
             ),
             orElse: () => const SizedBox.shrink(),
           ),

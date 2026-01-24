@@ -18,7 +18,8 @@ class SpaceName extends Equatable {
       throw ArgumentError('Space name cannot exceed 50 characters');
     }
     if (!RegExp(r'^[a-zA-Z0-9\s\-_]+$').hasMatch(value)) {
-      throw ArgumentError('Space name can only contain letters, numbers, spaces, hyphens and underscores');
+      throw ArgumentError(
+          'Space name can only contain letters, numbers, spaces, hyphens and underscores');
     }
     return SpaceName._(value.trim());
   }
@@ -58,7 +59,8 @@ class SpaceSlug extends Equatable {
       throw ArgumentError('Space slug cannot exceed 50 characters');
     }
     if (!RegExp(r'^[a-z0-9\-]+$').hasMatch(value)) {
-      throw ArgumentError('Space slug can only contain lowercase letters, numbers and hyphens');
+      throw ArgumentError(
+          'Space slug can only contain lowercase letters, numbers and hyphens');
     }
     if (value.startsWith('-') || value.endsWith('-')) {
       throw ArgumentError('Space slug cannot start or end with a hyphen');

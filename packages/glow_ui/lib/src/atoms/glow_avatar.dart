@@ -57,15 +57,12 @@ class _GlowAvatarState extends State<GlowAvatar> {
           curve: Curves.easeOutCubic,
           child: InkWell(
             onTap: widget.onTap,
-            onTapDown: interactive
-                ? (_) => setState(() => _isPressed = true)
-                : null,
-            onTapCancel: interactive
-                ? () => setState(() => _isPressed = false)
-                : null,
-            onTapUp: interactive
-                ? (_) => setState(() => _isPressed = false)
-                : null,
+            onTapDown:
+                interactive ? (_) => setState(() => _isPressed = true) : null,
+            onTapCancel:
+                interactive ? () => setState(() => _isPressed = false) : null,
+            onTapUp:
+                interactive ? (_) => setState(() => _isPressed = false) : null,
             borderRadius: radius,
             splashFactory: NoSplash.splashFactory,
             highlightColor: Colors.transparent,

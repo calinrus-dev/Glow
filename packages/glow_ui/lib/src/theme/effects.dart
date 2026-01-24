@@ -15,7 +15,8 @@ class GlowEffects {
     double blur = 24,
     double spread = -6,
     Offset offset = const Offset(0, 12),
-  }) => [
+  }) =>
+      [
         BoxShadow(
           color: color ?? GlowColors.shadow,
           blurRadius: blur,
@@ -29,7 +30,8 @@ class GlowEffects {
     double blur = 24,
     double spread = 0,
     Offset offset = const Offset(0, 0),
-  }) => [
+  }) =>
+      [
         BoxShadow(
           color: (color ?? GlowColors.primaryGlow).withValues(alpha: 0.28),
           blurRadius: blur,

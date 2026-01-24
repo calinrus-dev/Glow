@@ -29,5 +29,6 @@ class UserEntity {
   int get hashCode => id.hashCode;
 
   @override
-  String toString() => 'UserEntity(id: $id, email: $email, username: $username)';
+  String toString() =>
+      'UserEntity(id: $id, email: $email, username: $username)';
 }
