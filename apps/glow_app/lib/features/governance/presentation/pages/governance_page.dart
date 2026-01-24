@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Governance page for communities.
+/// Governance page for Spaces.
 class GovernancePage extends StatelessWidget {
   const GovernancePage({super.key});
 
@@ -11,7 +11,7 @@ class GovernancePage extends StatelessWidget {
         title: const Text('Governance'),
       ),
       body: const Center(
-        child: Text('Community Governance - TODO'),
+        child: Text('Space Governance - TODO'),
       ),
     );
   }

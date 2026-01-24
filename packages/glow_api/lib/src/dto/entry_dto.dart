@@ -1,6 +1,6 @@
-/// Post DTO
-class PostDto {
-  const PostDto({
+/// Entry DTO
+class EntryDto {
+  const EntryDto({
     required this.id,
     required this.channelId,
     required this.authorId,
@@ -8,7 +8,7 @@ class PostDto {
     required this.createdAt,
   });
 
-  factory PostDto.fromJson(Map<String, dynamic> json) => PostDto(
+  factory EntryDto.fromJson(Map<String, dynamic> json) => EntryDto(
         id: json['id'] as String,
         channelId: json['channel_id'] as String,
         authorId: json['author_id'] as String,

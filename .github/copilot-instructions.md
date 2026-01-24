@@ -1,72 +1,275 @@
 # Copilot Instructions for Glow
 
+> **Communities are worlds. Content is architecture. UI is alive.**
+
+---
+
+## Language Policy (CRITICAL)
+
+**ALL code, comments, UI strings, variable names, documentation, and technical content MUST be in ENGLISH.**
+
+- ✅ Code comments: English only
+- ✅ Variable/function names: English only
+- ✅ UI strings: English only (even if user speaks Spanish)
+- ✅ Git commit messages: English only
+- ✅ Technical documentation: English only
+- ✅ Error messages: English only
+
+**Exception**: You may respond to the user in Spanish if they communicate in Spanish, BUT the code/product remains in English.
+
+**Example**:
+```dart
+// ✅ CORRECT
+final String userName = 'John Doe';
+// Get user profile from cache
+final profile = await repository.getUserProfile();
+
+// ❌ WRONG
+final String nombreUsuario = 'John Doe';
+// Obtener perfil de usuario del caché
+final perfil = await repositorio.obtenerPerfilUsuario();
+```
+
+---
+
 ## Project Context
 
-**Glow** is a social platform for creating immersive digital spaces with identity. NOT a traditional social network.
+**Glow** is a next-generation social platform for creating immersive digital worlds with identity, context, and living visual systems. NOT a traditional social network.
 
-**Core Concept**: Users create and join Spaces - immersive digital environments with their own visual identity, channels, and content. Think Discord meets Figma meets Social VR, but 2D and mobile-first.
+**Core Concept**: Glow is a system of immersive digital places where communities are worlds, content is architecture, and UI is alive.
 
-**Current Stage**: MVP development - Core UI and routing complete, mock data in place, ready for backend integration.
+**Current Stage**: MVP development - Core UI and routing complete, offline-first storage (Isar) integrated, ready for Supabase backend integration and sync implementation.
 
 ---
 
 ## Content Architecture (CRITICAL - READ FIRST)
 
-### Global Level
+### Conceptual Model
 
-**Global** is the top-level feed and social layer of Glow:
+**Glow is NOT a classic social network.**
+It is a **system of digital places with identity, context, and layers**.
+The central axis is not profiles or posts, but **where you are**.
 
-- **Global Feed** - Entry feed with multiple views:
-  - For You (personalized)
-  - Popular (trending content)
-  - Recent (chronological)
-  - Featured (curated highlights)
-- **Entry Sources**:
-  - User entries (individual creators)
-  - Space entries (staff from Spaces can publish to Global)
-- **Global Chats**:
-  - DMs (direct messages between users)
-  - Groups (private group chats)
-- **Global Profile** - User's main identity across Glow
+### Global Level (Top Layer)
 
-### Spaces (Communities)
+**Global** is the top layer of Glow. It always exists.
 
-**Spaces** are immersive communities, each with unique identity:
+**What Global Is:**
+- Entry point to the app
+- Neutral context
+- User's base identity
 
-- **Channels** (immersive areas within Space):
-  - Text chats
-  - Voice chats
-  - Entries (content collections)
-  - Channels are COMPOSITES of chats + entries
-- **Space Chats**:
-  - DMs within Space
-  - Private groups within Space
-- **Space Identity** - User has different profile per Space
+**What Global Contains:**
 
-### Channels (Within Spaces)
+**Global Feed** - Entry feed with multiple views:
+  - **For You** → personalized recommendations
+  - **Popular** → trends across all Spaces
+  - **Recent** → chronological
+  - **Featured** → editorial curation
 
-**Channels** are immersive, composite areas containing:
+**Entry Sources**:
+  - Individual users
+  - Spaces (staff or featured publications)
 
-- **Text Chat** - Real-time messaging
-- **Voice Chat** - Audio communication
-- **Entries** - Content blocks (Notion-like)
-- **Masks** - Per-channel identity (nicknames, avatars, custom identity)
+**Global Chats** - Chats outside any Space:
+  - **DMs** (1-on-1) - No Space aesthetics
+  - **Group Chats** - Private, don't inherit Space rules or identities
 
-### Entries (Content Blocks)
+**Global Profile** - User's root identity:
+  - Primary username
+  - Global avatar
+  - Global bio
+  - General settings
+  - Privacy preferences
+  - **The identity that always exists and is used when there's no context**
 
-**Entries** exist in multiple contexts:
+### Spaces (Environments / Places)
 
-- **Global entries** - Appear in Global feed
-- **Channel entries** - Belong to specific channels
-- **User entries** - Created by individual users
-- **Space entries** - Created by Space staff, can be promoted to Global
-- **Format** - Block-based content (like Notion)
+**A Space is a world unit within Glow.**
 
-### Identity System (Multi-Layered)
+❌ NOT a group
+❌ NOT a server
+❌ NOT a simple container
+✅ **An immersive environment with its own rules**
 
-1. **Global Profile** - Main identity across platform
-2. **Space Identity** - Different profile per Space (custom name, avatar, bio)
-3. **Channel Mask** - Per-channel customization (nickname, temporary identity)
+**What Defines a Space:**
+- Own visual theme (colors, atmosphere)
+- Internal norms
+- Culture
+- Channels
+- Roles
+- Governance
+
+**Examples:**
+- MotoGP Space
+- Indie Cinema Space
+- Open Source Dev Space
+
+**What a Space Contains:**
+
+**Space Identity** (Identity per Space):
+  - Each user has a **different identity per Space**:
+    - Different display name
+    - Different avatar
+    - Different bio
+    - Different visibility
+  - 👉 Prevents context collapse
+  - 👉 You can be professional in one Space and casual in another
+
+**Space Chats** - Chats within the Space context:
+  - DMs between Space members
+  - Private Group Chats within the Space
+  - ⚠️ Follow Space rules
+  - ⚠️ Use Space identity, not global
+
+**Channels** - Immersive areas within the Space (see below)
+
+### Channels (Areas Within a Space)
+
+**A Channel is a composite zone, not just a chat.**
+
+A Channel can have **simultaneously**:
+- 💬 **Real-time Chat** - Instant messaging
+- 🎙️ **Voice** - Audio communication
+- 🧱 **Persistent Entries** - Durable content
+- 🎭 **Masks** - Channel-specific identity
+
+👉 **NOT "chat rooms"**
+👉 **Hybrid living spaces**
+
+**Channel Mask** (Identity per Channel) - Finest identity level:
+- Temporary nickname
+- Specific avatar
+- Contextual role or mask
+
+**Example:**
+- In a serious channel → professional identity
+- In a casual channel → meme nickname
+
+### Entries (Content)
+
+**In Glow there are NO posts. There are Entries.**
+
+**What an Entry Is:**
+- A **blank canvas**
+- **Block-based** (Notion-like)
+- No rigid template
+
+**Can contain:**
+- Rich text
+- Images
+- Embeds
+- Layouts
+- Visual blocks
+- (Future) dynamic smart blocks
+
+**Where Entries Can Exist:**
+- 🌍 **Global** - Appear in Global feed
+- 🪐 **Space** - Space content
+- 🧩 **Channel** - Belong to specific channel
+- 👤 **User** (profile) - Personal entries
+
+**An Entry can:**
+- Stay in its context
+- **Be promoted** (e.g., Space → Global)
+
+### Identity System (Multi-Layered) - KEY SYSTEM
+
+**Glow has multi-level identity:**
+
+**1️⃣ Global Profile**
+- Base identity
+- Visible everywhere
+- Minimal
+
+**2️⃣ Space Identity**
+- Identity per Space
+- Context control
+- Deep personalization
+
+**3️⃣ Channel Mask**
+- Ephemeral or specific identity
+- Maximum freedom
+
+👉 **Identity depends on where you are, not who you are globally.**
+
+**Context Table:**
+
+| Context | Chat Type | Identity Used |
+|---------|-----------|---------------|
+| Global  | DM / Group  | Global Profile  |
+| Space   | DM / Group  | Space Identity  |
+| Channel | Chat        | Channel Mask    |
+
+---
+
+## Visual System — Glow (Living UI)
+
+**Glow** is a living UI system, not static theming.
+
+### Core Visual Modes
+
+**Legacy Mode**
+- Static UI
+- No animations
+- No glow
+- Battery-friendly
+- Low-end device support
+
+**Glow Mode** (Default)
+- Soft glow
+- Gentle pulses
+- Glassmorphism
+- Depth
+- Subtle motion
+
+**Glow Up** (Premium)
+- Multi-color glow
+- Advanced gradients
+- Pulses, flow, flicker
+- Animated chat bubbles
+- Profile frames
+- Entry effects
+
+### Visual Scope
+
+Glow applies to:
+- UI components
+- Entries
+- Smart Blocks
+- Separators
+- Chat bubbles
+- Profile frames
+- Navigation elements
+
+### Performance Philosophy
+
+Glow is:
+- **Synchronized** - All motion follows a global clock
+- **Selective** - Only necessary elements animate
+- **Non-blocking** - Does not interfere with interaction
+- **GPU-friendly** - Hardware-accelerated when possible
+
+---
+
+## Theme System & Cascading Styles
+
+Glow uses a **hierarchical cascade system**.
+
+### Style Priority Order
+
+1. **Object-specific** (entry, block, bubble)
+2. **User theme** (if premium)
+3. **Channel theme**
+4. **Space theme**
+5. **Global default theme**
+
+### Synchronization
+
+All visual motion:
+- Follows a **global clock**
+- Stays **rhythmically consistent**
+- Avoids **chaotic animation**
 
 ---
 
@@ -79,6 +282,7 @@
 - **Channels** - Composite immersive areas (chats + entries) within Spaces
 - **Entries** - Block-based content pieces (NOT "posts")
 - **Masks** - Per-channel identity customization (nicknames, etc.)
+- **Smart Blocks** - Building units of Entries
 
 ### Content Types
 
@@ -88,12 +292,12 @@
 
 ### NEVER Use These Terms
 
-❌ "posts" → Use "Entries"
-❌ "groups" (for spaces) → Use "Spaces"
-❌ "servers" → Use "Spaces"
-❌ "communities" → Use "Spaces"
-❌ "messages" (for entries) → Use "Entries"
-❌ "channels" (for DMs) → Use "DMs" or "Group Chats"
+❌ "posts" → Use **Entries**
+❌ "groups" (for spaces) → Use **Spaces**
+❌ "servers" → Use **Spaces**
+❌ "communities" (when referring to Spaces) → Use **Spaces**
+❌ "messages" (for entries) → Use **Entries**
+❌ "channels" (for DMs) → Use **DMs** or **Group Chats**
 
 ---
 
@@ -479,6 +683,95 @@ class SpacesRemoteDataSource {
 
 ---
 
+## Project Tools & Workflows (USE THESE)
+
+### Available Tools
+
+**Monorepo Management**:
+- `melos bootstrap` - Install dependencies for all packages
+- `melos clean` - Clean all packages
+- `melos analyze` - Run analyzer on all packages (ZERO warnings policy)
+- `melos test` - Run tests across all packages
+- `melos format` - Format all code
+
+**Code Generation**:
+- `dart run build_runner build --delete-conflicting-outputs` - Generate code (Isar schemas, Riverpod providers, Freezed models)
+- `dart run build_runner watch` - Watch mode for continuous generation
+- `dart run build_runner clean` - Clean generated files
+
+**Mason (Scaffolding)**:
+- `mason make feature` - Generate new feature structure
+- `mason make entity` - Generate domain entity
+- `mason make repository` - Generate repository interface + implementation
+- `mason make usecase` - Generate use case
+
+**Git**:
+- Use **Conventional Commits** format:
+  - `feat:` - New feature
+  - `fix:` - Bug fix
+  - `docs:` - Documentation
+  - `refactor:` - Code refactoring
+  - `test:` - Adding/updating tests
+  - `chore:` - Maintenance
+
+### Development Workflows
+
+**When Creating a New Feature**:
+1. Use Mason: `mason make feature --name {feature_name}`
+2. Define entities in `glow_domain`
+3. Create use cases in `glow_domain`
+4. Implement repository interface in `glow_domain`
+5. Implement repository in `glow_data`
+6. Create data sources (local + remote) in `glow_data`
+7. Create DTOs and Isar models in `glow_data`
+8. Implement UI in feature's presentation layer
+9. Run `dart run build_runner build` to generate code
+10. Run `melos analyze` - Must show ZERO warnings
+11. Write tests
+12. Commit with conventional commit format
+
+**When Adding Offline-First Support**:
+1. Create Isar model in `glow_data/lib/src/models/isar/`
+2. Add `@collection` annotation
+3. Define schema with sync metadata:
+   - `isPendingSync: bool`
+   - `syncOperation: String?`
+   - `syncError: String?`
+   - `syncRetryCount: int`
+4. Run `dart run build_runner build` to generate schema
+5. Update `IsarService` to include new schema
+6. Implement local data source using Isar
+7. Update repository to offline-first pattern:
+   - Read from local first
+   - Sync in background
+   - Queue writes with pending flag
+8. Add sync status UI indicators
+
+**When Working on UI**:
+1. Check if component exists in `glow_ui` package
+2. Follow Atomic Design:
+   - Create atoms for basic elements
+   - Compose molecules from atoms
+   - Build organisms for complex features
+3. Use existing design tokens (colors, spacing, typography)
+4. Apply Glow visual effects only when appropriate
+5. Test responsive behavior (mobile, tablet, desktop)
+6. Ensure zero analyzer warnings
+
+### Code Review Checklist
+
+Before committing:
+- [ ] Code is in **ENGLISH** (comments, variables, UI strings)
+- [ ] Uses correct **terminology** (Spaces, Entries, Channels, NOT posts/groups/servers)
+- [ ] Follows **Clean Architecture** (proper layer separation)
+- [ ] Implements **offline-first pattern** (if data layer)
+- [ ] Includes **tests** (unit tests for business logic)
+- [ ] Has **zero analyzer warnings** (`melos analyze`)
+- [ ] Uses **Conventional Commits** format
+- [ ] Updated **documentation** if needed
+
+---
+
 ## Code Generation
 
 ### Tools Used
@@ -497,31 +790,13 @@ cd packages/glow_domain
 dart run build_runner build --delete-conflicting-outputs
 
 # App
-cd apps/glow_app
-dart run build_runner build --delete-conflicting-outputs
-```
-
----
-
-## Current Implementation Status
-
-### ✅ Completed
-
-- [x] Project structure (monorepo with Melos)
-- [x] Clean Architecture packages
-- [x] Routing with go_router + guards
-- [x] Global app state (AppStateNotifier)
-- [x] Dark theme with glow colors
-- [x] AppShell with responsive navigation
-- [x] Home page with tabs
-- [x] Spaces grid (mock data, 6 spaces)
-- [x] SpaceCard with hover effects
-- [x] EnvironmentPage (Space detail view)
-- [x] Mock authentication flow
-- [x] Zero analyzer warnings
+- [x] Isar dependencies added (offline-first)
 
 ### 🚧 In Progress
 
+- [ ] Isar setup and initialization
+- [ ] Offline-first repository pattern
+- [ ] Sync manager implementation
 - [ ] Supabase integration
 - [ ] Real authentication
 - [ ] Channels list in EnvironmentPage
@@ -530,8 +805,84 @@ dart run build_runner build --delete-conflicting-outputs
 
 - [ ] Entry content blocks UI
 - [ ] Blocks engine integration
-- [ ] Real-time sync
-- [ ] Offline support
+- [ ] Real-time sync with offline queue
+- [ ] Conflict resolution
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] CI/CD pipeline execution
+
+## Offline-First Strategy
+
+**See:** `docs/OFFLINE_FIRST_STRATEGY.md`
+
+**Principles:**
+- ✅ Isar as local cache and offline storage
+- ✅ Supabase as remote source of truth
+- ✅ Sync queue for pending operations
+- ✅ UI shows sync status (pending ⏳, synced ✅, error ❌)
+- ✅ App functions 100% offline for viewing/creating content
+- ✅ Automatic sync when back online
+
+**Data Flow:**
+```
+User Action
+    ↓
+Save to Isar (local) immediately
+    ↓
+Queue for sync (SyncOperationIsarModel)
+    ↓
+Sync to Supabase when online
+    ↓
+UI shows sync status
+```
+
+**Implementation Status:**
+- ✅ Isar models created (SpaceIsarModel, SyncOperationIsarModel)
+- ✅ IsarService singleton implemented
+- ✅ Offline-first strategy documented
+- ⚠️ Pending: Schema generation with build_runner
+- ⚠️ Pending: Local data sources implementation
+- ⚠️ Pending: SyncManager implementation
+- ⚠️ Pending: Repository pattern updates
+
+---
+
+## Project Status
+
+### ✅ Completed
+
+- [x] Technical foundation with Clean Architecture
+- [x] Monorepo configured (Melos + Mason)
+- [x] Core package structure (10 packages)
+- [x] State management (Riverpod 2.5+)
+- [x] Backend integration planning (Supabase)
+- [x] Offline-first storage (Isar models)
+- [x] Design system foundation (atomic design)
+- [x] Routing with guards (go_router)
+- [x] Home page with tabs
+- [x] Spaces grid (mock data, 6 spaces)
+- [x] SpaceCard with hover effects
+- [x] EnvironmentPage (Space detail view)
+- [x] Mock authentication flow
+- [x] Zero analyzer warnings (before Isar)
+- [x] Complete documentation overhaul
+
+### 🚧 In Progress
+
+- [ ] Isar schema generation (build_runner)
+- [ ] Supabase integration
+- [ ] Real authentication
+- [ ] Channels list in EnvironmentPage
+
+### 📋 Pending
+
+- [ ] Entry content blocks UI
+- [ ] Blocks engine integration
+- [ ] Real-time sync with Supabase
+- [ ] SyncManager implementation
+- [ ] Local data sources (Isar)
+- [ ] Offline-first repositories
+- [ ] UI sync status indicators
 - [ ] Unit tests
 - [ ] Integration tests
 - [ ] CI/CD pipeline execution
@@ -865,6 +1216,49 @@ final spaces = ref.watch(spacesControllerProvider);
 // Child emits event via provider method
 ref.read(spacesControllerProvider.notifier).selectSpace(space);
 ```
+
+---
+
+## Summary - Critical Rules
+
+### Language
+- ✅ ALL code in ENGLISH (comments, variables, UI, docs)
+- ✅ Respond to user in their language, but code stays in ENGLISH
+- ❌ NO Spanish or other languages in product
+
+### Terminology (Enforce Strictly)
+- ✅ Spaces (NOT servers/groups/communities)
+- ✅ Entries (NOT posts)
+- ✅ Channels (composite areas, NOT just chats)
+- ✅ Masks (per-channel identity)
+- ✅ Smart Blocks (building units)
+
+### Architecture
+- ✅ Clean Architecture - strict layer separation
+- ✅ Dependencies flow inward only
+- ✅ Domain layer is pure Dart
+- ✅ Use Either<Failure, T> for operations that can fail
+- ✅ Offline-first pattern for all data operations
+
+### Tools & Workflows
+- ✅ Use Melos for monorepo management
+- ✅ Use Mason for code scaffolding
+- ✅ Use build_runner for code generation
+- ✅ Conventional Commits format
+- ✅ Zero analyzer warnings policy
+
+### Communication
+- ✅ Bottom-up only (events go UP, data goes DOWN)
+- ❌ NEVER lateral communication between features
+- ✅ Use callbacks for upward events
+- ✅ Use providers for downward data
+
+### Quality Standards
+- ✅ Write tests for business logic
+- ✅ Follow Atomic Design for UI
+- ✅ Use const constructors
+- ✅ Document complex logic
+- ✅ Zero warnings on commit
 
 ---
 

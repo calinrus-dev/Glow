@@ -4,7 +4,6 @@ part 'channel_dto.freezed.dart';
 part 'channel_dto.g.dart';
 
 /// Data Transfer Object for Channel
-@JsonSerializable(fieldRename: FieldRename.snake)
 @freezed
 class ChannelDTO with _$ChannelDTO {
   const factory ChannelDTO({

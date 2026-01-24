@@ -199,7 +199,7 @@ class SpaceDetailPage extends StatelessWidget {
           ),
           const SizedBox(height: GlowSpacing.sm),
           Text(
-            'Create and organize channels to connect\nwith your community',
+            'Create and organize channels to connect\nwith members',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: GlowColors.textSecondary,

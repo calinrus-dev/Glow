@@ -9,7 +9,7 @@ enum PolicyType {
 class PolicyEntity {
   const PolicyEntity({
     required this.id,
-    required this.worldId,
+    required this.spaceId,
     required this.type,
     required this.name,
     required this.rules,
@@ -19,7 +19,7 @@ class PolicyEntity {
   });
 
   final String id;
-  final String worldId;
+  final String spaceId;
   final PolicyType type;
   final String name;
   final Map<String, dynamic> rules;

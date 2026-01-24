@@ -2,7 +2,7 @@
 class RoleEntity {
   const RoleEntity({
     required this.id,
-    required this.worldId,
+    required this.spaceId,
     required this.name,
     this.description,
     required this.color,
@@ -13,7 +13,7 @@ class RoleEntity {
   });
 
   final String id;
-  final String worldId;
+  final String spaceId;
   final String name;
   final String? description;
   final String color;

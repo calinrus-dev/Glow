@@ -4,7 +4,6 @@ part 'space_dto.freezed.dart';
 part 'space_dto.g.dart';
 
 /// Data Transfer Object for Space
-@JsonSerializable(fieldRename: FieldRename.snake)
 @freezed
 class SpaceDTO with _$SpaceDTO {
   const factory SpaceDTO({

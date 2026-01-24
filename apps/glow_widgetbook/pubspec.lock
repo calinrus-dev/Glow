@@ -68,7 +68,7 @@ packages:
     source: sdk
     version: "0.0.0"
   glow_core:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../packages/glow_core"
       relative: true

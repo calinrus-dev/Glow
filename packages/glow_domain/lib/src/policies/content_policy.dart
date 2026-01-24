@@ -21,7 +21,7 @@ class ContentPolicy {
     return false;
   }
 
-  /// Validate content before posting
+  /// Validate content before publishing
   bool canPost(String content) {
     return isValidContentLength(content) && !containsBannedWords(content);
   }

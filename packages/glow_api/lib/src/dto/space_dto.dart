@@ -1,13 +1,13 @@
-/// World DTO
-class WorldDto {
-  const WorldDto({
+/// Space DTO
+class SpaceDto {
+  const SpaceDto({
     required this.id,
     required this.name,
     required this.slug,
     this.description,
   });
 
-  factory WorldDto.fromJson(Map<String, dynamic> json) => WorldDto(
+  factory SpaceDto.fromJson(Map<String, dynamic> json) => SpaceDto(
         id: json['id'] as String,
         name: json['name'] as String,
         slug: json['slug'] as String,

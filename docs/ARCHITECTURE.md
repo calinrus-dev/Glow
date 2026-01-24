@@ -1,33 +1,43 @@
 # Architecture Documentation - Glow
 
+> **Communities are worlds. Content is architecture. UI is alive.**
+
+---
+
 ## Overview
 
 Glow follows **Clean Architecture** principles with strict layer separation, ensuring maintainability, testability, and scalability.
 
 This architecture supports Glow's complex content structure:
 
-- **Global** - Top-level feed and social layer
-- **Spaces** - Immersive communities with unique identity
-- **Channels** - Composite areas (chats + entries) within Spaces
-- **Entries** - Block-based content across all contexts
+- **Global** - Universal lobby and cross-space convergence zone
+- **Spaces** - Fully self-contained thematic worlds with unique identity
+- **Channels** - Composite micro-worlds (chats + entries + voice) within Spaces
+- **Entries** - Living, block-based content (Smart Blocks system)
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                      Presentation                        │
-│  (UI, State Management, Navigation, User Interaction)   │
-└──────────────────────┬──────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      Presentation                         │
+│   (UI, State Management, Navigation, User Interaction)   │
+└──────────────────────┬───────────────────────────────────┘
                        │
                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                        Domain                            │
-│     (Entities, Use Cases, Business Logic, Policies)     │
-└──────────────────────┬──────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                        Domain                             │
+│      (Entities, Use Cases, Business Logic, Policies)     │
+└──────────────────────┬───────────────────────────────────┘
                        │
                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                         Data                             │
-│   (Repositories, Data Sources, Network, Local Storage)  │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                         Data                              │
+│    (Repositories, Data Sources, Network, Local Storage)  │
+└──────────────────────┬───────────────────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────────────────┐
+│                    Infrastructure                         │
+│          (Supabase, Isar, APIs, External Services)       │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -38,9 +48,10 @@ This architecture supports Glow's complex content structure:
 
 Dependencies point **inward only**. Outer layers can depend on inner layers, never the reverse.
 
-- ✅ Presentation → Domain → Data
+- ✅ Presentation → Domain → Data → Infrastructure
 - ❌ Domain → Data
 - ❌ Data → Presentation
+- ❌ Domain → Infrastructure
 
 ### 2. **Layer Independence**
 
@@ -50,9 +61,15 @@ Each layer has clear responsibilities and can be tested in isolation.
 
 Business rules live in the **domain layer**, independent of frameworks, UI, or external services.
 
+**Domain layer is pure Dart** - no Flutter imports, no external dependencies.
+
 ### 4. **Inversion of Control**
 
 Use abstractions (interfaces/abstract classes) to decouple layers.
+
+Example: Repositories are **interfaces in Domain**, **implementations in Data**.
+
+---
 
 ---
 
@@ -76,22 +93,39 @@ Use abstractions (interfaces/abstract classes) to decouple layers.
 
 ```
 glow_domain/
+**Structure:**
+
+```
+glow_domain/
 ├── entities/
-│   ├── space.dart
-│   ├── channel.dart
-│   ├── canvas.dart
-│   └── user.dart
+│   ├── space.dart           # Space entity
+│   ├── channel.dart         # Channel entity
+│   ├── entry.dart           # Entry (block-based content) entity
+│   ├── user.dart            # User entity
+│   ├── identity.dart        # Multi-layered identity (Global/Space/Channel)
+│   └── block.dart           # Smart Block entity
 ├── use_cases/
 │   ├── spaces/
 │   │   ├── create_space_use_case.dart
 │   │   ├── get_spaces_use_case.dart
-│   │   └── join_space_use_case.dart
-│   └── channels/
-│       └── ...
+│   │   ├── join_space_use_case.dart
+│   │   └── customize_space_theme_use_case.dart
+│   ├── channels/
+│   │   ├── create_channel_use_case.dart
+│   │   ├── get_channels_use_case.dart
+│   │   └── set_channel_mask_use_case.dart
+│   ├── entries/
+│   │   ├── create_entry_use_case.dart
+│   │   ├── get_entries_use_case.dart
+│   │   └── promote_entry_use_case.dart
+│   └── identity/
+│       ├── get_space_identity_use_case.dart
+│       └── update_space_identity_use_case.dart
 ├── repositories/
-│   ├── space_repository.dart  # Interface
-│   ├── channel_repository.dart
-│   └── user_repository.dart
+│   ├── space_repository.dart       # Interface
+│   ├── channel_repository.dart     # Interface
+│   ├── entry_repository.dart       # Interface
+│   └── user_repository.dart        # Interface
 └── failures/
     └── domain_failure.dart
 ```
@@ -99,32 +133,40 @@ glow_domain/
 **Example:**
 
 ```dart
-// Entity
-class Space {
-  final String id;
-  final String name;
-  final String description;
-  final SpaceTheme theme;
-
-  Space({required this.id, required this.name, ...});
+// Entity (Domain)
+@freezed
+class Space with _$Space {
+  const factory Space({
+    required String id,
+    required String name,
+    required String slug,
+    String? description,
+    String? iconUrl,
+    String? coverUrl,
+    required SpaceVisibility visibility,
+    required String ownerId,
+    required DateTime createdAt,
+    DateTime? updatedAt,
+    // ... additional properties
+  }) = _Space;
 }
 
-// Use Case
-class CreateSpaceUseCase {
-  final SpaceRepository _repository;
+// Use Case (Domain)
+class GetSpacesUseCase {
+  final SpacesRepository repository;
 
-  CreateSpaceUseCase(this._repository);
+  GetSpacesUseCase(this.repository);
 
-  Future<Either<Failure, Space>> execute(CreateSpaceParams params) async {
-    // Business logic here
-    return _repository.createSpace(params);
+  Future<Either<Failure, List<Space>>> execute() async {
+    return repository.getSpaces();
   }
 }
 
-// Repository Interface
-abstract class SpaceRepository {
-  Future<Either<Failure, Space>> createSpace(CreateSpaceParams params);
+// Repository Interface (Domain)
+abstract class SpacesRepository {
   Future<Either<Failure, List<Space>>> getSpaces();
+  Future<Either<Failure, Space>> createSpace(CreateSpaceParams params);
+  Future<Either<Failure, Space>> getSpaceById(String id);
 }
 ```
 
@@ -132,55 +174,111 @@ abstract class SpaceRepository {
 
 ### **2. Data Layer** (`glow_data`, `glow_api`, `glow_auth`, `glow_realtime`)
 
-**Purpose:** Implements data access and external integrations.
+**Purpose:** Implements data access and external integrations with **offline-first** support.
 
 **Responsibilities:**
 
 - Implement repository interfaces from domain
-- Network communication (REST APIs, GraphQL)
-- Local storage (shared_preferences)
+- Network communication (REST APIs, Supabase)
+- **Local storage (Isar - offline-first cache)**
+- **Sync queue management** (pending operations)
 - Authentication and session management
 - Realtime connections (Supabase Realtime)
-- Data mapping (DTO ↔ Entity)
+- Data mapping (DTO ↔ Entity, Isar ↔ Entity)
+- **Conflict resolution**
 
-**Dependencies:** Domain layer, external SDKs (Supabase, Dio)
+**Dependencies:** Domain layer, external SDKs (Supabase, Dio, Isar)
 
 **Structure:**
 
 ```
 glow_data/
 ├── repositories/
-│   ├── space_repository_impl.dart  # Implements SpaceRepository
-│   └── channel_repository_impl.dart
-├── data_sources/
+│   ├── spaces_repository_impl.dart      # Implements SpacesRepository
+│   ├── entries_repository_impl.dart     # Offline-first pattern
+│   └── channels_repository_impl.dart
+├── datasources/
 │   ├── remote/
-│   │   ├── space_remote_data_source.dart
-│   │   └── channel_remote_data_source.dart
+│   │   ├── spaces_remote_data_source.dart
+│   │   ├── entries_remote_data_source.dart
+│   │   └── channels_remote_data_source.dart
 │   └── local/
-│       └── preferences_data_source.dart
+│       ├── spaces_local_data_source.dart   # Isar operations
+│       ├── entries_local_data_source.dart
+│       └── sync_queue_data_source.dart      # Manages pending syncs
 ├── models/
-│   ├── space_dto.dart  # Data Transfer Object
-│   └── channel_dto.dart
+│   ├── dto/
+│   │   ├── space_dto.dart         # API response/request models
+│   │   └── entry_dto.dart
+│   └── isar/
+│       ├── space_isar_model.dart  # Isar collection model
+│       ├── entry_isar_model.dart
+│       └── sync_operation_isar_model.dart  # Sync queue
+├── local/
+│   └── isar_service.dart          # Isar initialization
 └── mappers/
-  └── space_mapper.dart  # DTO ↔ Entity conversion
+    ├── space_mapper.dart           # DTO ↔ Entity
+    └── space_isar_mapper.dart      # Isar ↔ Entity
 ```
 
-**Example:**
+**Example (Offline-First Pattern):**
 
 ```dart
-// Repository Implementation
-class SpaceRepositoryImpl implements SpaceRepository {
-  final SpaceRemoteDataSource _remoteDataSource;
-  final SpaceMapper _mapper;
+// Repository Implementation with Offline-First
+class SpacesRepositoryImpl implements SpacesRepository {
+  final SpacesRemoteDataSource remoteDataSource;
+  final SpacesLocalDataSource localDataSource;
+  final SyncQueueDataSource syncQueue;
+
+  @override
+  Future<Either<Failure, List<Space>>> getSpaces() async {
+    try {
+      // 1. Return local data immediately
+      final localSpaces = await localDataSource.getSpaces();
+      
+      // 2. Sync in background (don't await)
+      _syncSpacesInBackground();
+      
+      return Right(localSpaces);
+    } catch (e) {
+      return Left(CacheFailure(e.toString()));
+    }
+  }
 
   @override
   Future<Either<Failure, Space>> createSpace(CreateSpaceParams params) async {
     try {
-      final dto = await _remoteDataSource.createSpace(params);
-      final entity = _mapper.toEntity(dto);
-      return Right(entity);
+      // 1. Create locally with pending sync flag
+      final localSpace = await localDataSource.createSpace(params, isPending: true);
+      
+      // 2. Queue for sync
+      await syncQueue.enqueue(
+        SyncOperation.create(
+          entityType: 'space',
+          entityId: localSpace.id,
+          payload: params.toJson(),
+        ),
+      );
+      
+      // 3. Attempt sync immediately (fire-and-forget)
+      _trySyncNow();
+      
+      return Right(localSpace);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(CacheFailure(e.toString()));
+    }
+  }
+
+  Future<void> _syncSpacesInBackground() async {
+    try {
+      final remoteSpaces = await remoteDataSource.fetchSpaces();
+      await localDataSource.saveSpaces(remoteSpaces);
+    } catch (_) {
+      // Fail silently, will retry later
+    }
+  }
+}
+```
     }
   }
 }

@@ -4,7 +4,6 @@ part 'entry_dto.freezed.dart';
 part 'entry_dto.g.dart';
 
 /// Data Transfer Object for Entry
-@JsonSerializable(fieldRename: FieldRename.snake)
 @freezed
 class EntryDTO with _$EntryDTO {
   const factory EntryDTO({

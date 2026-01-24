@@ -11,7 +11,7 @@ enum PermissionAction {
 
 /// Permission scope
 enum PermissionScope {
-  world,
+  space,
   environment,
   channel,
 }

@@ -6,7 +6,7 @@ void main() {
     test('accepts valid space name', () {
       expect(() => SpaceName('MotoGP Racing'), returnsNormally);
       expect(() => SpaceName('Indie Cinema'), returnsNormally);
-      expect(() => SpaceName('Dev Community'), returnsNormally);
+      expect(() => SpaceName('Dev Space'), returnsNormally);
       expect(() => SpaceName('Gaming'), returnsNormally);
     });
 

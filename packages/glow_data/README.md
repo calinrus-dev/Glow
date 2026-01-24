@@ -1,10 +1,10 @@
 # glow_data
 
-Data layer with repositories, datasources, and models for Glow.
+Data layer with repositories, datasources, and models for Glow - **Offline-First**.
 
 ## Description
 
-This package implements the **data access layer** for Glow's content architecture:
+This package implements the **data access layer** for Glow's content architecture with **offline-first** storage using Isar.
 
 ### Data Sources
 
@@ -14,7 +14,12 @@ This package implements the **data access layer** for Glow's content architectur
   - Channels (composite immersive areas)
   - Chats (global DMs/groups, Space DMs/groups)
   - Identity (global profiles, Space identities, channel masks)
-- **Local Datasources**: Isar database clients for offline-first storage
+  
+- **Local Datasources**: Isar database for offline-first storage:
+  - Instant local reads
+  - Background sync with Supabase
+  - Offline queue for operations
+  - Conflict resolution
 
 ### Repositories
 
