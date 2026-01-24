@@ -22,6 +22,7 @@
     "*.g.dart",
     "*.freezed.dart",
     "*.mocks.dart",
-    "coverage"
+    "coverage",
+    "**/test/**"
   ]
 }
