@@ -1,9 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'auth_state.dart';
+
 part 'auth_bloc.g.dart';
-part 'auth_state.dart';
-part 'auth_state.freezed.dart';
 
 @riverpod
 class AuthNotifier extends _$AuthNotifier {

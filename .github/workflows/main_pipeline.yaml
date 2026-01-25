@@ -62,9 +62,7 @@ jobs:
       - name: Bootstrap monorepo
         run: melos bootstrap
       - name: Build APK (release)
-        run: |
-          cd apps/glow_app
-          flutter build apk --release
+        run: cd apps/glow_app && flutter build apk --release
       - name: Set up Flutter (stable channel)
         uses: subosito/flutter-action@v2
         with:
@@ -74,6 +72,4 @@ jobs:
       - name: Bootstrap (stable)
         run: melos bootstrap
       - name: Build iOS
-        run: |
-          cd apps/glow_app
-          flutter build ios --flavor prod -t lib/main_prod.dart --no-codesign
+        run: cd apps/glow_app && flutter build ios --flavor prod -t lib/main_prod.dart --no-codesign
