@@ -26,7 +26,7 @@ class EmptyState extends StatelessWidget {
               color: Theme.of(context)
                   .colorScheme
                   .onSurface
-                  .withValues(alpha: 0.3),
+                  .withAlpha((0.3 * 255).round()),
             ),
           const SizedBox(height: 16),
           Text(
@@ -35,7 +35,7 @@ class EmptyState extends StatelessWidget {
                   color: Theme.of(context)
                       .colorScheme
                       .onSurface
-                      .withValues(alpha: 0.6),
+                      .withAlpha((0.6 * 255).round()),
                 ),
             textAlign: TextAlign.center,
           ),

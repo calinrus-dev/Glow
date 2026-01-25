@@ -150,7 +150,7 @@ class _LoginViewState extends ConsumerState<_LoginView> {
                   ? Icons.visibility_off_rounded
                   : Icons.visibility_rounded,
               size: 20,
-              color: GlowColors.textPrimary.withValues(alpha: 0.7),
+              color: GlowColors.textPrimary.withAlpha((0.7 * 255).round()),
             ),
           ),
           onChanged: (_) {},
@@ -306,7 +306,7 @@ class _GlowLogo extends StatelessWidget {
               fontWeight: FontWeight.w700,
               shadows: [
                 Shadow(
-                  color: GlowColors.primaryGlow.withValues(alpha: 0.5),
+                  color: GlowColors.primaryGlow.withAlpha((0.5 * 255).round()),
                   blurRadius: 18,
                 ),
               ],
@@ -320,7 +320,7 @@ class _GlowLogo extends StatelessWidget {
             fontWeight: FontWeight.w700,
             shadows: [
               Shadow(
-                color: GlowColors.primaryGlow.withValues(alpha: 0.35),
+                color: GlowColors.primaryGlow.withAlpha((0.35 * 255).round()),
                 blurRadius: 12,
               ),
             ],
@@ -349,9 +349,10 @@ class _SocialButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          backgroundColor: GlowColors.backgroundElevated.withValues(alpha: 0.3),
+          backgroundColor:
+              GlowColors.backgroundElevated.withAlpha((0.3 * 255).round()),
           side: BorderSide(
-            color: GlowColors.border.withValues(alpha: 0.5),
+            color: GlowColors.border.withAlpha((0.5 * 255).round()),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

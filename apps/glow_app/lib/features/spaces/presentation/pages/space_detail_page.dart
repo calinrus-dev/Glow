@@ -73,7 +73,7 @@ class SpaceDetailPage extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     Colors.transparent,
-                    Colors.black.withValues(alpha: 0.7),
+                    Colors.black.withAlpha((0.7 * 255).round()),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -86,10 +86,10 @@ class SpaceDetailPage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(GlowSpacing.lg),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.1),
+                  color: Colors.white.withAlpha((0.1 * 255).round()),
                   borderRadius: BorderRadius.circular(GlowSpacing.md),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.2),
+                    color: Colors.white.withAlpha((0.2 * 255).round()),
                   ),
                 ),
                 child: Icon(

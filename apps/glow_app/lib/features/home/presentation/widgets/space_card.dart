@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glow_ui/glow_ui.dart';
-
 import 'package:glow_app/features/global/presentation/models/mock_space.dart';
+import 'package:glow_ui/glow_ui.dart';
 
 /// Card widget to display a Space
 class SpaceCard extends StatefulWidget {
@@ -40,7 +39,7 @@ class _SpaceCardState extends State<SpaceCard> {
                 ? [
                     BoxShadow(
                       color: widget.space.gradientColors.first
-                          .withValues(alpha: 0.3),
+                          .withAlpha((0.3 * 255).round()),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),
@@ -82,8 +81,8 @@ class _SpaceCardState extends State<SpaceCard> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.black.withValues(alpha: 0.3),
-              Colors.black.withValues(alpha: 0.7),
+              Colors.black.withAlpha((0.3 * 255).round()),
+              Colors.black.withAlpha((0.7 * 255).round()),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -102,10 +101,10 @@ class _SpaceCardState extends State<SpaceCard> {
           Container(
             padding: const EdgeInsets.all(GlowSpacing.md),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.1),
+              color: Colors.white.withAlpha((0.1 * 255).round()),
               borderRadius: BorderRadius.circular(GlowSpacing.sm),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: Colors.white.withAlpha((0.2 * 255).round()),
               ),
             ),
             child: Icon(
@@ -126,7 +125,7 @@ class _SpaceCardState extends State<SpaceCard> {
           Text(
             widget.space.description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withValues(alpha: 0.8),
+                  color: Colors.white.withAlpha((0.8 * 255).round()),
                 ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
