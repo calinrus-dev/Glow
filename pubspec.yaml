@@ -8,4 +8,4 @@ environment:
 dev_dependencies:
   melos: ^6.3.0
   mason: ^0.1.0-dev.59
-  lints: ^5.0.0
+  lints: ^6.0.0
