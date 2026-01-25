@@ -47,7 +47,7 @@ dependencies:
   go_router: ^14.3.0
 
   # Storage
-  shared_preferences: ^2.3.3
+  shared_preferences: ^2.5.4
 
   # Local Database (Offline-first)
   # isar: ^3.1.0+1
