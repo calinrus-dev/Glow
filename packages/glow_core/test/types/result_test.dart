@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:glow_core/glow_core.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Result', () {
@@ -92,7 +92,8 @@ void main() {
         final chained = result
             .map((value) => value * 2)
             .flatMap(
-                (value) => Result<String, Failure>.success('Result: $value'),)
+              (value) => Result<String, Failure>.success('Result: $value'),
+            )
             .map((value) => value.toUpperCase());
 
         expect(chained.isSuccess, true);
@@ -106,7 +107,8 @@ void main() {
         final chained = result
             .map((value) => value * 2)
             .flatMap(
-                (value) => Result<String, Failure>.success('Result: $value'),)
+              (value) => Result<String, Failure>.success('Result: $value'),
+            )
             .map((value) => value.toUpperCase());
 
         expect(chained.isFailure, true);

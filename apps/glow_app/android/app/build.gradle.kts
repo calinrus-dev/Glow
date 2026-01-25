@@ -42,3 +42,23 @@ android {
 flutter {
     source = "../.."
 }
+
+afterEvaluate {
+    rootProject.subprojects.find { it.name == "isar_flutter_libs" }?.apply {
+        if (plugins.hasPlugin("com.android.library")) {
+            android {
+                namespace = "isar"
+            }
+        }
+    }
+}
+
+allprojects {
+    afterEvaluate {
+        if (name == "isar_flutter_libs" && plugins.hasPlugin("com.android.library")) {
+            android {
+                namespace = "isar"
+            }
+        }
+    }
+}

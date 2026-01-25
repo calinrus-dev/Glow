@@ -25,6 +25,7 @@ If you discover a security vulnerability in Glow, please report it responsibly.
 ### Scope
 
 Security reports should relate to:
+
 - Authentication/authorization flaws
 - Data exposure vulnerabilities
 - Code injection vulnerabilities

@@ -68,8 +68,10 @@ void main() {
         expect(publicDto.toEntity().visibility, SpaceVisibility.public);
         expect(privateDto.toEntity().visibility, SpaceVisibility.private);
         expect(unlistedDto.toEntity().visibility, SpaceVisibility.unlisted);
-        expect(unknownDto.toEntity().visibility,
-            SpaceVisibility.public,); // defaults to public
+        expect(
+          unknownDto.toEntity().visibility,
+          SpaceVisibility.public,
+        ); // defaults to public
       });
 
       test('handles case-insensitive visibility', () {

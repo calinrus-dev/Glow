@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:glow_core/glow_core.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Debouncer', () {

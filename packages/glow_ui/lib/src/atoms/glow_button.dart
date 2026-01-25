@@ -204,7 +204,8 @@ class _GlowButtonState extends State<GlowButton> {
                                       Icon(
                                         widget.leadingIcon,
                                         size: _ButtonMetrics.iconSize(
-                                            widget.size,),
+                                          widget.size,
+                                        ),
                                         color: palette.foreground,
                                       ),
                                 ),
@@ -258,7 +259,8 @@ class _GlowButtonState extends State<GlowButton> {
                                       Icon(
                                         widget.trailingIcon,
                                         size: _ButtonMetrics.iconSize(
-                                            widget.size,),
+                                          widget.size,
+                                        ),
                                         color: palette.foreground,
                                       ),
                                 ),

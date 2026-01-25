@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial monorepo structure with Clean Architecture
 - 11 core packages (core, domain, data, api, auth, realtime, blocks_engine, blocks_flutter, observability, ui)
 - Tech stack: Riverpod + Supabase + Dio + Freezed + GoRouter
@@ -18,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Discord community integration
 
 ### Technical
+
 - Flutter 3.19+ support
 - Dart 3.3.0+ support
 - Clean Architecture layer separation
@@ -31,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Glow is currently in **active development**. No public releases yet.
 
 Core features under development:
+
 - Spaces system
 - Channels implementation
 - Canvases content engine

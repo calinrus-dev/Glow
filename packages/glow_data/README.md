@@ -14,7 +14,6 @@ This package implements the **data access layer** for Glow's content architectur
   - Channels (composite immersive areas)
   - Chats (global DMs/groups, Space DMs/groups)
   - Identity (global profiles, Space identities, channel masks)
-  
 - **Local Datasources**: Isar database for offline-first storage:
   - Instant local reads
   - Background sync with Supabase

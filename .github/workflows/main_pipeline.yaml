@@ -2,92 +2,76 @@ name: Main CI/CD Pipeline
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - develop
   pull_request:
-    branches: 
+    branches:
       - main
       - develop
 
 jobs:
   analyze:
-    name: Main Pipeline
-
-    on:
-      push:
-        # Pipeline principal de Glow
-        # Ejecuta análisis, tests y build en cada push/pull request
-
-        name: Main Pipeline
-
-        on:
-          push:
-            branches: [main, develop]
-          pull_request:
-            branches: [main, develop]
-
-        jobs:
-          analyze:
-            name: Análisis de código
-            runs-on: ubuntu-latest
-            steps:
-              - name: Checkout repo
-                uses: actions/checkout@v3
-              - name: Set up Dart
-                uses: dart-lang/setup-dart@v1
-                with:
-                  sdk: '3.2.0'
-              - name: Install Melos
-                run: dart pub global activate melos
-              - name: Bootstrap monorepo
-                run: melos bootstrap
-              - name: Run analyzer
-                run: melos analyze
-
-          test:
-            name: Ejecutar tests
-            runs-on: ubuntu-latest
-            needs: analyze
-            steps:
-              - name: Checkout repo
-                uses: actions/checkout@v3
-              - name: Set up Dart
-                uses: dart-lang/setup-dart@v1
-                with:
-                  sdk: '3.2.0'
-              - name: Install Melos
-                run: dart pub global activate melos
-              - name: Bootstrap monorepo
-                run: melos bootstrap
-              - name: Run tests
-                run: melos test
-
-          build:
-            name: Build Flutter app
-            runs-on: ubuntu-latest
-            needs: test
-            steps:
-              - name: Checkout repo
-                uses: actions/checkout@v3
-              - name: Set up Flutter
-                uses: subosito/flutter-action@v2
-                with:
-                  flutter-version: '3.16.0'
-              - name: Install Melos
-                run: dart pub global activate melos
-              - name: Bootstrap monorepo
-                run: melos bootstrap
-              - name: Build APK (release)
-                run: |
-                  cd apps/glow_app
-                  flutter build apk --release
-      - uses: subosito/flutter-action@v2
+    name: Analyze code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
         with:
-          channel: 'stable'
+          sdk: "3.2.0"
       - name: Install Melos
         run: dart pub global activate melos
-      - name: Bootstrap
+      - name: Bootstrap monorepo
+        run: melos bootstrap
+      - name: Run analyzer
+        run: melos analyze
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    needs: analyze
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "3.2.0"
+      - name: Install Melos
+        run: dart pub global activate melos
+      - name: Bootstrap monorepo
+        run: melos bootstrap
+      - name: Run tests
+        run: melos test
+
+  build:
+    name: Build Flutter app
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.16.0"
+      - name: Install Melos
+        run: dart pub global activate melos
+      - name: Bootstrap monorepo
+        run: melos bootstrap
+      - name: Build APK (release)
+        run: |
+          cd apps/glow_app
+          flutter build apk --release
+      - name: Set up Flutter (stable channel)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Install Melos (stable)
+        run: dart pub global activate melos
+      - name: Bootstrap (stable)
         run: melos bootstrap
       - name: Build iOS
         run: |

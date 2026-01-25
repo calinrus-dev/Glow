@@ -11,6 +11,7 @@
 Glow is a next-generation social platform designed around **immersive communities**, **deep personalization**, and **living visual systems**. It is not just a place to post content — it is a framework where people, spaces, and content become **contextual objects** with identity, behavior, and aesthetics.
 
 Glow synthesizes concepts from:
+
 - Community platforms
 - Chat systems
 - Classic forums
@@ -28,15 +29,19 @@ The core idea is simple:
 ## Core Philosophy
 
 ### Context First
+
 Nothing exists in isolation. Every action, post, message, or identity exists within a **context** (Global, Space, Channel).
 
 ### Identity is Fluid
+
 A user is not a single static profile. Identity **adapts** per Space, per Channel, per interaction.
 
 ### Visuals Communicate Meaning
+
 Colors, borders, glow, motion, and depth are **semantic**, not decorative. They communicate hierarchy, ownership, relevance, and status.
 
 ### Modular by Design
+
 Everything in Glow is modular: Spaces, Channels, Entries, Blocks, Themes, Effects. Nothing is hard-coded to one use case.
 
 ---
@@ -48,6 +53,7 @@ Everything in Glow is modular: Spaces, Channels, Entries, Blocks, Themes, Effect
 **Global** is the entry layer of Glow. It is not a community — it is a **cross-space convergence zone**.
 
 #### Purpose
+
 - Discover Spaces
 - Observe activity across the platform
 - See highlighted content
@@ -57,6 +63,7 @@ Everything in Glow is modular: Spaces, Channels, Entries, Blocks, Themes, Effect
 Global acts as a **lobby**, **discovery feed**, **trend surface**, and **bridge between worlds**.
 
 #### What You Can Do in Global
+
 - Browse featured Spaces
 - View trending Entries
 - Filter by hashtags
@@ -65,6 +72,7 @@ Global acts as a **lobby**, **discovery feed**, **trend surface**, and **bridge 
 - Follow users or Spaces
 
 #### What You Cannot Do in Global
+
 - Deep roleplay
 - Space-specific systems
 - Internal Channel activity
@@ -80,6 +88,7 @@ A **Space** is a fully self-contained thematic world.
 **Examples**: Naruto, Game Development, Music Production, Art & Illustration, Roleplay Universes, Research Communities
 
 Each Space is:
+
 - **Independent** - Self-governed
 - **Customizable** - Unique visual identity
 - **Governed** - Own rules and moderation
@@ -88,6 +97,7 @@ Each Space is:
 #### What Defines a Space
 
 A Space configures:
+
 - **Theme and aesthetic** - Colors, glow behavior, backgrounds, glassmorphism levels
 - **Rules and moderation** - Governance and permissions
 - **Internal structure** - Channels, sections, categories
@@ -99,6 +109,7 @@ A Space configures:
 #### Space Customization
 
 A Space can configure:
+
 - Primary and secondary colors
 - Glow behavior
 - Backgrounds
@@ -110,6 +121,7 @@ A Space can configure:
 #### Space Governance
 
 Spaces define:
+
 - Staff roles
 - Permissions
 - Posting rules
@@ -137,6 +149,7 @@ A Channel can include **simultaneously**:
 **Channels are not "chat rooms" — they are hybrid living spaces.**
 
 #### Channel Use Cases
+
 - Roleplay groups
 - Clan systems
 - Staff coordination
@@ -147,6 +160,7 @@ A Channel can include **simultaneously**:
 #### Visibility Control
 
 Channels can be:
+
 - **Public** - Open to all Space members
 - **Restricted** - Role-based access
 - **Private** - Invite-only
@@ -165,6 +179,7 @@ Channels allow **segmentation without fragmentation**, **specialization without 
 #### What Makes Entries Different
 
 Entries:
+
 - Are **modular** - Built from composable blocks
 - Support **layout** - Visual hierarchy and structure
 - Support **visual hierarchy** - Organized presentation
@@ -190,6 +205,7 @@ An Entry can be a **guide**, **wiki**, **story**, **project page**, **ruleset**,
 #### Where Entries Live
 
 Entries can exist in:
+
 - 🌍 **Global** - Appear in Global feed
 - 🪐 **Space** - Space-level content
 - 🧩 **Channel** - Belong to specific channels
@@ -200,6 +216,7 @@ Entries can exist in:
 #### Visual Expression
 
 Entries can:
+
 - Inherit Space theme
 - Override with author theme
 - Apply glow effects
@@ -215,14 +232,18 @@ Entries can:
 Users have **multi-layered identity** to avoid context collapse.
 
 ### Global Profile
+
 Each user has:
+
 - One global account
 - Global settings
 - Global achievements
 - Subscriptions
 
 ### Per-Space Identity
+
 Inside each Space, a user can have:
+
 - Different name
 - Different avatar
 - Different frame
@@ -230,29 +251,33 @@ Inside each Space, a user can have:
 - Different visibility
 
 This allows:
+
 - **Professionalism** in one Space
 - **Creativity** in another
 - **Anonymity** where needed
 
 ### Per-Channel Identity (Masks)
+
 Channels may further define:
+
 - Nicknames
 - Permissions
 - Visual markers
 
 **Identity is contextual, not fixed.**
 
-| Context | Type of Chat | Identity Used |
-|---------|-------------|---------------|
-| Global  | DM / Group  | Global Profile |
-| Space   | DM / Group  | Space Identity |
-| Channel | Chat        | Channel Mask   |
+| Context | Type of Chat | Identity Used  |
+| ------- | ------------ | -------------- |
+| Global  | DM / Group   | Global Profile |
+| Space   | DM / Group   | Space Identity |
+| Channel | Chat         | Channel Mask   |
 
 ---
 
 ## Chat System
 
 Glow includes comprehensive chat capabilities:
+
 - **Global chats** - DMs and group chats with global identity
 - **Space chats** - DMs and group chats within Space context
 - **Channel chats** - Real-time messaging in channels
@@ -260,12 +285,14 @@ Glow includes comprehensive chat capabilities:
 ### Chat Bubbles
 
 Chat bubbles are:
+
 - **Styled** - Custom appearance
 - **Layered** - Visual depth
 - **Contextual** - Adapt to environment (Global/Space/Channel)
 - **Optionally animated** - Based on Glow tier
 
 They can:
+
 - Inherit Space style
 - Inherit user style
 - Reflect Glow tier (Legacy, Glow, Glow Up)
@@ -273,6 +300,7 @@ They can:
 ### Stickers and Effects
 
 Chats support:
+
 - Stickers
 - Visual effects
 - Animated accents
@@ -287,6 +315,7 @@ Chats support:
 ### Core Visual Modes
 
 #### Legacy Mode
+
 - Static UI
 - No animations
 - No glow
@@ -294,6 +323,7 @@ Chats support:
 - Low-end device support
 
 #### Glow Mode (Default)
+
 - Soft glow
 - Gentle pulses
 - Glassmorphism
@@ -301,6 +331,7 @@ Chats support:
 - Subtle motion
 
 #### Glow Up (Premium)
+
 - Multi-color glow
 - Advanced gradients
 - Pulses, flow, flicker
@@ -311,6 +342,7 @@ Chats support:
 ### Visual Scope
 
 Glow applies to:
+
 - UI components
 - Entries
 - Smart Blocks
@@ -322,6 +354,7 @@ Glow applies to:
 ### Performance Philosophy
 
 Glow is:
+
 - **Synchronized** - All motion follows a global clock
 - **Selective** - Only necessary elements animate
 - **Non-blocking** - Does not interfere with interaction
@@ -346,6 +379,7 @@ Lower levels override higher levels.
 ### Synchronization
 
 All visual motion:
+
 - Follows a **global clock**
 - Stays **rhythmically consistent**
 - Avoids **chaotic animation**
@@ -368,6 +402,7 @@ Glow supports flexible discovery and navigation:
 - User-defined views
 
 Users can:
+
 - Customize feeds
 - Save filters
 - Navigate by **interest, not chronology**
@@ -380,11 +415,13 @@ Users can:
 Glow includes:
 
 **Glow Up Subscription**
+
 - Visual cosmetics
 - Advanced customization
 - Premium effects
 
 **Cosmetics**
+
 - Frames
 - Stickers
 - Effects
@@ -393,6 +430,7 @@ Glow includes:
 - Trophies
 
 **Space Benefits**
+
 - Platform visibility
 - Unlock features
 - Promotional opportunities
@@ -402,11 +440,13 @@ Glow includes:
 ## Creator / Theme Studio
 
 Glow includes a **visual creator tool** usable on:
+
 - Mobile
 - Tablet
 - Desktop
 
 ### Features
+
 - Edit themes
 - Mix colors
 - Configure glow behavior
@@ -417,6 +457,7 @@ Glow includes a **visual creator tool** usable on:
 ### Presets
 
 Presets are:
+
 - **JSON-based** - Portable and shareable
 - **Sharable** - Export and import between users
 - **Applicable to**:
@@ -434,6 +475,7 @@ This allows **community-driven visual creativity**.
 ## Extensibility & Future
 
 Glow is designed to support:
+
 - New Smart Blocks
 - Interactive systems
 - Minigames
@@ -535,6 +577,7 @@ Infrastructure (Supabase, Isar, APIs)
 Glow works **100% offline** with transparent background sync.
 
 ### Data Flow
+
 ```
 User action
     ↓
@@ -548,6 +591,7 @@ UI shows sync status (pending ⏳ / synced ✅ / error ❌)
 ```
 
 ### Key Principles
+
 - ✅ App functions fully offline (view, create, edit content)
 - ✅ Local-first: Isar is source of truth for UI
 - ✅ Background sync: Transparent to user
@@ -671,12 +715,14 @@ Glow is in **active development**. Current progress:
 ## Summary
 
 Glow is:
+
 - A **social platform**
 - A **visual system**
 - A **community engine**
 - A **creative framework**
 
 It enables:
+
 - Deep communities
 - Expressive identities
 - Living interfaces
@@ -716,5 +762,4 @@ See [LICENSE](LICENSE) for full terms.
 
 ---
 
-*Built with Flutter 🐦 • Powered by Supabase 🔥 • Designed for immersion 🌌*
-
+_Built with Flutter 🐦 • Powered by Supabase 🔥 • Designed for immersion 🌌_

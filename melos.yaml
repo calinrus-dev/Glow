@@ -7,47 +7,47 @@ packages:
 command:
   bootstrap:
     runPubGetInParallel: true
-    
+
 scripts:
   # Build and run scripts
   analyze:
     description: Run static analysis on all packages
     run: melos exec -- dart analyze .
-    
+
   format:
     description: Format all packages
     run: melos exec -- dart format .
-    
+
   format:check:
     description: Check formatting on all packages
     run: melos exec -- dart format --set-exit-if-changed .
-    
+
   test:
     description: Run tests in all packages
     run: melos exec --dir-exists=test -- flutter test --coverage
-    
+
   test:unit:
     description: Run unit tests only
     run: melos exec --dir-exists=test -- flutter test --coverage --exclude-tags=integration
-    
+
   test:integration:
     description: Run integration tests
     run: cd apps/glow_app && flutter test integration_test/
-    
+
   # Build runner
   build:runner:
     description: Run build_runner in all packages that need it
     run: melos exec --depends-on="build_runner" -- dart run build_runner build --delete-conflicting-outputs
-    
+
   build:runner:watch:
     description: Watch build_runner in all packages
     run: melos exec --depends-on="build_runner" -- dart run build_runner watch --delete-conflicting-outputs
-    
+
   # Clean commands
   clean:
     description: Clean all packages
     run: melos exec -- flutter clean
-    
+
   clean:deep:
     description: Deep clean (removes pub cache)
     run: |
@@ -55,28 +55,28 @@ scripts:
       melos exec -- rm -rf .dart_tool
       melos exec -- rm -rf build
       melos exec -- rm -f pubspec.lock
-      
+
   # Coverage
   coverage:
     description: Generate coverage report
     run: |
       melos test
       melos exec -- genhtml coverage/lcov.info -o coverage/html
-      
+
   # Version management
   version:
     description: Version packages for release
     run: melos version
-    
+
   publish:dry:
     description: Dry run publish
     run: melos publish --dry-run
-    
+
   # Architecture verification
   verify:arch:
     description: Verify architecture rules
     run: dart tool/check_architecture.dart
-    
+
   verify:deps:
     description: Verify dependency rules
     run: dart tool/verify_dependencies.dart

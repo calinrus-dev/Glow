@@ -51,31 +51,31 @@ Cada entidad tiene un modelo Isar:
 @collection
 class SpaceIsarModel {
   Id id = Isar.autoIncrement;
-  
+
   @Index(unique: true)
   late String remoteId;
-  
+
   late String name;
   late String description;
-  
+
   @enumerated
   late SpaceStatus status; // active, archived
-  
+
   DateTime? createdAt;
   DateTime? updatedAt;
-  
+
   // Sync metadata
   bool isPendingSync = false;
   String? syncOperation; // 'create', 'update', 'delete'
   DateTime? lastSyncedAt;
-  
+
   // Mappers
   SpaceEntity toEntity() => SpaceEntity(
     id: remoteId,
     name: name,
     description: description,
   );
-  
+
   static SpaceIsarModel fromEntity(SpaceEntity entity) => SpaceIsarModel()
     ..remoteId = entity.id
     ..name = entity.name
@@ -90,19 +90,19 @@ class SpaceIsarModel {
 @collection
 class SyncOperation {
   Id id = Isar.autoIncrement;
-  
+
   late String entityType; // 'space', 'entry', 'message'
   late String entityId;
   late String operation; // 'create', 'update', 'delete'
-  
+
   late String payload; // JSON serializado
-  
+
   DateTime createdAt;
   int retryCount = 0;
   int maxRetries = 3;
-  
+
   String? errorMessage;
-  
+
   bool get shouldRetry => retryCount < maxRetries;
 }
 ```
@@ -116,28 +116,28 @@ class SpacesRepositoryImpl implements SpacesRepository {
   final SpacesLocalDataSource _local;
   final SyncManager _syncManager;
   final ConnectivityService _connectivity;
-  
+
   @override
   Future<Result<List<SpaceEntity>, Failure>> getSpaces() async {
     // 1. SIEMPRE lee local primero (instantáneo)
     final cached = await _local.getSpaces();
-    
+
     // 2. Si hay conexión, sync en background
     if (await _connectivity.isOnline) {
       _syncInBackground();
     }
-    
+
     // 3. Retorna datos locales inmediatamente
     return Success(cached);
   }
-  
+
   Future<void> _syncInBackground() async {
     try {
       final remote = await _remote.fetchSpaces();
-      
+
       // Actualiza cache local
       await _local.saveSpaces(remote);
-      
+
       // Process pending operations
       await _syncManager.processPendingOperations();
     } catch (e) {
@@ -145,12 +145,12 @@ class SpacesRepositoryImpl implements SpacesRepository {
       print('Background sync failed: $e');
     }
   }
-  
+
   @override
   Future<Result<SpaceEntity, Failure>> createSpace(SpaceEntity space) async {
     // 1. Save locally IMMEDIATELY
     await _local.saveSpace(space, pendingSync: true);
-    
+
     // 2. Queue for sync
     await _syncManager.enqueue(
       SyncOperation(
@@ -161,12 +161,12 @@ class SpacesRepositoryImpl implements SpacesRepository {
         createdAt: DateTime.now(),
       ),
     );
-    
+
     // 3. If connected, try sync now
     if (await _connectivity.isOnline) {
       await _syncManager.processPendingOperations();
     }
-    
+
     return Success(space);
   }
 }
@@ -180,19 +180,19 @@ class SyncManager {
   final Isar _isar;
   final SupabaseClient _supabase;
   final ConnectivityService _connectivity;
-  
+
   Future<void> processPendingOperations() async {
     if (!await _connectivity.isOnline) return;
-    
+
     final pending = await _isar.syncOperations
         .filter()
         .shouldRetryEqualTo(true)
         .findAll();
-    
+
     for (final op in pending) {
       try {
         await _executeOperation(op);
-        
+
         // Mark as synced
         await _isar.writeTxn(() async {
           await _isar.syncOperations.delete(op.id);
@@ -207,7 +207,7 @@ class SyncManager {
       }
     }
   }
-  
+
   Future<void> _executeOperation(SyncOperation op) async {
     switch (op.operation) {
       case 'create':
@@ -218,10 +218,10 @@ class SyncManager {
         await _executeDelete(op);
     }
   }
-  
+
   Future<void> _executeCreate(SyncOperation op) async {
     final payload = jsonDecode(op.payload);
-    
+
     switch (op.entityType) {
       case 'space':
         await _supabase.from('spaces').insert(payload);
@@ -247,25 +247,25 @@ class ConflictResolver {
     switch (strategy) {
       case ConflictStrategy.lastWriteWins:
         return _lastWriteWins(local, remote);
-      
+
       case ConflictStrategy.remoteWins:
         return remote;
-      
+
       case ConflictStrategy.localWins:
         return local;
-      
+
       case ConflictStrategy.merge:
         return _merge(local, remote);
     }
   }
-  
+
   T _lastWriteWins<T extends Entity>(T local, T remote) {
     if (local.updatedAt.isAfter(remote.updatedAt)) {
       return local;
     }
     return remote;
   }
-  
+
   T _merge<T extends Entity>(T local, T remote) {
     // Entity-specific implementation
     if (T == SpaceEntity) {
@@ -332,6 +332,7 @@ if (syncStatus == SyncStatus.pending) {
 ## 📱 Offline Functionalities
 
 ### ✅ View content
+
 - Global Feed
 - Spaces
 - Channels
@@ -339,16 +340,19 @@ if (syncStatus == SyncStatus.pending) {
 - Messages
 
 ### ✅ Create content
+
 - New Entries → saved locally + marked "pending"
 - Messages → sent locally + sync queue
 - Edit Entries → local version + later sync
 
 ### ✅ Interact
+
 - Reactions → saved locally
 - Comments → saved locally
 - Identity changes → saved locally
 
 ### ❌ NOT available offline
+
 - Login/Register (requires server)
 - Heavy media upload (queued)
 - Realtime updates (obviously)
@@ -390,30 +394,35 @@ if (syncStatus == SyncStatus.pending) {
 ## 🛠️ Step-by-Step Implementation
 
 ### Phase 1: Isar Setup
+
 - ✅ Add dependencies
 - ⬜ Create Isar models
 - ⬜ Setup initialization
 - ⬜ Migrations
 
 ### Phase 2: Local DataSources
+
 - ⬜ SpacesLocalDataSource
 - ⬜ EntriesLocalDataSource
 - ⬜ MessagesLocalDataSource
 - ⬜ UsersLocalDataSource
 
 ### Phase 3: Sync System
+
 - ⬜ SyncQueue implementation
 - ⬜ SyncManager
 - ⬜ ConflictResolver
 - ⬜ Connectivity monitoring
 
 ### Phase 4: Repository Updates
+
 - ⬜ Offline-first pattern
 - ⬜ Background sync
 - ⬜ Error handling
 - ⬜ Retry logic
 
 ### Phase 5: UI Updates
+
 - ⬜ Sync status indicators
 - ⬜ Pending badges
 - ⬜ Error states
@@ -449,6 +458,7 @@ Operaciones críticas se intentan inmediatamente cuando vuelva conexión.
 ## ⚡ Optimizaciones
 
 ### Batch Sync
+
 ```dart
 // En vez de sync 1 a 1
 await _syncOperation(op1);
@@ -459,6 +469,7 @@ await _batchSync([op1, op2, op3, ...]);
 ```
 
 ### Delta Sync
+
 ```dart
 // Solo sincroniza cambios desde último sync
 final lastSync = await _local.getLastSyncTimestamp();
@@ -466,6 +477,7 @@ final changes = await _remote.getChangesSince(lastSync);
 ```
 
 ### Selective Sync
+
 ```dart
 // Solo sync Spaces que el usuario tiene abiertos
 final activeSpaces = await _local.getActiveSpaces();

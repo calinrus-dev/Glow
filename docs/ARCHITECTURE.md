@@ -96,39 +96,41 @@ glow_domain/
 **Structure:**
 
 ```
+
 glow_domain/
 ├── entities/
-│   ├── space.dart           # Space entity
-│   ├── channel.dart         # Channel entity
-│   ├── entry.dart           # Entry (block-based content) entity
-│   ├── user.dart            # User entity
-│   ├── identity.dart        # Multi-layered identity (Global/Space/Channel)
-│   └── block.dart           # Smart Block entity
+│ ├── space.dart # Space entity
+│ ├── channel.dart # Channel entity
+│ ├── entry.dart # Entry (block-based content) entity
+│ ├── user.dart # User entity
+│ ├── identity.dart # Multi-layered identity (Global/Space/Channel)
+│ └── block.dart # Smart Block entity
 ├── use_cases/
-│   ├── spaces/
-│   │   ├── create_space_use_case.dart
-│   │   ├── get_spaces_use_case.dart
-│   │   ├── join_space_use_case.dart
-│   │   └── customize_space_theme_use_case.dart
-│   ├── channels/
-│   │   ├── create_channel_use_case.dart
-│   │   ├── get_channels_use_case.dart
-│   │   └── set_channel_mask_use_case.dart
-│   ├── entries/
-│   │   ├── create_entry_use_case.dart
-│   │   ├── get_entries_use_case.dart
-│   │   └── promote_entry_use_case.dart
-│   └── identity/
-│       ├── get_space_identity_use_case.dart
-│       └── update_space_identity_use_case.dart
+│ ├── spaces/
+│ │ ├── create_space_use_case.dart
+│ │ ├── get_spaces_use_case.dart
+│ │ ├── join_space_use_case.dart
+│ │ └── customize_space_theme_use_case.dart
+│ ├── channels/
+│ │ ├── create_channel_use_case.dart
+│ │ ├── get_channels_use_case.dart
+│ │ └── set_channel_mask_use_case.dart
+│ ├── entries/
+│ │ ├── create_entry_use_case.dart
+│ │ ├── get_entries_use_case.dart
+│ │ └── promote_entry_use_case.dart
+│ └── identity/
+│ ├── get_space_identity_use_case.dart
+│ └── update_space_identity_use_case.dart
 ├── repositories/
-│   ├── space_repository.dart       # Interface
-│   ├── channel_repository.dart     # Interface
-│   ├── entry_repository.dart       # Interface
-│   └── user_repository.dart        # Interface
+│ ├── space_repository.dart # Interface
+│ ├── channel_repository.dart # Interface
+│ ├── entry_repository.dart # Interface
+│ └── user_repository.dart # Interface
 └── failures/
-    └── domain_failure.dart
-```
+└── domain_failure.dart
+
+````
 
 **Example:**
 
@@ -168,7 +170,7 @@ abstract class SpacesRepository {
   Future<Either<Failure, Space>> createSpace(CreateSpaceParams params);
   Future<Either<Failure, Space>> getSpaceById(String id);
 }
-```
+````
 
 ---
 
@@ -235,10 +237,10 @@ class SpacesRepositoryImpl implements SpacesRepository {
     try {
       // 1. Return local data immediately
       final localSpaces = await localDataSource.getSpaces();
-      
+
       // 2. Sync in background (don't await)
       _syncSpacesInBackground();
-      
+
       return Right(localSpaces);
     } catch (e) {
       return Left(CacheFailure(e.toString()));
@@ -250,7 +252,7 @@ class SpacesRepositoryImpl implements SpacesRepository {
     try {
       // 1. Create locally with pending sync flag
       final localSpace = await localDataSource.createSpace(params, isPending: true);
-      
+
       // 2. Queue for sync
       await syncQueue.enqueue(
         SyncOperation.create(
@@ -259,10 +261,10 @@ class SpacesRepositoryImpl implements SpacesRepository {
           payload: params.toJson(),
         ),
       );
-      
+
       // 3. Attempt sync immediately (fire-and-forget)
       _trySyncNow();
-      
+
       return Right(localSpace);
     } catch (e) {
       return Left(CacheFailure(e.toString()));
@@ -279,31 +281,34 @@ class SpacesRepositoryImpl implements SpacesRepository {
   }
 }
 ```
+
     }
-  }
+
+}
 }
 
 // Data Source
 class SpaceRemoteDataSource {
-  final Dio _dio;
+final Dio \_dio;
 
-  Future<SpaceDto> createSpace(CreateSpaceParams params) async {
-    final response = await _dio.post('/spaces', data: params.toJson());
-    return SpaceDto.fromJson(response.data);
-  }
+Future<SpaceDto> createSpace(CreateSpaceParams params) async {
+final response = await \_dio.post('/spaces', data: params.toJson());
+return SpaceDto.fromJson(response.data);
+}
 }
 
 // DTO (Data Transfer Object)
 @freezed
-class SpaceDto with _$SpaceDto {
-  factory SpaceDto({
-    required String id,
-    required String name,
-    // ... matches API response structure
-  }) = _SpaceDto;
+class SpaceDto with \_$SpaceDto {
+factory SpaceDto({
+required String id,
+required String name,
+// ... matches API response structure
+}) = \_SpaceDto;
 
-  factory SpaceDto.fromJson(Map<String, dynamic> json) => _$SpaceDtoFromJson(json);
+factory SpaceDto.fromJson(Map<String, dynamic> json) => \_$SpaceDtoFromJson(json);
 }
+
 ```
 
 ---
@@ -325,17 +330,19 @@ class SpaceDto with _$SpaceDto {
 **Structure:**
 
 ```
+
 features/spaces/
 └── presentation/
-    ├── providers/
-  │   └── spaces_provider.dart  # Riverpod StateNotifier
-    ├── screens/
-  │   ├── spaces_list_screen.dart
-  │   └── space_detail_screen.dart
-    └── widgets/
-    ├── space_card.dart
-    └── space_header.dart
-```
+├── providers/
+│ └── spaces_provider.dart # Riverpod StateNotifier
+├── screens/
+│ ├── spaces_list_screen.dart
+│ └── space_detail_screen.dart
+└── widgets/
+├── space_card.dart
+└── space_header.dart
+
+````
 
 **Example:**
 
@@ -378,7 +385,7 @@ class SpacesListScreen extends ConsumerWidget {
     );
   }
 }
-```
+````
 
 ---
 

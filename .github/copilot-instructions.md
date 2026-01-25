@@ -18,6 +18,7 @@
 **Exception**: You may respond to the user in Spanish if they communicate in Spanish, BUT the code/product remains in English.
 
 **Example**:
+
 ```dart
 // ✅ CORRECT
 final String userName = 'John Doe';
@@ -55,6 +56,7 @@ The central axis is not profiles or posts, but **where you are**.
 **Global** is the top layer of Glow. It always exists.
 
 **What Global Is:**
+
 - Entry point to the app
 - Neutral context
 - User's base identity
@@ -62,26 +64,30 @@ The central axis is not profiles or posts, but **where you are**.
 **What Global Contains:**
 
 **Global Feed** - Entry feed with multiple views:
-  - **For You** → personalized recommendations
-  - **Popular** → trends across all Spaces
-  - **Recent** → chronological
-  - **Featured** → editorial curation
+
+- **For You** → personalized recommendations
+- **Popular** → trends across all Spaces
+- **Recent** → chronological
+- **Featured** → editorial curation
 
 **Entry Sources**:
-  - Individual users
-  - Spaces (staff or featured publications)
+
+- Individual users
+- Spaces (staff or featured publications)
 
 **Global Chats** - Chats outside any Space:
-  - **DMs** (1-on-1) - No Space aesthetics
-  - **Group Chats** - Private, don't inherit Space rules or identities
+
+- **DMs** (1-on-1) - No Space aesthetics
+- **Group Chats** - Private, don't inherit Space rules or identities
 
 **Global Profile** - User's root identity:
-  - Primary username
-  - Global avatar
-  - Global bio
-  - General settings
-  - Privacy preferences
-  - **The identity that always exists and is used when there's no context**
+
+- Primary username
+- Global avatar
+- Global bio
+- General settings
+- Privacy preferences
+- **The identity that always exists and is used when there's no context**
 
 ### Spaces (Environments / Places)
 
@@ -93,6 +99,7 @@ The central axis is not profiles or posts, but **where you are**.
 ✅ **An immersive environment with its own rules**
 
 **What Defines a Space:**
+
 - Own visual theme (colors, atmosphere)
 - Internal norms
 - Culture
@@ -101,6 +108,7 @@ The central axis is not profiles or posts, but **where you are**.
 - Governance
 
 **Examples:**
+
 - MotoGP Space
 - Indie Cinema Space
 - Open Source Dev Space
@@ -108,19 +116,21 @@ The central axis is not profiles or posts, but **where you are**.
 **What a Space Contains:**
 
 **Space Identity** (Identity per Space):
-  - Each user has a **different identity per Space**:
-    - Different display name
-    - Different avatar
-    - Different bio
-    - Different visibility
-  - 👉 Prevents context collapse
-  - 👉 You can be professional in one Space and casual in another
+
+- Each user has a **different identity per Space**:
+  - Different display name
+  - Different avatar
+  - Different bio
+  - Different visibility
+- 👉 Prevents context collapse
+- 👉 You can be professional in one Space and casual in another
 
 **Space Chats** - Chats within the Space context:
-  - DMs between Space members
-  - Private Group Chats within the Space
-  - ⚠️ Follow Space rules
-  - ⚠️ Use Space identity, not global
+
+- DMs between Space members
+- Private Group Chats within the Space
+- ⚠️ Follow Space rules
+- ⚠️ Use Space identity, not global
 
 **Channels** - Immersive areas within the Space (see below)
 
@@ -129,6 +139,7 @@ The central axis is not profiles or posts, but **where you are**.
 **A Channel is a composite zone, not just a chat.**
 
 A Channel can have **simultaneously**:
+
 - 💬 **Real-time Chat** - Instant messaging
 - 🎙️ **Voice** - Audio communication
 - 🧱 **Persistent Entries** - Durable content
@@ -138,11 +149,13 @@ A Channel can have **simultaneously**:
 👉 **Hybrid living spaces**
 
 **Channel Mask** (Identity per Channel) - Finest identity level:
+
 - Temporary nickname
 - Specific avatar
 - Contextual role or mask
 
 **Example:**
+
 - In a serious channel → professional identity
 - In a casual channel → meme nickname
 
@@ -151,11 +164,13 @@ A Channel can have **simultaneously**:
 **In Glow there are NO posts. There are Entries.**
 
 **What an Entry Is:**
+
 - A **blank canvas**
 - **Block-based** (Notion-like)
 - No rigid template
 
 **Can contain:**
+
 - Rich text
 - Images
 - Embeds
@@ -164,12 +179,14 @@ A Channel can have **simultaneously**:
 - (Future) dynamic smart blocks
 
 **Where Entries Can Exist:**
+
 - 🌍 **Global** - Appear in Global feed
 - 🪐 **Space** - Space content
 - 🧩 **Channel** - Belong to specific channel
 - 👤 **User** (profile) - Personal entries
 
 **An Entry can:**
+
 - Stay in its context
 - **Be promoted** (e.g., Space → Global)
 
@@ -178,16 +195,19 @@ A Channel can have **simultaneously**:
 **Glow has multi-level identity:**
 
 **1️⃣ Global Profile**
+
 - Base identity
 - Visible everywhere
 - Minimal
 
 **2️⃣ Space Identity**
+
 - Identity per Space
 - Context control
 - Deep personalization
 
 **3️⃣ Channel Mask**
+
 - Ephemeral or specific identity
 - Maximum freedom
 
@@ -195,11 +215,11 @@ A Channel can have **simultaneously**:
 
 **Context Table:**
 
-| Context | Chat Type | Identity Used |
-|---------|-----------|---------------|
-| Global  | DM / Group  | Global Profile  |
-| Space   | DM / Group  | Space Identity  |
-| Channel | Chat        | Channel Mask    |
+| Context | Chat Type  | Identity Used  |
+| ------- | ---------- | -------------- |
+| Global  | DM / Group | Global Profile |
+| Space   | DM / Group | Space Identity |
+| Channel | Chat       | Channel Mask   |
 
 ---
 
@@ -210,6 +230,7 @@ A Channel can have **simultaneously**:
 ### Core Visual Modes
 
 **Legacy Mode**
+
 - Static UI
 - No animations
 - No glow
@@ -217,6 +238,7 @@ A Channel can have **simultaneously**:
 - Low-end device support
 
 **Glow Mode** (Default)
+
 - Soft glow
 - Gentle pulses
 - Glassmorphism
@@ -224,6 +246,7 @@ A Channel can have **simultaneously**:
 - Subtle motion
 
 **Glow Up** (Premium)
+
 - Multi-color glow
 - Advanced gradients
 - Pulses, flow, flicker
@@ -234,6 +257,7 @@ A Channel can have **simultaneously**:
 ### Visual Scope
 
 Glow applies to:
+
 - UI components
 - Entries
 - Smart Blocks
@@ -245,6 +269,7 @@ Glow applies to:
 ### Performance Philosophy
 
 Glow is:
+
 - **Synchronized** - All motion follows a global clock
 - **Selective** - Only necessary elements animate
 - **Non-blocking** - Does not interfere with interaction
@@ -267,6 +292,7 @@ Glow uses a **hierarchical cascade system**.
 ### Synchronization
 
 All visual motion:
+
 - Follows a **global clock**
 - Stays **rhythmically consistent**
 - Avoids **chaotic animation**
@@ -688,6 +714,7 @@ class SpacesRemoteDataSource {
 ### Available Tools
 
 **Monorepo Management**:
+
 - `melos bootstrap` - Install dependencies for all packages
 - `melos clean` - Clean all packages
 - `melos analyze` - Run analyzer on all packages (ZERO warnings policy)
@@ -695,17 +722,20 @@ class SpacesRemoteDataSource {
 - `melos format` - Format all code
 
 **Code Generation**:
+
 - `dart run build_runner build --delete-conflicting-outputs` - Generate code (Isar schemas, Riverpod providers, Freezed models)
 - `dart run build_runner watch` - Watch mode for continuous generation
 - `dart run build_runner clean` - Clean generated files
 
 **Mason (Scaffolding)**:
+
 - `mason make feature` - Generate new feature structure
 - `mason make entity` - Generate domain entity
 - `mason make repository` - Generate repository interface + implementation
 - `mason make usecase` - Generate use case
 
 **Git**:
+
 - Use **Conventional Commits** format:
   - `feat:` - New feature
   - `fix:` - Bug fix
@@ -717,6 +747,7 @@ class SpacesRemoteDataSource {
 ### Development Workflows
 
 **When Creating a New Feature**:
+
 1. Use Mason: `mason make feature --name {feature_name}`
 2. Define entities in `glow_domain`
 3. Create use cases in `glow_domain`
@@ -731,6 +762,7 @@ class SpacesRemoteDataSource {
 12. Commit with conventional commit format
 
 **When Adding Offline-First Support**:
+
 1. Create Isar model in `glow_data/lib/src/models/isar/`
 2. Add `@collection` annotation
 3. Define schema with sync metadata:
@@ -748,6 +780,7 @@ class SpacesRemoteDataSource {
 8. Add sync status UI indicators
 
 **When Working on UI**:
+
 1. Check if component exists in `glow_ui` package
 2. Follow Atomic Design:
    - Create atoms for basic elements
@@ -761,6 +794,7 @@ class SpacesRemoteDataSource {
 ### Code Review Checklist
 
 Before committing:
+
 - [ ] Code is in **ENGLISH** (comments, variables, UI strings)
 - [ ] Uses correct **terminology** (Spaces, Entries, Channels, NOT posts/groups/servers)
 - [ ] Follows **Clean Architecture** (proper layer separation)
@@ -825,16 +859,18 @@ dart run build_runner build --delete-conflicting-outputs
 
 **Data Flow:**
 ```
+
 User Action
-    ↓
+↓
 Save to Isar (local) immediately
-    ↓
+↓
 Queue for sync (SyncOperationIsarModel)
-    ↓
+↓
 Sync to Supabase when online
-    ↓
+↓
 UI shows sync status
-```
+
+````
 
 **Implementation Status:**
 - ✅ Isar models created (SpaceIsarModel, SyncOperationIsarModel)
@@ -918,7 +954,7 @@ lib/features/{feature}/
       │   └── {feature}_card.dart
       └── providers/
           └── {feature}_controller.dart
-```
+````
 
 ### Imports Order
 
@@ -1222,11 +1258,13 @@ ref.read(spacesControllerProvider.notifier).selectSpace(space);
 ## Summary - Critical Rules
 
 ### Language
+
 - ✅ ALL code in ENGLISH (comments, variables, UI, docs)
 - ✅ Respond to user in their language, but code stays in ENGLISH
 - ❌ NO Spanish or other languages in product
 
 ### Terminology (Enforce Strictly)
+
 - ✅ Spaces (NOT servers/groups/communities)
 - ✅ Entries (NOT posts)
 - ✅ Channels (composite areas, NOT just chats)
@@ -1234,6 +1272,7 @@ ref.read(spacesControllerProvider.notifier).selectSpace(space);
 - ✅ Smart Blocks (building units)
 
 ### Architecture
+
 - ✅ Clean Architecture - strict layer separation
 - ✅ Dependencies flow inward only
 - ✅ Domain layer is pure Dart
@@ -1241,6 +1280,7 @@ ref.read(spacesControllerProvider.notifier).selectSpace(space);
 - ✅ Offline-first pattern for all data operations
 
 ### Tools & Workflows
+
 - ✅ Use Melos for monorepo management
 - ✅ Use Mason for code scaffolding
 - ✅ Use build_runner for code generation
@@ -1248,12 +1288,14 @@ ref.read(spacesControllerProvider.notifier).selectSpace(space);
 - ✅ Zero analyzer warnings policy
 
 ### Communication
+
 - ✅ Bottom-up only (events go UP, data goes DOWN)
 - ❌ NEVER lateral communication between features
 - ✅ Use callbacks for upward events
 - ✅ Use providers for downward data
 
 ### Quality Standards
+
 - ✅ Write tests for business logic
 - ✅ Follow Atomic Design for UI
 - ✅ Use const constructors

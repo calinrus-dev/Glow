@@ -35,30 +35,35 @@ Glow is **NOT** a traditional social network. It is a **system of immersive digi
 ### Content Architecture Overview
 
 **Global** (Universal Layer)
+
 - Universal lobby and cross-space convergence zone
 - Discovery feed (For You, Popular, Recent, Featured)
 - Global chats (DMs, Groups)
 - Global Profile (core identity)
 
 **Spaces** (Thematic Worlds)
+
 - Fully self-contained immersive communities
 - Unique visual identity and aesthetics
 - Internal governance and moderation
 - Space-specific identity per user
 
 **Channels** (Composite Areas)
+
 - Micro-worlds inside Spaces
 - Combine chat + entries + voice simultaneously
 - Channel Masks (per-channel identity)
 - Visibility control (public, restricted, private)
 
 **Entries** (Living Content)
+
 - Block-based content (Smart Blocks)
 - NOT posts — structured documents
 - Exist in Global, Spaces, Channels, or User profiles
 - Can be promoted across contexts
 
 **Identity System** (Multi-Layered)
+
 - Global Profile → Space Identity → Channel Mask
 - Contextual, not fixed
 - Prevents context collapse
@@ -255,10 +260,10 @@ Future<Either<Failure, List<Space>>> getSpaces() async {
   try {
     // 1. Return local data immediately (Isar)
     final localSpaces = await localDataSource.getSpaces();
-    
+
     // 2. Sync in background (fire-and-forget)
     _syncSpacesInBackground();
-    
+
     return Right(localSpaces);
   } catch (e) {
     return Left(CacheFailure(e.toString()));
@@ -269,10 +274,10 @@ Future<Either<Failure, List<Space>>> getSpaces() async {
 Future<Either<Failure, Space>> createSpace(params) async {
   // 1. Save locally with pending sync flag
   final localSpace = await localDS.createSpace(params, isPending: true);
-  
+
   // 2. Queue for sync
   await syncQueue.enqueue(SyncOperation(...));
-  
+
   // 3. Return immediately
   return Right(localSpace);
 }

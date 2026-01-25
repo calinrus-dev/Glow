@@ -8,15 +8,15 @@ analyzer:
     - "build/**"
     - "bricks/**"
     - ".dart_tool/**"
-  
+
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
-  
+
   errors:
     invalid_annotation_target: ignore
-    todo: ignore  # Ignore TODO comments in analysis
-    deprecated_member_use: ignore  # Ignore deprecation warnings during development
+    todo: ignore # Ignore TODO comments in analysis
+    deprecated_member_use: ignore # Ignore deprecation warnings during development
 
 linter:
   rules:
@@ -33,7 +33,7 @@ linter:
     - test_types_in_equals
     - throw_in_finally
     - unnecessary_statements
-    
+
     # Style rules
     - always_put_required_named_parameters_first
     - avoid_bool_literals_in_conditional_expressions

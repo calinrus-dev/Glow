@@ -81,8 +81,10 @@ void main() {
       expect(SpaceSlug.fromName('MotoGP Racing').value, 'motogp-racing');
       expect(SpaceSlug.fromName('Indie Cinema').value, 'indie-cinema');
       expect(SpaceSlug.fromName('Gaming!!!').value, 'gaming');
-      expect(SpaceSlug.fromName('Test   Multiple   Spaces').value,
-          'test-multiple-spaces',);
+      expect(
+        SpaceSlug.fromName('Test   Multiple   Spaces').value,
+        'test-multiple-spaces',
+      );
     });
 
     test('rejects empty slug', () {

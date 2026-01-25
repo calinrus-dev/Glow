@@ -1,5 +1,5 @@
-import 'package:isar/isar.dart';
 import 'package:glow_domain/glow_domain.dart';
+import 'package:isar/isar.dart';
 
 part 'space_isar_model.g.dart';
 
@@ -15,23 +15,23 @@ class SpaceIsarModel {
 
   /// Space name
   late String name;
-  
+
   /// Space slug (URL-friendly identifier)
   late String slug;
 
   /// Space description
   String? description;
-  
+
   /// Icon URL
   String? iconUrl;
-  
+
   /// Cover URL
   String? coverUrl;
-  
+
   /// Visibility (0=public, 1=private, 2=unlisted)
   @enumerated
   late SpaceVisibility visibility;
-  
+
   /// Owner ID
   late String ownerId;
 
@@ -45,7 +45,7 @@ class SpaceIsarModel {
   DateTime? lastSyncedAt;
 
   // Sync metadata
-  
+
   /// Whether this Space has pending changes to sync
   bool isPendingSync = false;
 

@@ -10,6 +10,6 @@ bricks:
     path: bricks/entity
   repository:
     path: bricks/repository
-    
+
 # Mason configuration
 mason: ^0.1.0-dev

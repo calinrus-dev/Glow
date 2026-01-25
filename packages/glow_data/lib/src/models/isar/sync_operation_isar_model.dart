@@ -81,8 +81,8 @@ enum SyncOperationType {
 
 /// Sync priority levels
 enum SyncPriority {
-  low,      // Profile changes, settings
-  medium,   // Entry edits
-  high,     // Entry creation
+  low, // Profile changes, settings
+  medium, // Entry edits
+  high, // Entry creation
   critical, // Messages, reactions
 }

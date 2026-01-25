@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:glow_domain/glow_domain.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('UserEntity', () {
