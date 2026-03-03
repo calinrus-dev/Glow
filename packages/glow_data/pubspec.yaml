@@ -13,7 +13,7 @@ dependencies:
     path: ../glow_domain
 
   # Network
-  dio: ^5.7.0
+  dio: ^5.9.2
 
   # Backend - Pure Dart (no Flutter dependencies)
   supabase: ^2.3.6
