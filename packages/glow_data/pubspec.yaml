@@ -16,7 +16,7 @@ dependencies:
   dio: ^5.7.0
 
   # Backend - Pure Dart (no Flutter dependencies)
-  supabase: ^2.3.6
+  supabase: ^2.10.3
 
   # Local Database (Offline-first)
   isar: ^3.1.0+1
